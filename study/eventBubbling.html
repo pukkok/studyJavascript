@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트 버블링(면접질문 자주나옴)</title>
+    <!-- 
+    이벤트 캡쳐 - 상위요소(body) 부터 이벤트 발생 지점까지 찾기
+    ex) => 바디 => 부모 => 자식
+    이벤트 버블링 = 이벤트 발생 지점부터 상위요소까지 찾기
+    ex) => 자식 => 부모 => 바디
+    addEventLisner('이벤트', 이벤트 함수, true) true 일때 캡쳐링 false일때 버블링
+
+    이벤트 발생 시 이벤트 캡쳐가 먼저 일어나고 이벤트 버블링이 작동한다
+    ex) => 바디 => 부모 => 자식 => 부모 => 바디
+    하지만 true false로 하나만 실행되게 한다.
+    -->
+
+    <!-- 이벤트 위임 -->
+    <style>
+    .parent{
+        border: 10px solid orange;
+        padding: 50px;
+        text-align: center;
+    }
+    /* 동적으로 적용할 스타일 */
+    .hide{
+        display: none;
+    }
+    #child{
+        display: inline-block;
+        all: unset;
+        width: 300px;
+        height: 100px;
+        line-height: 100px;
+        font-size: 1.5rem;
+        border-radius: 15px;
+        font-weight: bold;
+        background: peru;
+        color: white;
+        text-align: center;
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <button class="child">클릭</button>
+    </div>
+    <script src="eventBubbling.js"></script>
+</body>
+</html>

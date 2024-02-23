@@ -19,11 +19,19 @@ body{
 }
 
 .page-btns{
+    
+}
+
+.btnBox{
     position: fixed;
-    border: 1px solid red;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100%;
+    box-sizing: border-box;
+    /* border: solid 1px red; */
+    left : 0;
     bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* 생성할 버튼에 적용되는 클래스 */
@@ -32,14 +40,34 @@ body{
     height: 50px;
     background-color: violet;
     border-radius: 10px;
-    margin-right: 5px;
+    margin: 5px;
     cursor: pointer;
     color: #fff;
     font-size: 1rem;
     font-weight: bold;
     border: none;
     outline: none;
+    display: none;
 }
+.page-btn:hover{
+    background-color: purple;
+}
+.prev, .next{
+    width: 50px;
+    height: 50px;
+    margin: 0 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.prev:hover,
+.next:hover{
+    background-color: purple;
+    color: white;
+}
+
 /* 동적으로 생성할 리스트의 각각의 아이템 */
 .list-item{
     width: 500px;

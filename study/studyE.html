@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클릭 이벤트</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            background-color: #0e1111;
+
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .box{
+            border : 3px solid wheat;
+            width: 30vw;
+            height: 5rem;
+            line-height: 5rem;
+            color: wheat;
+            font-size: 2rem;
+            border-radius: 30px 0 30px 0;
+            text-align: left;
+            padding-left: 1rem;
+            opacity: 1;
+            transition: .3s ease-out;
+        }
+
+        .box span{
+            width: 3rem;
+            float: right;
+            cursor: pointer;
+            transition: .3s;
+            text-align: center;
+        }
+
+        .box span:hover{
+            transform:  rotateZ(90deg);
+        }
+
+        /* 변경할 스타일 */
+        .fadeOut{
+            opacity: 0;
+        }
+        .hide{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box">1<span>X</span></div>
+        <div class="box">2<span>X</span></div>
+        <div class="box">3<span>X</span></div>
+        <div class="box">4<span>X</span></div>
+        <div class="box">5<span>X</span></div>
+    </div>
+
+
+    <script>
+        const container = document.querySelector('.container')
+
+        function removeItem(e){
+            console.log(e.target)
+            console.log(e.target.className)
+
+            if(e.target.className === ''){ // x 버튼 클릭한 경우 : 이벤트 위임
+                const box = e.target.parentElement
+                box.classList.add('fadeOut') // opacity 변경
+                setTimeout(() => {
+                    box.classList.add('hide')
+                }, 500);
+            }
+        }
+
+        container.addEventListener('click', removeItem)
+    </script>
+</body>
+</html>

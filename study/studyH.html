@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LED 만들기 1</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #0e1111;
+        }
+        .led-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            grid-gap: 30px;
+            width: 500px;
+            height: 100px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid red;
+        }
+        .led{
+            width: 30px;
+            height: 30px;
+            background-color: orange;
+            border-radius: 50%;
+            cursor: pointer;
+            transform: all .5s ease-in-out;
+        }
+        /* 변경할 스타일 */
+        .on{
+            box-shadow: 1px 1px 10px 10px orange;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="led-container">
+        <div class="led"></div>
+        <div class="led"></div>
+        <div class="led"></div>
+    </div>
+    <script>
+        // 방법1
+
+        // const leds = document.querySelectorAll('.led')
+
+        // function lighton(e){
+        //     e.target.classList.add('on')
+        // }
+
+        // function lightoff(e){
+        //     e.target.classList.remove('on')
+        // }
+
+        // for(let led of leds){
+        //     led.addEventListener('mouseover', lighton)
+        //     led.addEventListener('mouseleave', lightoff)
+        // }
+        
+        // 방법2
+        const container = document.querySelector('.led-container')
+
+        function lightOn (e){
+            if(e.target.className === 'led'){
+                e.target.classList.toggle('on')
+            } else if(e.target.classList.contains('on')){
+                const ledOn = container.querySelector('.on')
+                ledOn.classList.remove('on')
+            }   
+        }
+        container.addEventListener('mouseover', lightOn)
+
+    </script>
+</body>
+</html>

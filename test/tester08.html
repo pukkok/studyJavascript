@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse move</title>
+    <style>
+        *{
+            cursor: none;
+        }
+
+    #circle{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(-20deg);
+        background-color: peru;
+        background-image: url("./라이언2.png"); 
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    #circle.on{
+        animation: rotate linear 1.5s alternate infinite;
+    }
+    /* #circle:active{
+        background-image: url("./라이언.png");
+        transform: translate(-50%, -50%);
+    } */
+    .test{
+        border : solid 1px red;
+        width: 30vw;
+        height: 10vh;
+        margin: 0 auto;
+        text-align: center;
+    }
+    @keyframes rotate {
+        0%{
+            transform : translate(-50%, -50%) rotate(-20deg)
+        }
+        100%{
+            transform : translate(-10%, -10%) rotate(20deg)
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="test">호버 테스트용 입니다.</div>
+    <div id = "circle"></div>
+    <script src="tester08.js"></script>
+</body>
+</html>

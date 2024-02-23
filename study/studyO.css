@@ -1,0 +1,50 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.contents{
+    width: 100%;
+    height: 100vh;
+    background-color: thistle;
+    color: white;
+    font-weight: bold;
+
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-btns{
+    position: fixed;
+    border: 1px solid red;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 50px;
+}
+
+/* 생성할 버튼에 적용되는 클래스 */
+.page-btn{
+    width: 50px;
+    height: 50px;
+    background-color: violet;
+    border-radius: 10px;
+    margin-right: 5px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    outline: none;
+}
+/* 동적으로 생성할 리스트의 각각의 아이템 */
+.list-item{
+    width: 500px;
+    height: 100px;
+    background-color: #fff;
+    color: purple;
+    margin: 10px;
+}

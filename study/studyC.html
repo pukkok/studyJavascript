@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 연습</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>로그인 화면</h1>
+    <form action="/home">
+        <input type="text" id='user-id'>
+        <input type="password" id='user-password'>
+        <input type="submit">
+    </form>
+    <p></p>
+    <script>
+        const form = document.querySelector(`form`)
+        const id = document.getElementById('user-id')
+        const password = document.getElementById('user-password')
+        const p = document.querySelector('p')
+
+        function login (e) {
+            if(id.value === '' || password.value === ''){
+                e.preventDefault() // 이벤트의 기본적인 동작을 하지 못하도록 방지
+                p.innerText = `아이디나 비밀번호가 입력되지 않았습니다!`
+            } else {
+                alert('login is processing ...')
+            }
+        }
+
+        form.addEventListener('submit', login)
+    </script>
+</body>
+</html>

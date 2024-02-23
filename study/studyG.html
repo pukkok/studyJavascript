@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>커서 따라오기</title>
+    <style>
+        #circle{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: violet;
+            background: url('https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F235DC14052ACDC5215') no-repeat center;
+            background-size: cover;
+            /* transition: .3s; */
+            cursor: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="circle"></div>
+    <script>
+        const circle = document.getElementById('circle')
+        
+        const moveCircle = (e) => {
+            // console.log(e.clientX, e.clientY) // 클릭한 마우스 포인트
+            circle.style.left = e.clientX + `px`
+            circle.style.top = e.clientY + `px`
+        }
+
+        window.addEventListener('mousemove', moveCircle) // 브라우저 클릭 감지
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .sidebar{
+            width: 30%;
+            height: 100vh;
+            border: 1px solid red;
+            position: absolute;
+            left: -30%;
+            top: 0;
+
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+            transition: all .7s ease-in-out;
+        }
+        .show{
+            left: 0;
+        }
+        .menu{
+            flex: 1;
+            width: 100%;
+            background-color: peru;
+            border-bottom: 1px solid lightgoldenrodyellow;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: lightgoldenrodyellow;
+            cursor: pointer;
+        }
+        .menu:hover{
+            color: peru;
+            background-color: lightgoldenrodyellow;
+        }
+    </style>
+</head>
+<body>
+    <button id="open-btn">open sidebar</button>
+    <div class="sidebar">
+        <div class="menu">HOME</div>
+        <div class="menu">ABOUT</div>
+        <div class="menu">CONTACT</div>
+    </div>
+    <script>
+        const openBtn = document.getElementById('open-btn')
+        const sidebar = document.querySelector('.sidebar')
+        const menus = document.querySelectorAll(`.menu`)
+
+        const openSidebar = (e) => {
+            e.stopPropagation() // 이벤트 버블링 방지
+            sidebar.classList.add('show')
+        }
+
+        const closeSidebar = (e) => {
+            console.log('브라우저 영역 클릭')
+            console.log(sidebar.classList.contains('show')) // 사이드바 열려있는지 검사하기
+            console.log(sidebar.contains(e.target)) // 현재 클릭한 포인트가 사이드바 내부 영역인지 체크
+
+            if(sidebar.classList.contains('show') && !sidebar.contains(e.target)){
+                sidebar.classList.remove('show')
+            }
+            // if(sidebar.classList.contains('show') && sidebar.contains(e.target)){
+            //     sidebar.classList.remove('show')
+            // }
+        }
+
+        const hideSidebar = () => {
+            sidebar.classList.remove('show')
+        }
+
+        openBtn.addEventListener('click', openSidebar)
+        // sidebar.addEventListener('click', closeSidebar)
+        document.addEventListener('click', closeSidebar)
+        
+        for(let menu of menus){
+            menu.addEventListener(`click`, hideSidebar)
+        }
+        
+    </script>
+</body>
+</html>

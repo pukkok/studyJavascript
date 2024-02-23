@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        #box-container{
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 100px auto;
+            background-color: lightsalmon;
+        }
+        .box{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background-color: lightpink;
+            transition: 1s;
+        }
+    </style>
+</head>
+<body>
+    <h1>Loading...</h1>
+    <div id="box-container">
+        <div class="box"></div>
+    </div>
+
+    <script>
+        const box = document.querySelector('.box')
+        const moves = [
+            {position : 'left', length : 100},
+            {position : 'top', length : 100},
+            {position : 'left', length : 0},
+            {position : 'top', length : 0},
+        ]
+
+        let select = 0
+
+        const moveBox = () => {
+            console.log(moves[select])
+            const pos = moves[select].position
+            const length = moves[select].length
+            box.style[pos] = `${length}px`
+            select++
+            if(select > moves.length -1){
+                select =0;
+            }
+        }
+
+        const startMove = () => {
+            setInterval(moveBox , 1000);
+        }
+        window.addEventListener('load', startMove)
+
+        const car = {
+            year: 2016,
+            owner: "민석"
+        }
+        car["year"]
+        box.style.top
+    </script>
+</body>
+</html>

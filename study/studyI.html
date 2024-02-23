@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LED 만들기 2</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #0e1111;
+        }
+        .led-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            grid-gap: 30px;
+            width: 500px;
+            height: 100px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid red;
+        }
+        .led{
+            width: 30px;
+            height: 30px;
+            background-color: orange;
+            border-radius: 50%;
+            cursor: pointer;
+            transform: all .5s ease-in-out;
+        }
+        /* 변경할 스타일 */
+        .on{
+            box-shadow: 1px 1px 10px 10px orange;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="led-container">
+        <div class="led"></div>
+        <div class="led"></div>
+        <div class="led"></div>
+    </div>
+
+    <script>
+        let index = 0 // 배열에서 특정 led를 선택하기 위한 인덱스 [7,3,9,2]
+
+        const lightOff = () => {
+            const led = document.querySelector('.on')
+            if(led) led.classList.remove('on')
+        }
+        const lightOn = () => {
+            lightOff() // 기존에 켜져있는 LED를 먼저 off
+
+            const leds = document.querySelectorAll('.led')
+            leds[index].classList.add('on') // 현재 인덱스의 led on
+            index++ // 다음 LED를 선택하기 위한 인덱스 값 증가
+            if(index > leds.length - 1){
+                index=0; // 인덱스 값 초기화
+            }
+        }
+
+        function startEffect(){
+            setInterval(lightOn, 1000) // 1초마다 LED on/off
+        }
+        window.addEventListener('load', startEffect)
+    </script>
+</body>
+</html>

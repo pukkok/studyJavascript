@@ -69,10 +69,13 @@
         function lightOn (e){
             if(e.target.className === 'led'){
                 e.target.classList.toggle('on')
-            } else if(e.target.classList.contains('on')){
+            } 
+            else if(e.target.className === 'led-container'){
                 const ledOn = container.querySelector('.on')
-                ledOn.classList.remove('on')
-            }   
+                if(ledOn){
+                    ledOn.classList.remove('on')
+            }
+        }
         }
         container.addEventListener('mouseover', lightOn)
 

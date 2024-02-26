@@ -32,7 +32,7 @@ for(let i=0; i<numOfData; i++){
     pageContents.push({name : 'Pukkok', age: 20, id: i+1})
 }
 
-// 첫번째 화면 리스트
+// 처음 화면 리스트
 const loadList = (offset, pageLimit, contents, pageContents) => { // 전역변수 값복사 이후 지역변수
 for(let i=offset; i<offset+pageLimit; i++){
     const listItem = pageContents[i]
@@ -44,7 +44,6 @@ for(let i=offset; i<offset+pageLimit; i++){
     `
 }
 }
-
 loadList(offset, pageLimit, contents, pageContents)
 
 //버튼생성
@@ -68,6 +67,8 @@ const showBtn = (btnIndex, btnLimit, numOfBtns, showBtns) => {
     }
 }
 showBtn(btnIndex, btnLimit, numOfBtns, showBtns)
+
+//처음 버튼 스타일
 showBtns[0].classList.add('active')
 prev.disabled = true
 
@@ -79,19 +80,13 @@ const activeBtn = () => {
     const activeBtn = showBtns[offset / pageLimit]
     activeBtn.classList.add('active')
 
-    if(showBtns[0].classList.contains('active')){
-        prev.disabled = true
-    }else{
-        prev.disabled = false
-    }
-    if(showBtns[numOfBtns-1].classList.contains('active')){
-        next.disabled = true
-    }else{
-        next.disabled = false
-    }
+    showBtns[0].classList.contains('active') ?
+    prev.disabled = true : prev.disabled = false
 
-
+    showBtns[numOfBtns-1].classList.contains('active') ?
+    next.disabled = true : next.disabled = false
 }
+
 
 //바뀐 화면 리스트
 const changePage = (e) => {
@@ -107,12 +102,10 @@ const changePage = (e) => {
 // prev, next 버튼
 const prevBtns = (e) => {
     if(e.target.classList.contains('prev')){
-        if(offset!==0){
-            offset = offset-pageLimit
-            contents.innerHTML = ''
-            loadList(offset, pageLimit, contents, pageContents)
-            activeBtn()
-        }
+        offset = offset-pageLimit
+        contents.innerHTML = ''
+        loadList(offset, pageLimit, contents, pageContents)
+        activeBtn()
         if((offset / pageLimit) % btnLimit === 4){
             btnIndex = (offset / pageLimit) - pageLimit
             showBtn(btnIndex, btnLimit, numOfBtns, showBtns)
@@ -122,12 +115,10 @@ const prevBtns = (e) => {
 
 const nextBtns = (e) => {
     if(e.target.classList.contains('next')){
-        if(offset+pageLimit < numOfData){
-            offset = offset+pageLimit
-            contents.innerHTML = ''
-            loadList(offset, pageLimit, contents, pageContents)
-            activeBtn()
-        }
+        offset = offset+pageLimit
+        contents.innerHTML = ''
+        loadList(offset, pageLimit, contents, pageContents)
+        activeBtn()
         if((offset / pageLimit) % btnLimit === 0){
             btnIndex = offset / pageLimit
             showBtn(btnIndex, btnLimit, numOfBtns, showBtns)

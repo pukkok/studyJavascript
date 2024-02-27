@@ -1,0 +1,68 @@
+body{
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+}
+#container{
+    box-sizing: border-box;
+    background-color: #0e1111;
+    margin: auto;
+    width: 300px;
+    height: 50px;
+    border: solid 2px violet;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: violet;
+    z-index: 1;
+}
+#container .input-color{
+    all: unset;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    position: relative;
+    top: 3px;
+    margin-bottom: 15px;
+}
+
+#container .input-color::placeholder{
+    color: blueviolet;
+}
+
+#container .arrow{
+    position: absolute;
+    top: 3px;
+    right: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#container .color-list{
+    border: solid 2px violet;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #0e1111;
+    position: absolute;
+    display: none;
+}
+
+#container .color-list .color-item{
+    border: solid 1px violet;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#container .color-list .color-item:hover{
+    background-color: blueviolet;
+    color: white;
+}
+
+.color-box{
+    width: 100vw;
+    height: 100vh;
+    background-color: #0e1111;
+    position: absolute;
+}

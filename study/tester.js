@@ -100,9 +100,9 @@ const changeList = () => {
 }
 
 const clearEvent = (index) => {
-    colorList.querySelectorAll('.color-item')[index]
     container.removeEventListener('keyup', arrowShowList)
     index=-1
+    colorList.querySelectorAll('.color-item')[index]
     prevIndex=-1
 }
 const restartEvent = (e) => {

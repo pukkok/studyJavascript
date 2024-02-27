@@ -1,0 +1,92 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #0e1111;
+}
+#root{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+#card-container{
+    display: flex;
+    height: 400px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+    perspective: 300px;
+    /* perspective 입체적 */
+}
+.card{
+    width: 300px;
+    height: 400px;
+    overflow: hidden;
+    user-select: none;
+    background-color: #fff;
+    transition: all .5s ease-in-out;
+}
+.card img{
+    width: 100%;
+    height: 80%;
+    background-color: #fff;
+}
+.card-text{
+    background-color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.job{
+    color: blueviolet;
+}
+.card:nth-child(1){
+    transform: rotateY(40deg);
+    width: 150px;
+    height: 350px;
+    z-index: 1;
+}
+.card:nth-child(2){
+    transform: rotateY(20deg);
+    width: 200px;
+    height: 350px;
+    z-index: 2;
+}
+.card:nth-child(3){
+    transform: rotateY(0deg);
+    z-index: 3;
+}
+.card:nth-child(4){
+    transform: rotateY(-20deg);
+    width: 200px;
+    height: 350px;
+    z-index: 2;
+}
+.card:nth-child(5){
+    transform: rotateY(-40deg);
+    width: 150px;
+    height: 350px;
+    z-index: 1;
+}
+#control-btns{
+    position: fixed;
+    bottom: 0px;
+}
+.c-btn{
+    all: unset;
+    width: 100px;
+    height: 50px;
+    border: 2px solid blueviolet;
+    border-radius: 10px;
+    color: violet;
+    text-align: center;
+    cursor: pointer;
+    margin: 0 10px;
+    user-select: none;
+}

@@ -1,24 +1,31 @@
+
 const center = document.querySelector('.center')
 const docs = document.querySelectorAll('.document')
 const btn = document.querySelector('button')
 
-let docH = []
+let isCompletes = []
+let docHeights = []
 let count = 0
+
 const scrollEvent = (e) => {
     for(let i=0; i<docs.length; i++){
-        let scrollH = docs[i].scrollHeight - docs[i].clientHeight
-        docH[i] = scrollH
-        if(e.target.scrollTop === docH[i]){
-            console.log(i, 'check')
-            count++
-            if(count===docs.length){
-                btn.disabled = true
-            }
+        console.log('e : ', parseInt(e.target.scrollTop+5))
+        console.log('dH : ', docHeights[i])
+        if(parseInt(e.target.scrollTop+5) > docHeights[i]){
+            isCompletes[i] = true
+            console.log(isCompletes)            
         }
     }
+    if(!isCompletes.includes(false)){
+        btn.disabled = false
+    }
 }
-// console.log(docH)
+
 
 for(let doc of docs){
+    let docHeight = doc.scrollHeight - doc.clientHeight
+    docHeights.push(docHeight)
+    let isComplete = false
+    isCompletes.push(isComplete)
     doc.addEventListener('scroll', scrollEvent)
 }

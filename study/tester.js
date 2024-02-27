@@ -20,6 +20,7 @@ container.append(inputColor, arrow, colorList)
 let index = -1
 let prevIndex = -1
 const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'navy', 'purple']
+let isOpened = false
 
 for(let color of colors){
     const colorItem = document.createElement('div')
@@ -29,17 +30,21 @@ for(let color of colors){
 }
 
 const showList = (e) => {
+    console.log(e.target)
     if(e.target.className === `arrow`){
         if(e.target.innerText === '▽'){
             colorList.style.display = 'block'
             arrow.innerText = '△'
+            isOpened = true
         } else {
             colorList.style.display = 'none'
             arrow.innerText = '▽'
+            isOpened = false
         }
     } else {
         colorList.style.display = 'none'
         arrow.innerText = '▽'
+        isOpened = false
     }
 }
 
@@ -59,9 +64,11 @@ const clickList = (e) => {
 }
 
 const arrowShowList = (e) => {
+   
     console.log(e.keyCode)
     prevIndex = index
     if(e.keyCode === 40){
+        console.log("리스트 보여주기")
         index++
         if(index>colors.length-1){
         index=0
@@ -70,9 +77,10 @@ const arrowShowList = (e) => {
         if(arrow.innerText === '▽'){
             colorList.style.display = 'block'
             arrow.innerText = '△'
+            isOpened = true
         }
     }
-    else if(e.keyCode === 38){
+    else if(isOpened && e.keyCode === 38){
         index--
         if(index<0){
         index=colors.length-1
@@ -80,11 +88,12 @@ const arrowShowList = (e) => {
         changeList()
 
     }
-    else if(e.keyCode === 13){
+    else if(isOpened && e.keyCode === 13){
         colorBox.style.backgroundColor = colors[index]
         inputColor.value = colors[index]
         showList(e)
-        clearEvent(index)
+        // clearEvent(index)
+        isOpened = false
     }
 }
 
@@ -95,25 +104,34 @@ const changeList = () => {
         prevItem.style.backgroundColor = '#0e1111'
         }
         let item = colorList.querySelectorAll('.color-item')[index]
-        item.style.backgroundColor = 'blueviolet'
+        item.style.backgroundColor = 'blueviolet'       
     }
+}
+const syncArrowShowList = (e) => {
+    arrowShowList(e)
 }
 
 const clearEvent = (index) => {
+    colorList.querySelectorAll('.color-item')[index]
     container.removeEventListener('keyup', arrowShowList)
     index=-1
-    colorList.querySelectorAll('.color-item')[index]
     prevIndex=-1
 }
-const restartEvent = (e) => {
-    if(e.keyCode === 40){
-        container.addEventListener('keyup', arrowShowList)
+
+function initKeyUp(e){
+    let selectedItem = colorList.querySelectorAll('.color-item')[index]
+    selectedItem.style.backgroundColor = '#0e1111'
+    index = -1
+    prevIndex = -1
+    console.log(e.target)
+    const colorItems = colorList.querySelectorAll('.color-item')
+    for(let colorItem of colorItems){
+        colorItem.style.backgroundColor = ""
     }
 }
-
-container.addEventListener('keyup', restartEvent)
 
 container.addEventListener('keyup', arrowShowList)
 container.addEventListener('click', clickList)
 container.addEventListener('input', inputText)
 window.addEventListener('click', showList)
+colorList.addEventListener('mouseenter', initKeyUp)

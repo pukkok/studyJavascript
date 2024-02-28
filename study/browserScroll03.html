@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            height: 200vh;
+        }
+        .box{
+            width: 300px;
+            height: 200px;
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: orange;
+        }
+        button{
+            position: fixed;
+            left: 10px;
+            top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <button>좌표값 확인하기</button>
+    <script>
+        const box = document.querySelector('.box')
+        const button = document.querySelector('button')
+
+        const getMousePoints = (e) => {
+            const findedElement = document.elementFromPoint(e.clientX, e.clientY)
+            findedElement.style.backgroundColor = 'red'
+        }
+
+        window.addEventListener('click', getMousePoints)
+
+        // 카드 호버이벤트 할때 써먹어 보자
+    </script>
+</body>
+</html>

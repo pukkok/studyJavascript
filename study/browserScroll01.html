@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 300vh;
+        }
+        #example {
+            width: 300px;
+            height: 200px;
+            background-color: aquamarine;
+            border: 10px solid gold;
+            overflow: auto;
+        }
+        button {
+            /* position: absolute; */
+            right: 20px;
+            top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="example">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt reprehenderit, distinctio quasi ipsam eligendi, tempore sunt omnis nisi, voluptates aspernatur rerum? Dolores alias maiores quae iste ex reprehenderit repudiandae ipsum.
+        Tempora eum dignissimos temporibus soluta in rem cumque maiores officia fugit dolores ipsam quas aperiam nulla eius, ex itaque magnam qui! Est sapiente aliquid qui commodi rerum ab ratione ducimus.
+        Corrupti aut commodi omnis. Recusandae, debitis hic delectus obcaecati eius voluptatibus, iure, optio adipisci ducimus quam aliquam ut! Rerum accusantium ducimus perspiciatis repellendus odio voluptatem dolorum cumque repellat provident earum?
+        Minus aliquid, animi, architecto explicabo, tenetur blanditiis assumenda recusandae autem illum labore qui dolorum veritatis consequuntur facilis eveniet culpa? Unde, placeat? Exercitationem deleniti est laboriosam aliquid, quo atque ullam eligendi.
+        Dolorum facilis deserunt harum tempora iusto, adipisci minus architecto eaque est veritatis quae consectetur modi cum nisi consequuntur dignissimos rerum eveniet mollitia soluta, perferendis explicabo velit. Consequuntur molestiae ullam quasi.
+        Eveniet a ullam odit magnam ea. Repellendus, earum quos excepturi qui perferendis saepe quaerat facere et quia natus quisquam odio, adipisci officiis sint cumque perspiciatis necessitatibus minus porro voluptatum deserunt.
+        Laboriosam accusamus dolorum rem beatae natus fugit nisi ad sed laborum quas. Nam in beatae provident asperiores magni totam excepturi tempora soluta accusantium illum maxime, architecto eum doloribus nemo numquam?
+    </div>
+    <button class="fix-scrollbar">스크롤 고정하기</button>
+    <button class="move-scrollbar">스크롤 이동하기</button>
+    <script>
+        // document.body : 익스플로러, 사파리
+        // document.documentElement : 엣지, 크롬, 오페라
+
+        // const scrollHeight = Math.max( //
+        //     document.body.scrollHeight, document.documentElement.scrollHeight,
+        //     document.body.offsetHeight, document.documentElement.offsetHeight,
+        //     document.body.clientHeight, document.documentElement.clientHeight,    
+        // )
+        // console.log('스크롤에 의해 가려진 부분을 포함한 전체 문서의 높이 : ', scrollHeight)
+
+        // console.log('세로 스크롤에 의해 가려진 문서 위쪽 영역의 높이 : ', window.pageYOffset)
+        // console.log('가로 스크롤에 의해 가려진 문서 왼쪽 영역의 너비 : ', window.pageXOffset)
+
+        const example = document.getElementById('example')
+        const button = document.querySelector('button')
+        const fixScrollbar = document.querySelector('.fix-scrollbar')
+        const moveScrollbar = document.querySelector('.move-scrollbar')
+
+        // const scroll = () => {
+        //     example.scrollBy(0,50) // 현재 스크롤 위치에서 이동 (상대적으로 이동)
+        // }
+
+        // const scroll = () => {
+        //     example.scrollTo(0,0) // 문서의 좌측 상단 꼭지점 기준으로 x, y 지점으로 이동
+        // }
+
+        // const scroll = () => {
+        //     button.scrollIntoView(false) // 문서의 좌측 상단 꼭지점 기준으로 x, y 지점으로 이동
+        // }
+
+        // button.addEventListener('click', scroll)
+
+        const fixScroll = () => {
+            document.body.style.overflow = "hidden" // 문서의 스크롤바 제거
+        }
+        const moveScroll = () => {
+            document.body.style.overflow = "" // 문서의 스크롤바 보이게 하기
+        }
+
+        fixScrollbar.addEventListener('click', fixScroll)
+        moveScrollbar.addEventListener('click', moveScroll)
+    </script>
+</body>
+</html>

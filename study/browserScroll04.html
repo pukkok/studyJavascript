@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 200vh;
+        }
+
+        .coords-show-mark{
+            width: 500px;
+            height: 500px;
+            background-color: orchid;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="coords-show-mark"></div>
+    <script>
+        let el = document.querySelector('.coords-show-mark')
+
+        const createMessageUnder = (el, html) => {
+            let msg = document.createElement('div') // 오렌지 박스 근처에 위치시킬 요소
+            let coords = el.getBoundingClientRect() // 오렌지 박스의 좌표값 계산
+            msg.style.cssText = `
+                position : absolute;
+                color: red;
+                left : ${coords.left}px;
+                top : ${coords.bottom}px;
+            `
+            msg.innerHTML = html
+            return msg
+        }
+
+        let message = createMessageUnder(el, "Hello world!")
+        el.appendChild(message)
+
+        // setTimeout(() => {
+        //    message.remove()
+        // }, 5000);
+    </script>
+</body>
+</html>

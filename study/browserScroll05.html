@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const getCoords = (el) => {
+            let box =  el.getBoundingClientRect() // 브라우저 기준 좌표
+
+            return { // window.pageYoffset = scrollTop, window.pageXoffset = scrollLeft
+                top : box.top + window.pageYOffset,
+                left : box.left + window.pageXOffset,
+                bottom : box.bottom + window.pageYOffset,
+                right : box.right + window.pageXOffset
+            }
+        }
+    </script>
+</body>
+</html>

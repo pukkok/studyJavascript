@@ -1,0 +1,82 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #0e1111;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 400vh;
+}
+
+.container{
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.container .item{
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+    opacity: 0;
+    transform: translateY(50px) scale(1.05);
+    transition: 1s ease-in-out;
+}
+.item.fade{
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+}
+p{
+    width: 30%;
+    color: wheat;
+    transform: translateY(50px) scale(1.1);
+    text-align: center;
+    opacity: 0;
+    transition: 1s ease-in-out;
+    margin: 3rem auto;
+}
+p.fade{
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+}
+iframe{
+    opacity: 0;
+    width: 60%;
+    height: 720px;
+    margin-top: 10rem;
+    transform: 1s ease-in-out;
+}
+iframe.fade{
+    opacity: 1;
+    width: 70%;
+    height: 800px;
+    margin-top: 8rem;
+}
+
+
+.container .item:nth-child(1){
+    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuIlg9172jMsDMgF9cppzLBbpMwTntLNgniQ&usqp=CAU') no-repeat center;
+  }
+  .container .item:nth-child(2){
+    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2GSftiaaV3uqt9eHukmHmxNU29R3LtbQvdg&usqp=CAU') no-repeat center;
+  }
+  .container .item:nth-child(3){
+    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4aNAibmpYUyJaHT_FLNwpPg9HE4WIv6nuOQID0bi7RG0d7WCXcbTF6qy8NCs4DgXpLTU&usqp=CAU') no-repeat center;
+  }
+  .container .item:nth-child(4){
+    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAwQAZ_qjz4tXPUQGQ1FB5RFz3PAyYPCozZw&usqp=CAU') no-repeat center;
+  }
+  .container .item:nth-child(5){
+    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-sDZMwuIvgDzX37sVbe5_RxEofHFzx5kjTA&usqp=CAU') no-repeat center;
+  }
+  .container .item:nth-child(6){
+    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC3AoBjKswejqo8-k8ym64qU7WL8ympdT9kg&usqp=CAU') no-repeat center;
+  }

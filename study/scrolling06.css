@@ -1,0 +1,48 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+main{
+    width: 100%;
+}
+main section{
+    width: 100%;
+    height: 100vh;
+    border: 1px red solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: 1s ease-in-out;
+}
+main section p {
+    font-size: 2rem;
+    font-weight: bold;
+    color: seashell;
+    text-align: center;
+    margin: 0;
+    padding: 1rem 2rem;
+}
+main section:nth-child(1){
+    background-color: slateblue;
+}
+main section:nth-child(2){
+    background-color: goldenrod;
+    height: 0; opacity: 0
+}
+main section:nth-child(3){
+    background-color: blueviolet;
+    height: 0; opacity: 0
+}
+main section:nth-child(4){
+    background-color: lightgreen;
+    height: 0; opacity: 0
+}
+main section:nth-child(5){
+    background-color: powderblue;
+    height: 0; opacity: 0;
+}

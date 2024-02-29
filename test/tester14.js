@@ -1,102 +1,90 @@
-const root = document.getElementById('root')
-const navigation = document.querySelector('header > nav')
-const homeMenus = ["home-sub-1", "home-sub-2", "home-sub-3"]      // 서브메뉴 배열
-const aboutMenus = ["about-sub-1", "about-sub-2", "about-sub-3"]  // 서브메뉴 배열
-const contactMenus = ["contact-sub-1", "contact-sub-2", "contact-sub-3"] // 서브메뉴 배열
-const subMenus = [homeMenus, aboutMenus, contactMenus]
+const main = document.querySelector('main')
+const sections = main.querySelectorAll('section')
+const clientHeight = document.documentElement.clientHeight // 브라우저 높이
+const scrollHeight = Math.max(
+  document.body.scrollHeight, document.documentElement.scrollHeight,
+  document.body.offsetHeight, document.documentElement.offsetHeight,
+  document.body.clientHeight, document.documentElement.clientHeight
+)
+let index = 0, timer
 
-const listMenus = document.querySelectorAll('nav > ul > li')
-const menus = document.querySelectorAll('.menu')
+const nav = document.querySelector('nav')
 
-for(i=0; i<subMenus.length; i++){
-    let coords = menus[i].getBoundingClientRect()
-    let ul = document.createElement('ul')
-        ul.className='sub-menu'
-        ul.style.cssText = `
-        left : ${coords.left - 35}px;
-        top : ${coords.bottom + 30}px;
-        display : none;
-        `
-    for(let list of subMenus[i]){
-        let li = document.createElement('li')
-        li.innerText = list
-        ul.append(li)
-    }
-    listMenus[i].append(ul)
+const changeWidth = (e) => {
+    nav.style.marginRight = '100px'
 }
 
-const openSub = (e) => {
-    let subMenus = document.querySelectorAll('.sub-menu')
-    for(i=0; i<menus.length; i++){
-        if(e.target === menus[i]){
-            subMenus[i].style.display === 'none' ?
-            subMenus[i].style.display = 'block' :
-            subMenus[i].style.display = 'none'
-        }
-        else{
-            subMenus[i].style.display = 'none'
-        }
+const clearWidth = (e) => {
+    if(e.target === nav){
+        nav.style.marginRight = '0px'
     }
 }
 
-navigation.addEventListener('click', openSub)
+nav.addEventListener('mouseover', changeWidth)
+nav.addEventListener('mouseleave', clearWidth)
+
+const mainBox = document.querySelector('.main-box')
+const navLi1 = document.querySelectorAll('.sub-menu li')
+const prev = document.querySelector('.main-menu span')
 
 
+const changePage = (e) => {
+    if(e.target === prev){
+        mainBox.classList.remove('alpha')
+        mainBox.classList.add('number')
+        // nav.style.right = '-100px'
+        // nav.style.left = '100vw'
+    }
+    if(e.target === navLi1[0]){
+        mainBox.classList.add('alpha')
+        // nav.style.position = 'absolute'
+        nav.style.right = '-100vw'
+    }
+    console.log(e.target)
+}
 
+nav.addEventListener('click', changePage)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// for(let menu of menus){
-//     let ul = document.createElement('ul')    
-//     ul.className='sub-menu'
-//     menu.append(ul)
-// }
-
-// let subMenus = menus.querySelectorAll('.sub-menu')
-
-// let ul = document.createElement('ul')
-// ul.className ='sub-menu'
-// const listCreater = (items) => {
-//     for(let item of items){
-//         let li = document.createElement('li')
-//         li.innerText = item
-//         ul.append(li)
+// const throttling = (handler, e) => {
+//     if(!timer){
+//         timer = setTimeout(() => {
+//             handler(e)
+//             timer = null
+//         }, 500);
 //     }
 // }
 
-// let subList = () => {
-//     for(let array of menuBox)
-//     listCreater(menuBox)
+// const changeSlide = (e) =>{
+//     console.log('scroll', e.deltaY)
+
+//     if(e.deltaY > 0){// scroll을 내린 경우
+//         index++
+//         if(index > sections.length - 1){
+//             index = 0
+//         } 
+//     } else { //scroll을 올린 경우
+//         index--
+//         if(index < 0){
+//             index = sections.length -1
+//         }  
+//     }
+//     console.log(index)
+
+//     // 애니메이션 초기화
+//     sections.forEach((section, i) => {
+//         if(index !== i){
+//             section.style.transition = 'none'
+//             setTimeout(() => {
+//                 section.style.opacity = '0'
+//                 section.style.height = '0'
+//                 section.style.transition = '1s ease-in-out'
+//             }, 1000);
+//         }
+//     })
+
+//     // 현재 슬라이드에 애니메이션 적용
+//     const section = sections[index]
+//     section.style.opacity ='1'
+//     section.style.height = '100vh'
 // }
-
-// root.append(ul)
-
-// const openSub = () => {
-
-// }
-
-// navigation.addEventListener('click', openSub)
+// window.addEventListener('wheel', (e) => throttling(changeSlide, e)) // 마우스 휠 이벤트

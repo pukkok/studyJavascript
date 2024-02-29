@@ -31,6 +31,7 @@ arrMenus.forEach((menu)=>{
 
 const check = document.querySelectorAll('nav > ul > li')
 const menus = document.querySelectorAll('.menu')
+
 for(i=0; i<arrSubMenus.length; i++){
     let coords = menus[i].getBoundingClientRect()
     let subMenu = document.createElement('ul')
@@ -49,15 +50,15 @@ for(i=0; i<arrSubMenus.length; i++){
 }
 
 const openSub = (e) => {
-        menus.forEach((menu)=>{
-            if(e.target === menu){
-                menu.nextSibling.style.display === 'none' ?
-                menu.nextSibling.style.display = 'block' :
-                menu.nextSibling.style.display = 'none'
-            }
-            else{
-                menu.nextSibling.style.display = 'none'
-            }
+    menus.forEach((menu)=>{
+        if(e.target === menu){
+            menu.nextSibling.style.display === 'none' ?
+            menu.nextSibling.style.display = 'block' :
+            menu.nextSibling.style.display = 'none'
+        }
+        else{
+            menu.nextSibling.style.display = 'none'
+        }
     })
 }
 

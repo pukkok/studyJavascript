@@ -1,0 +1,52 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main{
+    /* border: 1px solid red; */
+    width: 100%;
+    perspective: 4000px; 
+    /* 원근감 */
+}
+
+main section{
+    /* border: 1px solid green; */
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 1s ease-in-out;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+}
+main section p {
+    font-size: 2rem;
+    font-weight: bold;
+    column-rule: seashell;
+    text-align: center;
+    margin: 0;
+    padding: 1rem 2rem;
+}
+main section:nth-child(1){
+    background-color:sandybrown;
+}
+main section:nth-child(2){
+    background-color: slateblue;
+    opacity: 0;
+}
+main section:nth-child(3){
+    background-color: violet;
+    opacity: 0;
+}
+main section:nth-child(4){
+    background-color: lightsteelblue;
+    opacity: 0;
+}
+main section:nth-child(5){
+    background-color: fuchsia;
+    opacity: 0;
+}

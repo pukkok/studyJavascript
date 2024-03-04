@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #0e1111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        body pre{
+            color: green;
+            font-size: 1.2rem;
+        }
+
+        .letter{
+            position: absolute;
+            top: 0;
+            color: green;
+            transition: 2s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <pre>
+        인생은 롤러코스터와 같아
+        둘다 오르막과 내리막이 있으니깐
+        하지만 두려움에 떨거나 즐기는 것은
+        너의 선택이야...!!
+    </pre>
+    <script>
+        const paragraph = document.querySelector('pre')
+        const text = paragraph.innerText
+        let maxFontSize = 30
+        const browserWidth = document.documentElement.clientWidth - maxFontSize
+        let timer
+
+        const pickRandomNumber = (n) => {
+            return Math.floor(Math.random() * n)
+        }
+
+        const pickRandomLetter = (length) => {
+            let index = pickRandomNumber(length)
+            return text[index]
+        }
+
+        const createLetter = (text, left, top) => {
+                const span = document.createElement('span')
+                span.className = 'letter'
+                span.style.cssText = `
+                left : ${left}px;
+                font-size : ${pickRandomNumber(maxFontSize)}px;
+                top : ${top}px;
+                opacity : 1;
+                `
+                span.innerText = `${pickRandomLetter(text.length)}`
+
+                return span
+        }
+
+        const rainAni = (e) => {
+            console.log(e.deltaY)
+            if(e.deltaY > 0){
+                paragraph.innerText = ""
+                timer = setTimeout(displayLetter, 100)
+            }
+        }
+
+        const displayLetter = () => {
+            if(timer) clearInterval(timer)
+            const letter = createLetter(text, pickRandomNumber(browserWidth))
+            document.body.append(letter)
+            setInterval(() => {
+                letter.style.top = letter.offsetTop + 10 + 'px'
+                const cloneLetter = createLetter(text, letter.offsetLeft, letter.offsetTop)
+                document.body.append(cloneLetter)
+                cloneLetter.style.scale = '2'
+                cloneLetter.style.opacity = '1'
+                setInterval(() => {
+                    cloneLetter.style.scale = '1'
+                    cloneLetter.style.opacity = '0'
+                    letter.style.opacity='0'
+                }, 200);
+            }, 200);
+            timer = setTimeout(displayLetter, 400);
+        }
+
+
+
+        window.addEventListener('wheel', rainAni)
+    </script>
+</body>
+</html>

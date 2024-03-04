@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #0e1111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        body pre{
+            color: green;
+            font-size: 1.2rem;
+        }
+
+        .letter{
+            position: absolute;
+            top: 0;
+            color: green;
+            transition: 20ms ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <pre>
+        인생은 롤러코스터와 같아
+        둘다 오르막과 내리막이 있으니깐
+        하지만 두려움에 떨거나 즐기는 것은
+        너의 선택이야...!!
+    </pre>
+    <script>
+        const paragraph = document.querySelector('pre')
+        const text = paragraph.innerText // 인트로 문구 저장
+        let isStarted = false // 스크롤시 애니메이션을 한번만 실행하도록 해주는 플래그
+        const scrollbarWidth = 50
+        const maxFontSize = 30
+        const widthOfBrowser = document.documentElement.clientWidth - (maxFontSize + scrollbarWidth)
+        let timer
+
+        //Math.random() 0 ~ 0.99999
+        //Math.floor() 버림
+        const pickRandomNumber = (n) => {
+            return Math.floor(Math.random() * n)
+        }
+
+        const pickRandomLetter = (text) => {
+            const randomIndex = pickRandomNumber(text.length) // 글자 개수 내에서 랜덤한 인덱스 값 추출
+            return text[randomIndex] // 인트로 문구에서 랜덤한 위치의 글자 추출
+        }
+
+        const createLetter = (text, left, top) => { // 글자를 생성할 문구, 글자의 위치(x, y) 좌표
+            console.log('check letter')
+            const span = document.createElement('span')
+            span.className = 'letter'
+            span.style.left = `${left}px`
+            span.style.fontSize = `${pickRandomNumber(maxFontSize)}px`
+            span.innerText = `${pickRandomLetter(text)}`
+            if(top){
+                span.style.top = `${top}px`
+            }
+            return span
+        }
+
+        //재귀 함수 : 돌고 도는 함수
+        const displayLetter = () => {
+            if(timer) clearInterval(timer)
+
+            const letter = createLetter(text, pickRandomNumber(widthOfBrowser))
+            document.body.appendChild(letter)
+                setInterval(() => { // letter.offsetTop :  글자의 현재 y축 위치
+                    letter.style.top = letter.offsetTop + 7 + 'px'
+                    const cloneLetter = createLetter(text, letter.offsetLeft, letter.offsetTop)
+                    document.body.appendChild(cloneLetter)
+                }, 30);
+            timer = setTimeout(displayLetter, 100);
+        }
+
+        //setInterval : 시간이 지날수록 느려짐
+        //setTimeout : 일정한 간격으로 실행할수 있다
+
+        const startAnimation = () => {
+            if(!isStarted){
+                console.log('애니메이션 시작')
+                isStarted = true
+                paragraph.innerText = ""
+                timer = setTimeout(displayLetter, 100);
+            }
+        }
+        window.addEventListener('wheel', startAnimation)
+    </script>
+</body>
+</html>

@@ -1,5 +1,7 @@
 #root{
     display: flex;
+    width: 450px;
+    flex-wrap: wrap;
 }
 
 .input-box{
@@ -28,9 +30,36 @@ button{
 }
 
 .light-box{
-    width: 300px;
-    border: solid 1px red;
+    width: 400px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 15px;
+    padding: 10px;
 }
 .light-box span{
-    border: solid 1px blue;
+    width: 100%;
+    height: 8px;
+}
+
+.light-box span:nth-child(1){
+    background-color: red;
+}
+.light-box span:nth-child(2){
+    background-color: yellow;
+}
+.light-box span:nth-child(3){
+    background-color: green;
+    
+}
+
+.on{
+    scale: 1.1;
+}
+
+p{
+    margin: 0;
+    width: 400px;
+    font-size: 2rem;
+    text-align: center;
 }

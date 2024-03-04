@@ -43,14 +43,14 @@ const move = (e) => {
 
     let leftStyle = parseInt(box.offsetLeft)
     if(e.keyCode === 39){ // 우측 화살표
-        box.style.backgroundImage = 'url(/studyJavascript/study/imgs/super-mario-right.jpg)'     
+        box.style.backgroundImage = 'url(./imgs/super-mario-right.jpg)'     
         leftStyle += vx
         if(leftStyle > bar.offsetWidth){
             isDead = true
         }
     }
     if(e.keyCode === 37){ // 좌측 화살표
-        box.style.backgroundImage = 'url(/studyJavascript/study/imgs/super-mario-left.jpg)'     
+        box.style.backgroundImage = 'url(./imgs/super-mario-left.jpg)'     
         if(leftStyle > 0){
             leftStyle -= vx
         }

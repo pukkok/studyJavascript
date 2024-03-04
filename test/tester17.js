@@ -16,6 +16,7 @@ for(i=0; i<3; i++){
     lightBox.append(span)
 }
 const lights = lightBox.querySelectorAll('span')
+lights[0].className = 'on'
 
 let check_eng = /[a-zA-Z]/ // 영문자
 let check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/ //한글체크
@@ -25,11 +26,10 @@ let check_LowEng = /[a-z]/ // 대문자
 let check_spc = /[~!@#$%^&*()_+|<>?:{}]/ // 특수문자
 
 
-let count = 0
-
 inputBox.append(inputLogin, inputPassword)
 root.append(inputBox, checkValid, lightBox, pTag)
-pTag.innerText = '위험'
+pTag.innerText = '보안이 취약합니다'
+pTag.style.color = 'red'
 
 const checkLogin = () => {
     if(inputLogin.value !== ""){
@@ -41,26 +41,48 @@ const isValids = [check_num, check_UpEng, check_LowEng, check_spc]
 
 const flags = {
     'number': false,
-    'sc': false,
+    'spc': false,
     'al': false,
     'au': false 
 }
     
-
 const tester = (e) => {
     let pwData = e.target.value
-
-
-    // if(check_num.test(pwData) && check_UpEng.test(pwData) && check_LowEng.test(pwData) && check_spc.test(pwData)){
-    //     lights[2].classList.add('on')
-    //     pTag.innerText = '안전함'
-    //     pTag.style.color = 'green'
-    // }
-
+    let flagsValue = Object.values(flags)
     
+    isValids.forEach((valid, i)=> {
+        if(valid.test(pwData)){
+            flagsValue[i] = true
+        }else{
+            flagsValue[i] = false
+        }
+    })
     
+    let count = flagsValue.filter(x=>x === true).length
+    
+    lights.forEach((light)=> {
+        if(light.classList.contains('on')){
+            light.classList.remove('on')
+        }
+    })
 
+    if(count<2){
+        lights[0].classList.add('on')
+        pTag.innerText = '보안이 취약합니다'
+        pTag.style.color = 'red'
+    }else if(2<=count && count<=3){ 
+        lights[1].classList.add('on')
+        pTag.innerText = '아직 부족해요'
+        pTag.style.color = 'orange'
+    }else if(count>3){
+        lights[2].classList.add('on')
+        pTag.innerText = '안전 그자체'
+        pTag.style.color = 'green'
+    }
 }
+
+    
+
 
 const checkPassword = () => {
     let pwData = inputPassword.value
@@ -87,15 +109,5 @@ const checkPassword = () => {
 }
 
 
-// addCheck = (e) => {
-//     e.target.addEventListener('keydown', tester)
-// }
-// removeCheck = (e) => {
-//     e.target.remvoeEventListener('keydown', tester)
-// }
 checkValid.addEventListener('click', checkPassword)
-inputPassword.addEventListener('keydown', tester)
-
-// const test = () => {
-//     if(pwData)
-// }
+inputPassword.addEventListener('keyup', tester)

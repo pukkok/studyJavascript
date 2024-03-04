@@ -40,21 +40,23 @@ button{
 .light-box span{
     width: 100%;
     height: 8px;
+    border-radius: 10px;
+    opacity: 0.4;
 }
 
 .light-box span:nth-child(1){
     background-color: red;
 }
 .light-box span:nth-child(2){
-    background-color: yellow;
+    background-color: orange;
 }
 .light-box span:nth-child(3){
     background-color: green;
     
 }
 
-.on{
-    scale: 1.1;
+.light-box span.on{
+    opacity: 1;
 }
 
 p{

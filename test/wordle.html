@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            width: 50px;
+            height: 50px;
+            font-size: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <input class="input" type="text">
+    <input class="input" type="text">
+    <input class="input" type="text">
+    <input class="input" type="text">
+    <input class="input" type="text">
+    <button>제출</button>
+    
+    <script>
+        let 답 = 'abcde'
+        const btn = document.querySelector('button')
+        let component = document.createElement('div')
+        
+        const 채점 = () => {
+            // 위치까지 맞으면 - 초록색
+            // 위치는 안맞으면 - 노란색
+            // 다 안맞으면 - 회색
+            let inputs = document.querySelectorAll('.input')
+            inputs.forEach((input, i)=> {
+                if(input.value === 답[i]){ // 정답
+                    input.style.backgroundColor = 'green'
+                    input.style.color = 'white'
+                }else if(답.includes(input.value)){ // 포함은 한다
+                    input.style.backgroundColor = 'orange'
+                }else{
+                    input.style.backgroundColor = 'grey'
+                }
+            })
+
+            for(i=0; i<inputs.lenth; i++ ){
+                let input = document.createElement('input')
+                input.className = 'input'
+                component.append(input)
+            }
+            document.body.append(component)
+        }
+        
+        btn.addEventListener('click', 채점)
+
+    </script>
+</body>
+</html>

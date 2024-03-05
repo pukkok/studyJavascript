@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a id="link" href="https://developer.mozilla.org:8080/en-US/search?q=URL#search-results-close-container">방문주소</a>
+    <script>
+        //페이지 전환 : 라우팅 -> 리액트 라우터 -> location, history
+
+        const link = document.getElementById('link')
+        const locationInfo = {
+            href : link.href,
+            protocol : link.protocol,
+            host : link.host,
+            hostname : link.hostname,
+            port : link.port,
+            pathname : link.pathname, // 리엑트에서 쓸것
+            search : link.search, // 리엑트에서 쓸것
+            hash : link.hash,
+            origin : link.origin,
+        }
+
+        console.table(locationInfo)
+        // console.log(location.href) // 현재 내 위치의 url주소
+        // console.log(location.reload()) // 새로고침
+        console.table(location)
+    </script>
+</body>
+</html>

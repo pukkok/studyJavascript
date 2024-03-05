@@ -37,28 +37,36 @@ const checkLogin = () => {
     }
 }
 
-const isValids = [check_num, check_UpEng, check_LowEng, check_spc]
+const isValids = {
+    'number': check_num, 
+    'au': check_UpEng, 
+    'al': check_LowEng, 
+    'spc': check_spc
+}
 
 const flags = {
     'number': false,
-    'spc': false,
+    'au': false, 
     'al': false,
-    'au': false 
+    'spc': false,
 }
     
 const tester = (e) => {
+    let count = 0
     let pwData = e.target.value
-    let flagsValue = Object.values(flags)
-    
-    isValids.forEach((valid, i)=> {
-        if(valid.test(pwData)){
-            flagsValue[i] = true
+
+    for(let key in isValids){
+        if(isValids[key].test(pwData)){
+            flags[key] = true
         }else{
-            flagsValue[i] = false
+            flags[key] = false 
         }
-    })
-    
-    let count = flagsValue.filter(x=>x === true).length
+    }
+
+    for(let key in flags){
+        if(flags[key]) {count++}
+        // else {count--}
+    }
     
     lights.forEach((light)=> {
         if(light.classList.contains('on')){
@@ -76,7 +84,7 @@ const tester = (e) => {
         pTag.style.color = 'orange'
     }else if(count>3){
         lights[2].classList.add('on')
-        pTag.innerText = '안전 그자체'
+        pTag.innerText = '안전 해요'
         pTag.style.color = 'green'
     }
 }

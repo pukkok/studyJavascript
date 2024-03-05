@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const arr01 = [,,,] // 길이는 ,개수
+        // console.log(arr01.length)
+
+        const arr02 = new Array('apple', 'banana', 'orange') // Array: 생성자 함수
+        // console.log(arr02.length)
+
+        const arr03 = new Array(3)
+        // console.log(arr03.length)
+
+        const arr04 = new Array('apple', 'banana', 'orange').fill(0)
+        // console.log(arr04.length)
+
+        const movies = ['Harry Potter', 'Indiana Jhones', 'Jurassic Park', 'Iron man', 'Spider man']
+        const fruits = ['apple', 'banana', 'orange']
+
+        let movies_copied = [...movies]
+        let movies_copied2 = movies.slice()
+        // 같은 값이다.
+
+        const str = 'Hello world!'
+        // console.log(str.length)
+
+        console.log(str.toUpperCase())
+        console.log(str.toLowerCase())
+        console.log(str.startsWith('He')) // 대소문자 구분함
+        console.log(str.endsWith('!')) // 대소문자 구분함
+
+        let str1 = ''
+        for(let i=65; i<=220; i++){
+            str1 +=String.fromCodePoint(i)
+        }
+        console.log(str1)
+        </script>
+</body>
+</html>

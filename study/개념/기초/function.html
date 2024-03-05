@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 함수
+        let a = 3
+        let b= 12
+        const add = (a, b) =>{ // 지역변수로 값만 복사한다.
+            sum = a + b
+            if(sum < 10) return // 함수 안에서 return 키워드를 만나면 그 아래쪽에 있는 코드는 실행되지 않고 끝남
+            return sum
+        }
+        add() // 함수 실행 (함수호출) // 함수호출시 괄호 안에 넣어주는 값 : 인자
+        
+        // console.log(add(a, b)) // 전역변수값 끌고와서 => 13라인 지역변수에 넣는다 전역변수 a 값 , 지역변수 a 값 다른것
+
+        // 객체 : 서로 관련이 있는 변수와 함수의 모음
+        // 새에 대한 변수와 함수
+        let bird = {
+            volume: 3, //propertyName : propertyValue
+            size: 30,
+            type: "참새",
+            speak: (volume) => { // 객체 내부의 함수 : 메서드 (method)
+                console.log('새가 지저귄다', volume)
+            },
+            move: () => {
+                console.log('새가 이동한다')
+            },
+            eat: () => {
+                console.log('새가 음식을 먹는다')
+            },
+        }
+
+        // console.log(bird.volume) // volume : 객체 프로퍼티 (property)
+        // console.log(bird.speak(bird.volume)) // console.log안의 함수에 리턴값이 없을 경우 undefined
+
+        // 프로그램의 흐름 : 동기(synchronous), 비동기(asynchronous)
+
+        // 동기 : 프로그램이 순서대로 실행됨
+        // 비동기 : 프로그램 흐름이 순차적이지는 않음
+
+        const testA = () => {
+            console.log('1')
+        }
+        const testB = () => {
+            console.log('2')
+        }
+        const testC = () => {
+            console.log('3')
+        }
+
+        console.log(testA())
+        console.log(testB())
+        setTimeout(() => {
+            console.log('비동기')
+        }, 0);
+        console.log(testC())
+    </script>
+</body>
+</html>

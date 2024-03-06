@@ -65,7 +65,6 @@ const tester = (e) => {
 
     for(let key in flags){
         if(flags[key]) {count++}
-        // else {count--}
     }
     
     lights.forEach((light)=> {

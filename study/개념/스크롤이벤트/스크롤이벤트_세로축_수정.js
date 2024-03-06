@@ -99,7 +99,7 @@ const intializeStyle = (sections) => {
     sections.forEach((section) => {
         section.style.opacity = '0' // 기존 슬라이드 숨기기
         section.style.transform = `translateX(-50%)`
-        section.style.transition = '.5s' // 다음슬라이드 나올때 감자기 회전하는 것을 막기 위함
+        section.style.transition = '0s' // 다음슬라이드 나올때 감자기 회전하는 것을 막기 위함
     });
 }
 

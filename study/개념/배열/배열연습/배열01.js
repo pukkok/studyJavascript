@@ -222,29 +222,37 @@ friends.forEach((friend)=>{
     }
 })
 
-// ----- 9번 ----
-let 서울인원 = 0
-let 대구인원 = 0
-let 부산인원 = 0
-// let 중복제거 = []
-friends.forEach((friend)=>{
-    // if(!중복제거.includes(friend.city)){
-    //     중복제거.push(friend.city)
-    // }
-    if(friend.city === 'seoul'){
-        서울인원++
-    }
-    if(friend.city === 'daegu'){
-        대구인원++
-    }
-    if(friend.city === 'busan'){
-        부산인원++
-    }
-})
+// ----- 9번 ---- 시티별 인원 구분하기
 
-// console.log('서울 :', 서울인원)
-// console.log('대구 :', 대구인원)
-// console.log('부산 :', 부산인원)
+// --- 1번 방법 ---
+// const counts = {}
+
+// friends.forEach((friend)=>{
+//     if(!counts[friend.city]){
+//         counts[friend.city] = 0
+//     }
+//     counts[friend.city]++
+    
+// })
+// console.log(counts)
+
+// --- 2번 방법 ---
+// const counts = {'seoul' : 0, 'daegu' : 0, 'busan' : 0}
+// friends.forEach((friend)=>{
+//         counts[friend.city]++
+// })
+// console.log(counts)
+
+// --- 9번 응용문제 ---
+const friendinfos = {}
+
+friends.forEach((friend)=>{
+    if(!friendinfos[friend.city]){
+        friendinfos[friend.city] = []
+    }
+    friendinfos[friend.city].push(friend)
+})
+console.log(friendinfos)
 
 // ------- 10번 -----
 friends.forEach((friend)=>{
@@ -280,4 +288,4 @@ users.forEach((user)=>{
     }
 })
 
-console.log(inValidUsers)
+// console.log(inValidUsers)

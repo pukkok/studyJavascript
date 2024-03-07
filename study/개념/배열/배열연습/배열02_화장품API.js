@@ -1,6 +1,9 @@
 const API_URL = 'http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline' 
 const root = document.getElementById('root')
 
+const btn = document.querySelector('#price-btn')
+
+
 // 상품 정보에 대한 배열로부터 웹화면에 보여줄 DOM 객체로 이루어진 배열로 변환하기
 // product 객체의 image_link, name, price, description 프로퍼티 사용하기
 function buildElement(product){
@@ -19,18 +22,25 @@ function buildElement(product){
     porductDescription.className = 'product-description'
     porductDescription.innerText = `${product.description}`
 
-    root.append(productBox)
     productBox.append(productImgBox, productName, porductDescription)
     productImgBox.append(productImg)
-    
+
+    return productBox
 }
 
 // DOM 객체로 이루어진 배열을 사용하여 웹 화면에 상품 정보 보여주기
 function displayProduct(product){
-    // const productBox = buildElement(product)
-    // root.append(productBox)
-   // 구현하기
+    root.append(product)
 }
+
+const sortElement = (a, b) => {
+    if(a.price > b.price) return 1
+    if(a.price < b.price) return -1
+    return 0
+}
+
+
+
 
 fetch(API_URL)
 .then(function(res){
@@ -44,4 +54,15 @@ fetch(API_URL)
     
     // DOM 객체로 이루어진 배열을 사용하여 웹 화면에 상품 정보 보여주기
     productsRefined.forEach(displayProduct)
+    
+    
+    const priceSort = [...products].sort(sortElement)
+
+    const changeProduct = () =>{
+        priceSort.map(buildElement).forEach(displayProduct)
+        root.innerHTML=''
+        // root.append(changePrice)
+    }
+
+    btn.addEventListener('click', changeProduct)
 })

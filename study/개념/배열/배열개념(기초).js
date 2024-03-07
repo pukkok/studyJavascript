@@ -81,22 +81,22 @@
 
 // --- 예제 2 ---
 
-const 인벤토리 = [
-    { 과일명 : 'apples', 수량: 2},
-    { 과일명 : 'bananas', 수량: 0},
-    { 과일명 : 'cherries', 수량: 5},
-]
+// const 인벤토리 = [
+//     { 과일명 : 'apples', 수량: 2},
+//     { 과일명 : 'bananas', 수량: 0},
+//     { 과일명 : 'cherries', 수량: 5},
+// ]
 
-const isCherries = (과일) => {
-    return 과일.과일명 === 'cherries'
-}
+// const isCherries = (과일) => {
+//     return 과일.과일명 === 'cherries'
+// }
 
-인벤토리.find(isCherries)
+// 인벤토리.find(isCherries)
 
-console.log(인벤토리.find(isCherries))
-console.log(인벤토리.find((과일)=>{
-    return 과일.과일명 === 'cherries'
-}))
+// console.log(인벤토리.find(isCherries))
+// console.log(인벤토리.find((과일)=>{
+//     return 과일.과일명 === 'cherries'
+// }))
 
 // --- 예제 3 --- 소수값찾기 ---
 
@@ -395,7 +395,7 @@ console.log(인벤토리.find((과일)=>{
 //     }
 // })
 
-// --- 예제 6 --- 배열 평탄화 --- 재귀 ---
+// --- 예제 6 --- 배열 평탄화 --- 재귀 --- 면접 코딩 문제 ---
 // JSON.parse(JSON.stringify(배열)) 배열 복제해서 쓸때 => 아예 다른 배열임
 // ... = 대괄호 해제
 // const nested = [1, 2, 3, [4, 5, [6, 7], 8, 9]] // 중첩배열 (3차원 배열)
@@ -414,3 +414,124 @@ console.log(인벤토리.find((과일)=>{
 // }
 
 // console.log(flatten(nested)) // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+// --------------------------------------
+//[새로운 배열] = [배열].map(배열요소 각각에 대해 실행할 콜백함수)
+
+// --- 예제 1 ---
+
+// const numbers = [1, 2, 3, 4, 5]
+
+// const multiplyByThree = (n) => {
+//     return n * 3
+// }
+
+// const numbersRefinded = numbers.map(multiplyByThree)
+// console.log(numbersRefinded)
+// console.log(numbers) // 원본 변경안함
+
+// --- 예제 2 ---
+
+// const numbers = [1, 4, 9]
+
+// const numbersRefinded = numbers.map(Math.sqrt)
+// console.log(numbersRefinded)
+
+// --- 예제 3 ---
+
+// const userEmails = [
+//     'victoria@gmail.com',
+//     'sun@gmail.com',
+//     'johseb@gmail.com',
+//     'syleemomo@gmail.com',
+//     'hannah@gmail.com',
+//     'shara@gmail.com',
+//     'martin@gmail.com',
+//     'gorgia@gmail.com',
+//     'nana@gmail.com',
+//     'dannel@gmail.com'
+// ]
+
+// function removeDotCom(userEmail){
+//     //map에서는 return 되는 값을 새로운 배열에 담음
+//     return userEmail.split('@')[0]
+// }
+
+// function displayUserID(userID){
+//     console.log(userID)
+// }
+
+// const userIDs = userEmails.map(removeDotCom)
+// userIDs.forEach(displayUserID)
+
+// --- 예제 4 ---
+
+// var kvArray = [
+//     { key: 1, value: 10 },
+//     { key: 2, value: 20 },
+//     { key: 3, value: 30 },
+// ]
+
+// const reformattedArray = kvArray.map((obj)=>{
+//     let rObj = {}
+//     rObj[obj.key] = obj.value
+//     return rObj
+// })
+
+// console.log(reformattedArray)
+
+// --- 예제 5 ---
+
+// map 형태는 문자열을 쓰지못함
+
+// const text = 'Hello World!'
+// const result = Array.from(text).map((letter)=>{ //Array.from 배열이 아닌 자료형을 배열형태로 변환해주는 메서드 : Array.from()
+//     return letter.charCodeAt(0) // 1글자씩 아스키코드값
+// })
+// console.log(result)
+
+// --- 예제 6 ---
+
+// const inputs = document.querySelectorAll('.user-input')
+
+// const getInputValues = () =>{
+//     const results = Array.from(inputs).map((input)=>{
+//         return input.value
+//     })
+//     console.log(results)
+
+//     if(results.includes('')){
+//         console.log('입력하지 않은 부분이 남아있습니다.')
+//     }else{
+//         console.log('모든입력완료')
+//     }
+// }
+
+// inputs.forEach((input) => {
+//     input.addEventListener('input', getInputValues)
+// });
+
+// --- 예제 7 ---
+/** 개발철칙
+ *  1. 중복은 최소화
+ *  2. 함수는 간결할수록 ( 하나에 하나의 기능만)
+ *  3. 파일이든 뭐든 최대한 분리 (모듈형태)
+ */
+
+// const root = document.getElementById('root')
+// const fruits = ['apple', 'banana', 'peach', 'strawberry', 'watermelon']
+// const icons = ['🍎', '🍌', '🍑', '🍓', '🍉']
+
+// const addIcons = (fruit, i) => {
+//     const item = document.createElement('div')
+//     item.innerText = `${icons[i]} ${fruit}`
+//     return item
+// }
+
+// const displayFruits = (fruit) => {
+//     root.appendChild(fruit)
+// }
+
+// const fruitsRefinded = fruits.map(addIcons)
+
+// fruitsRefinded.forEach(displayFruits)

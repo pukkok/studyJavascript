@@ -1,7 +1,9 @@
 const API_URL = 'http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline' 
 const root = document.getElementById('root')
-
 const btn = document.querySelector('#price-btn')
+const searchInput = document.getElementById('search-input')
+let isPrice = false
+
 
 
 // 상품 정보에 대한 배열로부터 웹화면에 보여줄 DOM 객체로 이루어진 배열로 변환하기
@@ -34,9 +36,10 @@ function displayProduct(product){
 }
 
 const sortElement = (a, b) => {
-    if(a.price > b.price) return 1
-    if(a.price < b.price) return -1
-    return 0
+    // if(a.price > b.price) return 1
+    // if(a.price < b.price) return -1
+    // return 0
+    return a.price - b.price
 }
 
 
@@ -47,22 +50,63 @@ fetch(API_URL)
     return res.json()
 })
 .then(function(products){
-    console.log(products)
+    // console.log(products)
 
     // 상품 정보에 대한 배열로부터 웹화면에 보여줄 DOM 객체로 이루어진 배열로 변환하기
     const productsRefined = products.map(buildElement)
     
     // DOM 객체로 이루어진 배열을 사용하여 웹 화면에 상품 정보 보여주기
     productsRefined.forEach(displayProduct)
-    
-    
-    const priceSort = [...products].sort(sortElement)
 
-    const changeProduct = () =>{
-        priceSort.map(buildElement).forEach(displayProduct)
+    // price sort
+    let priceSorts = [...products].sort(sortElement)
+    console.log(priceSorts)
+    const productsPriceSortRefined = priceSorts.map(buildElement)
+
+    // 가격 정렬 토글
+    const priceSortProduct = () =>{
         root.innerHTML=''
-        // root.append(changePrice)
+        if(!isPrice){
+            isPrice = true
+            productsPriceSortRefined.forEach(displayProduct)
+        }else{
+            isPrice = false
+            productsRefined.forEach(displayProduct)
+        }
     }
 
-    btn.addEventListener('click', changeProduct)
+    btn.addEventListener('click', priceSortProduct)
+
+    // let filtering = products.filter((product)=>{
+    //     return product.product_type === "nail_polish"
+    // })
+    // console.log('필터링',filtering)
+
+    //keyCode 13 enter
+    const inputProductType = (e) => {
+        // console.log(e.target.value)
+        if(e.keyCode === 13){
+            root.innerHTML=''
+            if(!isPrice){
+                let filtering = products.filter((product)=>{
+                    return product.product_type === e.target.value
+                })
+                filtering.map(buildElement).forEach(displayProduct)
+            }else{
+                let filtering = priceSorts.filter((product)=>{
+                    return product.product_type === e.target.value
+                })
+                filtering.map(buildElement).forEach(displayProduct)
+            }
+        }
+
+    }
+
+    searchInput.addEventListener('keydown', inputProductType)
 })
+
+// 정렬 후 검색
+// 1) 가격순으로 정렬된 상태에서 상품유형을 검색하면 추려진 상품들도 정렬이 되어서 보여져야 한다. 
+
+// 검색 후 정렬
+// 2) 상품유형으로 검색하여 추려진 상품들은 Price 버튼을 클릭하면 가격순으로 정렬이 되어야 한다.

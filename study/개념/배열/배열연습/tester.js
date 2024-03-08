@@ -3,7 +3,7 @@ const root = document.getElementById('root')
 const btn = document.querySelector('#price-btn')
 const searchInput = document.getElementById('search-input')
 let isPrice = false
-
+let inputValue = ''
 
 
 // 상품 정보에 대한 배열로부터 웹화면에 보여줄 DOM 객체로 이루어진 배열로 변환하기
@@ -76,14 +76,14 @@ fetch(API_URL)
     }
 
     btn.addEventListener('click', priceSortProduct)
+    let filtering = (products) => products.filter((product)=>{
+        return product.product_type === inputValue
+    })
     
     //keyCode 13 enter
     const inputProductType = (e) => {
+        inputValue = e.target.value
         // console.log(e.target.value)
-        let filtering = (products) => products.filter((product)=>{
-            return product.product_type === e.target.value
-        })
-
         if(e.keyCode === 13){
             root.innerHTML=''
             if(!isPrice){

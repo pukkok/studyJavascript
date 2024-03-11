@@ -10,8 +10,8 @@ const insults = ['shit', 'fuck', 'poop', 'dumb', '새끼', '놈', '똥', '씨발
 function buildElement(comment){
    // 구현하기
    const div = document.createElement('div')
-   div.className= 'comment'
-   div.innerText= comment 
+   div.className = 'comment'
+   div.innerText = comment 
    return div
 }
 // comments 배열을 이용하여 화면에 댓글목록 보여주기
@@ -29,18 +29,39 @@ function initInput(){
 // 댓글 추가하기
 function addComment(){
     const comment = commentInput.value
-    console.log(comment.split(' '))
+    
     if(comment !== ''){
-        //구현하기
-        let changeComment = comment.split(' ').reduce((sentence, word) => {
-            insults.forEach((insult)=>{
-            if(word.includes(insult)){
-                word = '😊'
+
+        let clearComment = []
+        let tester2 = insults.map((insult)=>{
+            // console.log(splitInsults)
+            if(comment.includes(insult)){
+                let splitInsults = comment.split(insult)[1]
+                insult = '😊'.repeat(insult.length)
+                clearComment = [insult, splitInsults]
+                return clearComment.join('')
             }
-            return sentence + word
-        }, '')
+            return clearComment=[...comment]
         })
-        displayComments(changeComment)
+        console.log(clearComment)
+        // console.log((tester2).join(''))
+
+        // let tester = splitComments.reduce((sentence, word)=>{
+        //     sentence += word
+        //     let newvalue = insults.map((insult)=>{
+        //         if(sentence.includes(insult)){
+        //             sentence = sentence.split(insult)[0]
+        //             insult = '😊'.repeat(insult.length)
+        //             return sentence = insult
+        //         }
+        //             return sentence
+        //     })
+        //     console.log(newvalue)
+        //     return sentence
+        // },'')
+        // console.log(tester)
+        // console.log(tester)
+        // displayComments(result)
     }else{
         alert('You need to give a comment !')
     }

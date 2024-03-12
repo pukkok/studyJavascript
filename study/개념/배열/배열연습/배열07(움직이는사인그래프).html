@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>움직이는 사인그래프</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #0e1111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #graph{
+            border: solid 1px red;
+            width: 720px;
+            height: 400px;
+            position: relative;
+            /* overflow: hidden; */
+        }
+        .dot{
+            width: 5px;
+            height: 5px;
+            background-color:limegreen;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="graph"></div>
+    <script>
+        const graph = document.getElementById('graph')
+        let x = 0, y = 0
+        let dx = 1, radx
+        let index= 0
+        const points = []
+
+        const getPoint = () => {
+            radx = x * (Math.PI / 180)
+            y= Math.sin(radx)
+            points.push([x, y])
+            x += dx
+        }
+
+        for(let i=0; i<360; i++){
+            getPoint()
+        }
+        
+        const displayPoint = (point) => {
+            let span = document.createElement('span')
+            span.className='dot'
+            // span.style.left=`${point[0]*2}px`
+            span.style.left=`${(point[0]-index)*2}px`
+            span.style.bottom=`${point[1]*200+200}px`
+            graph.append(span)
+        }
+
+        
+            setInterval(() => {
+                getPoint()
+                graph.innerHTML=''
+                index++
+                points.forEach(displayPoint)
+                points.shift()
+            }, 0)
+        
+        
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body{
+        margin: 0;
+        padding: 0;
+        background-color: #0e1111;
+        height: 100vh;
+
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .graph{
+        width: 720px;
+        height: 200px;
+        background-color: #0e1111;
+        border: 1px solid red;
+
+        position: relative;
+    }
+    .dot{
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: greenyellow;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+    </style>
+</head>
+<body>
+    <div class="graph"></div>
+    <script>
+        // --- graph 만들기 ---
+        const graph = document.querySelector('.graph')
+
+        const points = [] // 사인점들이 저장될 2차원 배열
+        const dx = 1 // degree
+        let x = 0 // 현재 위치
+        let y = 0
+        let radx = 0
+
+        const getNextPoint = () => {
+            radx = x * (Math.PI / 180) // degree 단위 => radian 단위
+            y = Math.sin(radx)
+            points.push([x, y])
+            x += dx
+        }
+
+        for(let i=0; i<360; i++){
+            getNextPoint() // 다음 위치 계산
+        }
+        console.log(points)
+
+        const displayPoint = (point) => {
+            let dot = document.createElement('span')
+            dot.className = 'dot'
+            dot.style.left = (point[0]*2) + 'px'
+            dot.style.bottom = (point[1]*100+100) + 'px'
+            graph.append(dot)
+        }
+
+        points.forEach(displayPoint)
+    </script>
+</body>
+</html>

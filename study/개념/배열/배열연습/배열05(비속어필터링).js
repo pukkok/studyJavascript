@@ -29,39 +29,20 @@ function initInput(){
 // 댓글 추가하기
 function addComment(){
     const comment = commentInput.value
-    
+    let textBox = ''
+    let commentSplit = comment.split('')
     if(comment !== ''){
-
-        let clearComment = []
-        let tester2 = insults.map((insult)=>{
-            // console.log(splitInsults)
-            if(comment.includes(insult)){
-                let splitInsults = comment.split(insult)[1]
-                insult = '😊'.repeat(insult.length)
-                clearComment = [insult, splitInsults]
-                return clearComment.join('')
-            }
-            return clearComment=[...comment]
-        })
-        console.log(clearComment)
-        // console.log((tester2).join(''))
-
-        // let tester = splitComments.reduce((sentence, word)=>{
-        //     sentence += word
-        //     let newvalue = insults.map((insult)=>{
-        //         if(sentence.includes(insult)){
-        //             sentence = sentence.split(insult)[0]
-        //             insult = '😊'.repeat(insult.length)
-        //             return sentence = insult
-        //         }
-        //             return sentence
-        //     })
-        //     console.log(newvalue)
-        //     return sentence
-        // },'')
-        // console.log(tester)
-        // console.log(tester)
-        // displayComments(result)
+        let cleartComment = commentSplit.reduce((sentence, word)=>{
+            let text = insults.map((insult)=>{
+                if(sentence.includes(insult)){
+                    return sentence.split(insult)[1]
+                }
+            })
+            console.log(text)
+            sentence += word
+            return sentence
+        },'')
+        console.log(cleartComment)
     }else{
         alert('You need to give a comment !')
     }

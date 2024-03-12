@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body{
+        margin: 0;
+        padding: 0;
+        background-color: #0e1111;
+        height: 100vh;
+
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #sign{
+        width: 100px;
+        height: 100px;
+        margin: 100px auto;
+        background-color: #0e1111;
+        border: 1px solid red;
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .cell{
+        width: 10px;
+        height: 10px;
+        background-color: cornflowerblue;
+    }
+    .bright{
+        background-color: red;
+    }
+
+    </style>
+</head>
+<body>
+    <div id='sign'></div>
+    <script>
+        const signBox = document.getElementById('sign')
+        const sign = [
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 1, 1, 0, 0, 1, 1, 0, 0],
+            [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+            [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+            [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+            [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+            [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
+            [0, 0, 0, 1, 1, 1, 1, 0, 0, 0],
+            [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        ]
+
+        const rows = sign.length // 행의 개수
+        const columns = sign[0].length // 열의 개수
+
+        const displaySign = (value) =>{
+            const cellSpan = document.createElement('span')
+            cellSpan.className = value === 0 ? 'cell' : 'cell bright'
+            signBox.append(cellSpan)
+        }
+
+        for(let i = 0; i<rows; i++){
+            for(let j=0; j<columns; j++){
+                displaySign(sign[i][j])
+            }
+        }
+    </script>
+</body>
+</html>

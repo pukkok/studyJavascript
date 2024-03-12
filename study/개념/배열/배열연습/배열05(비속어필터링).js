@@ -29,20 +29,56 @@ function initInput(){
 // 댓글 추가하기
 function addComment(){
     const comment = commentInput.value
-    let textBox = ''
+    let indexArr = []
+    let textBox = []
+    let texter = ''
     let commentSplit = comment.split('')
     if(comment !== ''){
-        let cleartComment = commentSplit.reduce((sentence, word)=>{
-            let text = insults.map((insult)=>{
-                if(sentence.includes(insult)){
-                    return sentence.split(insult)[1]
-                }
-            })
-            console.log(text)
-            sentence += word
-            return sentence
-        },'')
-        console.log(cleartComment)
+        insults.forEach((insult)=>{
+            let clearIndex = comment.indexOf(insult)
+            
+            while(clearIndex !== -1){
+                indexArr.push({index : clearIndex , insultLength : insult.length})
+                clearIndex = comment.indexOf(insult, clearIndex+1)
+            }
+        })
+        
+        if(indexArr[0]){
+            textBox.push(comment.slice(0, indexArr[0].index))
+            for(i=0;i<indexArr.length; i++){
+                textBox.push('😊'.repeat(indexArr[i].insultLength))
+                    let text = comment.slice(indexArr[i].index + indexArr[i].insultLength, indexArr[i].index + indexArr[i].insultLength)
+                        textBox.push(text)
+                    // texter = text
+            }
+                
+            
+        }else{
+            textBox.push(comment)
+        }
+        console.log('결과', textBox)
+        console.log('결과', textBox.join(''))
+        // console.log('결과', texter)
+
+
+        // if(indexArr[0]){
+        //     indexArr.forEach((obj, i)=>{ 
+        //         textBox.push(comment.slice(0, indexArr[0].index))
+        //         textBox.push('😊'.repeat(obj.insultLength))
+        //         texter = comment.slice(0, indexArr[0].index)
+        //             // let text = '😊'.repeat(obj.insultLength) + comment.slice(obj.index + obj.insultLength)
+        //             let text = comment.slice(obj.index + obj.insultLength)
+        //             texter = text
+        //             textBox.push(text)
+                
+        //     })
+        // }else{
+        //     textBox.push(comment)
+        // }
+        // console.log('결과', textBox)
+        // console.log('결과', texter)
+
+
     }else{
         alert('You need to give a comment !')
     }

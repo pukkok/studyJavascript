@@ -37,22 +37,35 @@ const 서울역 = new StationInfo('서울역', 37.55620110026294, 126.9722311670
 const 대전역 = new StationInfo('대전역', 36.332516127741, 127.43421099777726)
 const 동대구역 = new StationInfo('동대구역', 35.88049128950934, 128.62837657353532)
 const 부산역 = new StationInfo('부산역', 35.116613680508806, 129.04009077373016)
+const KTX = ['서울역', '대전역', '동대구역', '부산역']
+const fare = [
+    서울역.calcCost(서울역.calcDistance(대전역)), // 0~1
+    대전역.calcCost(대전역.calcDistance(동대구역)), // 1~2
+    동대구역.calcCost(동대구역.calcDistance(부산역)) // 2~3
+]
+let start = prompt('출발역을 입력하세요', '')
+let end = prompt('도착역을 입력하세요', '')
+let sortedIndex = []
 
-const 서울대전요금 = 서울역.calcCost(서울역.calcDistance(대전역))
-const 대전동대구요금 = 대전역.calcCost(대전역.calcDistance(동대구역))
-const 동대구부산요금 = 동대구역.calcCost(동대구역.calcDistance(부산역))
-const 서울동대구요금 = 서울대전요금 + 대전동대구요금
-const 서울부산요금 = 서울대전요금 + 대전동대구요금 + 동대구부산요금
-const 대전부산요금 = 대전동대구요금 + 동대구부산요금
-console.log(`서울-대전 : ${서울대전요금}원`)
-console.log(`대전-동대구 : ${대전동대구요금}원`)
-console.log(`동대구-부산 : ${동대구부산요금}원`)
-console.log(`서울-동대구 : ${서울동대구요금}원`)
-console.log(`서울-부산 : ${서울부산요금}원`)
-console.log(`대전-부산 : ${대전부산요금}원`)
+const 요금계산 = (출발역, 도착역) => {
+    KTX.forEach((기차역, i)=>{
+        if(기차역 === 출발역 || 기차역 === 도착역){
+            sortedIndex.push(i)
+        }
+    })
 
+    let 총요금 = 0
+    if(sortedIndex[0]===(sortedIndex[1]-1)){
+        총요금 = fare[sortedIndex[0]]
+    }else{
+        for(i=sortedIndex[0]; i<sortedIndex[1]; i++){
+            총요금 += fare[i]
+        }
+    }
+    console.log(`${출발역}부터 ${도착역}까지 금액은 ${총요금}원 입니다.`)
+}
 
-
+요금계산(start, end)
 
 
 /**

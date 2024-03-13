@@ -31,8 +31,6 @@ function addComment(){
     const comment = commentInput.value
     let indexArr = []
     let textBox = []
-    let texter = ''
-    let commentSplit = comment.split('')
     if(comment !== ''){
         insults.forEach((insult)=>{
             let clearIndex = comment.indexOf(insult)
@@ -44,15 +42,21 @@ function addComment(){
         })
         
         if(indexArr[0]){
+            //첫줄 뽑기
             textBox.push(comment.slice(0, indexArr[0].index))
             for(i=0;i<indexArr.length; i++){
+                // 욕 필터링
+                // index 욕 위치, length 욕길이
                 textBox.push('😊'.repeat(indexArr[i].insultLength))
-                    let text = comment.slice(indexArr[i].index + indexArr[i].insultLength, indexArr[i].index + indexArr[i].insultLength)
+                    // 욕 필터링 뒷부분
+                    if(i===indexArr.length-1){
+                        let text = comment.slice(indexArr[i].index + indexArr[i].insultLength)
                         textBox.push(text)
-                    // texter = text
-            }
-                
-            
+                    }else{
+                        let text = comment.slice(indexArr[i].index + indexArr[i].insultLength, indexArr[i+1].index)
+                        textBox.push(text)
+                    }
+            }    
         }else{
             textBox.push(comment)
         }

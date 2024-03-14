@@ -2,9 +2,6 @@ const modal = document.querySelector('.modal')
 const textBox = document.querySelector('.text-box')
 const button = document.querySelectorAll('button')
 
-// const fixScroll = () => {
-//     document.body.style.overflow = "hidden" // 문서의 스크롤바 제거
-// }
 const moveScroll = () => {
     document.body.style.overflow = "" // 문서의 스크롤바 보이게 하기
     modal.style.display='none'

@@ -32,13 +32,13 @@ const changePage = (e) => {
     if(e.target === prev){
         mainBox.classList.remove('alpha')
         mainBox.classList.add('number')
-        // nav.style.right = '-100px'
-        // nav.style.left = '100vw'
+        nav.style.right = '-100px'
+        nav.style.left =''
     }
     if(e.target === navLi1[0]){
         mainBox.classList.add('alpha')
         // nav.style.position = 'absolute'
-        nav.style.right = '-100vw'
+        nav.style.left = '0px'
     }
     console.log(e.target)
 }

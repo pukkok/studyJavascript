@@ -13,7 +13,7 @@ const testers = []
 // 안경 착용 유무
 // 키
 // 몸무게
-const testerinfos = []
+const infoObj = {}
 
 const randomNumber = (number) =>{
     return Math.floor(Math.random()*number)
@@ -27,45 +27,60 @@ function Tester(){
     this.weights = weights[randomNumber(weights.length)]
 }
 
-for(i=0; i<10000; i++){
+for(let i=0; i<10000; i++){
     const tester = new Tester()
     testers.push(tester)
 }
-console.log(testers)
-let count=0
-const testerLoop = (arr) =>{
-    let test = arr.join('')
-    console.log('test', test)
-    arr.forEach((data)=>{
-        testers.forEach((tester)=>{
-            if(tester.arr === data){
-                ++count
-                testerinfos[`${data}`] = count
+
+// console.log(testers)
+
+testers.forEach((tester)=>{
+    let entries = Object.entries(tester)
+    entries.forEach((entry)=>{
+        if(entry[0]==='weights'){
+            !infoObj[entry[1]+'kg'] ? 
+            infoObj[entry[1]+'kg']=1 : infoObj[entry[1]+'kg']++
+        }else if(entry[0]==='heights'){
+            !infoObj[entry[1]+'cm'] ? 
+            infoObj[entry[1]+'cm']=1 : infoObj[entry[1]+'cm']++
+        }else if(entry[0]==='glasses'){
+            if(entry[1]){
+                !infoObj['glasses'] ?
+                infoObj['glasses']=1 : infoObj['glasses']++
             }
-        })
+            else{
+                !infoObj['no glasses'] ?
+                infoObj['no glasses']=1 : infoObj['no glasses']++
+            }
+        }else{
+            if(!infoObj[entry[1]]){
+                infoObj[entry[1]]=1
+            }else{
+                infoObj[entry[1]]++
+            }
+        }
+
     })
+})
+
+console.log(infoObj)
+
+
+const datas = Object.entries(infoObj)
+
+const root = document.getElementById('root')
+
+const displayInformation = (i) =>{
+    const div = document.createElement('div')
+    div.className = 'info'
+    const h1 = document.createElement('h1')
+    h1.innerText = `${datas[i][1]}`
+    const pTag = document.createElement('p')
+    pTag.innerText = `${datas[i][0]}`
+    div.append(h1, pTag)
+    root.append(div)
 }
 
-let obj = {}
-varNames.forEach((varName,i)=>{
-    testerLoop(varName)
+datas.forEach((data,i)=>{
+    displayInformation(i)
 })
-console.log(obj)
-// testers.reduce((i, tester)=>{
-//     i++
-//     // console.log(i)
-//     // console.log(tester)
-//     let colorIndex=[]
-//     hairColors.forEach((color, j)=>{
-//         colorIndex[j]
-//         if(tester.hairColors === color){
-//             testerinfos[`${color}`]=j
-//         }
-//     })
-//     // if(tester.glasses===glasses[0]){
-//     //     testerinfos.glasses = ++count
-//     // }
-//     return i
-// },0)
-
-// console.log(testerinfos)

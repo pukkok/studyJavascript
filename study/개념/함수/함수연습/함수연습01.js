@@ -218,9 +218,9 @@
 
 // const comment = '너는 진짜 못말리는 바보 똥개 그지다 !'
 
-// /** 코멘트 넣으면 비속어 필터링됨 */
+/** 코멘트 넣으면 비속어 필터링됨 */
 // const filteringInsult = () => {
-//     const insults = ['바보', '똥개', '그지', '멍청이']
+//     const insults = ['바보', '똥개', '그지', '멍청이', '시발', '개새끼', '메롱']
 //     /** 필터링 함수 */
 //     const filterKeyword = (arr, keyword) => {
 //         return arr.filter(word => !word.includes(keyword))
@@ -230,10 +230,10 @@
 //         insults.forEach(insult => {
 //             separateString = filterKeyword(separateString, insult)
 //         })
-//         return console.log(separateString)
+//         return console.log(separateString.join(''))
 //     }    
 
-//     /** (문자열, 구분) 문자열로 넣고 구분문자(default=' ') 넣으면 됨 */
+//     /** 구조(문자열, 구분) 문자열로 넣으면 됨. 구분(delimeter)문자(default=' ')*/
 //     function separateStr(str, delimeter = ' '){
 //         return filtering(str.split(delimeter))    
 //     }
@@ -241,77 +241,135 @@
 // }
 
 // const filtered = filteringInsult()
+// filtered('안녕 바보 멍청이 똥개 그지야 메롱')
 // filtered('안녕 바보야 키득키득 멍청이')
 // filtered('니가 뭔데 바보야')
+// filtered('너는 바보야 똥개야 안녕')
 
 // 연습 5
 
-// const animals = ['cat', 'lion', 'turtle', 'dog', 'pig']
-// const fruits = ['apple', 'banana', 'strawberry', 'pineapple', 'pear']
-// function search(){
-//     function searchItemInCategory(category, key){
-//         return category.filter(item => item === key)[0]
+// const color = ['빨강', '파랑', '노랑']
+// function search(arr){
+//     arr = arr === '동물' ? ['cat', 'lion', 'turtle', 'dog', 'pig'] : arr
+//     arr = arr === '과일' ? ['apple', 'banana', 'strawberry', 'pineapple', 'pear'] : arr 
+        
+//     /** 값을 넣으면 있는지 없는지 확인 가능 */
+//     function searchItemInCategory(key){
+//         return arr.filter(item => item === key)[0] ? `${key} 있음` : '목록에 없음'
 //     }
 //     return searchItemInCategory
 // }
 
-// const searchAnimal = search()
-// console.log(searchAnimal(animals, 'turtle'))
-
-// console.log(searchItemInCategory(animals, 'turtle')) // searchItemInCategory 내부의 category 변수에는 접근하지는 못하지만 외부인자에 의하여 수정이 가능함
-// console.log(searchItemInCategory(animals, 'pig'))
-// console.log(searchItemInCategory(animals, 'banana'))
-
-// console.log(searchItemInCategory(fruits, 'strawberry'))
-// console.log(searchItemInCategory(fruits, 'apple'))
-// console.log(searchItemInCategory(fruits, 'lion'))
+// const searchAnimal = search('동물')
+// const searchColor = search(color)
+// console.log(searchAnimal('cat'))
+// console.log(searchAnimal('giraffe'))
+// console.log(searchColor('빨강'))
 
 // 연습 6
 
-const friends = [
-    {name: 'victoria', age: 13, city: 'seoul'},
-    {name: 'sun', age: 34, city: 'busan'},
-    {name: 'johseb', age: 25, city: 'busan'},
-    {name: 'syleemomo', age: 9, city: 'seoul'},
-    {name: 'hannah', age: 41, city: 'daegu'},
-    {name: 'shara', age: 37, city: 'seoul'},
-    {name: 'martin', age: 28, city: 'daegu'},
-    {name: 'gorgia', age: 39, city: 'seoul'},
-    {name: 'nana', age: 24, city: 'busan'},
-    {name: 'dannel', age: 19, city: 'seoul'},
-]
+// const friends = [
+//     {name: 'victoria', age: 13, city: 'seoul'},
+//     {name: 'sun', age: 34, city: 'busan'},
+//     {name: 'johseb', age: 25, city: 'busan'},
+//     {name: 'syleemomo', age: 9, city: 'seoul'},
+//     {name: 'hannah', age: 41, city: 'daegu'},
+//     {name: 'shara', age: 37, city: 'seoul'},
+//     {name: 'martin', age: 28, city: 'daegu'},
+//     {name: 'gorgia', age: 39, city: 'seoul'},
+//     {name: 'nana', age: 24, city: 'busan'},
+//     {name: 'dannel', age: 19, city: 'seoul'},
+// ]
 
-function Person(name, age, city, friends){
-    this.name = name
-    this.age = age
-    this.city = city
+// function myInfo(name, age, city, friends){
+//     let _friends = JSON.parse(JSON.stringify(friends)) // 전역변수 friends 는 참조만 하고 프라이빗 변수 _friends 는 외부에서 변경하지 못하도록 깊은복사로 저장함
+//     let _name = ''
+//     let myObj = {}
+//     myObj['name'] = name
+//     myObj['age'] = age
+//     myObj['city'] = city
+//     myObj['friends'] = _friends
+//     return {
+//         myObj,
+//         filterFriendsInMyCity (){
+//             let result = _friends.filter(friend => friend.city === city)
+//             return result.length===0 ? '동네친구가 없어요' : result
+//         },
+//         get myFriends (){
+//             return _friends
+//         },
+//         get name (){
+//             return _name
+//         },
+//         set name(value){
+//             _name = myObj[value] 
+//         },
+//     }
+// }
 
-    // 초기값이 배열이나 객체인 경우 깊은복사로 저장 및 조회하기
-    let _friends = JSON.parse(JSON.stringify(friends)) // 전역변수 friends 는 참조만 하고 프라이빗 변수 _friends 는 외부에서 변경하지 못하도록 깊은복사로 저장함
+// const minseok = myInfo('민석', 32, 'sejong', friends)
+// console.log('동네친구 : ', minseok.filterFriendsInMyCity())
+// console.log('내친구 : ', minseok.myFriends)
 
-    this.getFriends = function(){
-        return JSON.parse(JSON.stringify(_friends)) // 프라이빗 변수 _friends 를 보호하기 위하여 깊은복사로 조회함
+
+// 연습 7
+
+const metadata = {
+    title: "Scratchpad",
+    translations: {
+      info: {
+        locale: "de",
+        localization_tags: [],
+        last_edit: "2014-04-14T08:43:37",
+        url: "/de/docs/Tools/Scratchpad",
+        title: "JavaScript-Umgebung",
+        time: {
+          hour: 4
+        }
+      },
+    },
+    url: "/ko/docs/Tools/Scratchpad",
+}
+
+let test1 =  Object.values(metadata)
+// console.log(test1)
+test1.forEach(test => {
+    if(typeof test === 'object'){
+        test = Object.values(test)
+        // console.log(test)
     }
+})
 
+// console.log(findKeyOfObj("title", metadata, 1))
+
+console.log(findKeyOfObj("title", metadata, 3))
+
+function findKeyOfObj(key, obj, i){
+    let entries = Object.entries(obj)
+    // console.log('key', key)
+    // console.log('obj', obj)
+    // console.log('i', i)
+    function depth(){
+        a = entries.map((entry)=>{
+            if(i>0 && typeof entry[1]==='object'){
+                console.log(i, entries)
+                entries = Object.entries(entry[1])
+                i--
+                return depth()
+            }else {
+                console.log(i)
+                return entries
+            }
+        })
+        return a
+    }
+    function findKey(entries){
+        console.log('a', entries)
+        let findedKey = ''
+        entries.filter((obj) =>{
+            if(obj[0] === key) return findedKey = obj[1]
+        }) 
+        return findedKey
+    }   
+    return findKey(depth())
 }
-Person.prototype = {
-    get friends(){
-        return this.getFriends() 
-    },
-    filterFriendsInMyCity(){ 
-        return this.friends.filter(friend => friend.city === this.city) 
-    },
-}
-
-
-const person = new Person('영희', 23, 'daegu', friends)
-
-console.log(person.friends === friends) // 전역변수 friends 와 프라이빗변수 _friends 주소가 다름을 확인함 (복사본을 저장하기 때문)
-person.friends[0].name =  "태양" // 프라이빗 변수 _friends 를 변경하지 못함 (복사본을 조회하기 때문)
-
-console.log(person.friends) 
-console.log(person.filterFriendsInMyCity())
-
-const person2 = new Person('철수', 35, 'seoul', friends)
-console.log(person2.friends) 
-console.log(person2.filterFriendsInMyCity())

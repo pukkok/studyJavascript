@@ -1,0 +1,36 @@
+body{
+    background-color: #0e1111;
+}
+pre{
+    /* color: violet; */
+    /* color: white; */
+    color: rgb(220, 220, 169);
+    font-size: 1.5rem;
+}
+
+code {
+    color: rgb(220, 220, 169);
+    /* color: rgb(165, 49, 248); */
+}
+code.starter{
+    /* color: rgb(70, 136, 194); */
+    color: violet;
+}
+code.normal{
+    color: rgb(215, 199, 210);
+}
+code.key{
+    color: rgb(220, 220, 169);
+}
+code.comments{
+    color: rgb(104, 149, 83);
+}
+code.box{
+    color: rgb(252,209,11);
+}
+code.tag{
+    color: rgb(71, 191, 241);
+}
+code.string{
+    color: rgb(183,131,95)!important; 
+}

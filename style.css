@@ -1,0 +1,168 @@
+code {
+    padding: 0.25rem;
+    background-color: #F1F1F1;
+    border-radius: 5px;
+    font-family: "Consolas", "Sans Mono", "Courier", "monospace";
+    font-size: 0.75rem;
+}
+pre > code {
+    margin: 1rem auto;
+}
+
+pre > code {
+    margin: 1rem auto;
+    white-space: pre;
+    max-width:850px; 
+    max-height:500px; 
+    overflow:auto !important; /* scroll setting */
+}
+
+.hljs {
+    white-space: pre;
+    max-width:850px; 
+    max-height:500px; 
+    overflow:auto !important; /* scroll setting */
+}
+
+/* for block of numbers */
+.hljs-ln-numbers {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    text-align: center;
+    color: #ccc;
+    /* border-right: 1px solid #CCC; */
+    vertical-align: top;
+    padding-right: 5px;
+
+    /* your custom style here */
+}
+
+/* for block of code */
+.hljs-ln-code {
+    padding-left: 10px;
+    text-indent: 0.75rem; /* indent added */
+}
+
+.entry-content > table {
+    width:100%;
+    margin-bottom: 22px;
+    border: 1px solid #e6e6e6;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 0.9375em;
+    line-height: 1.5714;
+    color: #666;
+}
+.entry-content > table thead th {
+    padding:7px 0 11px;
+    border-left: 1px solid #e6e6e6;
+}
+.entry-content > table tbody td {
+    padding:7px 0 11px;
+    border-left: 1px solid #e6e6e6;
+    border-top: 1px solid #e6e6e6;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+button, input{
+    all: unset;
+    border: solid 1px #0e1111;
+}
+.search-box{
+    box-sizing: border-box;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+input{
+    all: unset;
+    box-sizing: border-box;
+    min-width: 400px;
+    min-height: 80px;
+    padding: 10px;
+    text-align: left;
+    border: solid 2px darkorchid;
+}
+.search-box button{
+    all: unset;
+    box-sizing: border-box;
+    min-width: 80px;
+    min-height: 80px;
+    padding: 10px;
+    background-color: darkorchid;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+
+section h1{
+    font-size: 3rem;
+    margin: 0;
+    padding: 10px;
+}
+
+section button{
+    font-size: 1.5rem;
+    padding: 10px;
+    cursor: pointer;
+    background-color: rgb(35, 182, 43);
+    color: white;
+}
+
+.function-box{
+    border: solid 1px darkorchid;
+}
+.button-box{
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.viewer-container{
+    position: absolute;
+    width: 100vw;
+    min-height: 100vh;
+    display: none;
+    background-color: rgba(0, 0, 0, .8);
+}
+
+.viewer{
+    position: relative;
+    width: 100vw;
+    min-width: 60vw;
+    padding: 5%;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    color: white;
+}
+
+.control-box{
+    position: absolute;
+    right: 20px;
+    display: flex;
+    gap: 20px;
+    padding: 20px 20px 10px;
+}
+
+.minimize-viewer,
+.close-fullscreen-viewer,
+.close-viewer{
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.material-symbols-outlined{
+    font-size: 2rem;
+}

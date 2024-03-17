@@ -1,3 +1,4 @@
+
 // 연습 1
 
 // function findMaxValue(...args){
@@ -331,40 +332,25 @@ const metadata = {
     url: "/ko/docs/Tools/Scratchpad",
 }
 
-let test1 =  Object.values(metadata)
-// console.log(test1)
-test1.forEach(test => {
-    if(typeof test === 'object'){
-        test = Object.values(test)
-        // console.log(test)
-    }
-})
-
-// console.log(findKeyOfObj("title", metadata, 1))
+console.log(findKeyOfObj("title", metadata, 1))
 
 console.log(findKeyOfObj("title", metadata, 3))
 
 function findKeyOfObj(key, obj, i){
     let entries = Object.entries(obj)
-    // console.log('key', key)
-    // console.log('obj', obj)
-    // console.log('i', i)
     function depth(){
-        a = entries.map((entry)=>{
-            if(i>0 && typeof entry[1]==='object'){
-                console.log(i, entries)
-                entries = Object.entries(entry[1])
-                i--
-                return depth()
-            }else {
-                console.log(i)
-                return entries
-            }
-        })
-        return a
+        if(i>1){
+            entries.filter((entry)=>{
+                if( typeof entry[1]==='object' ){
+                    entries = Object.entries(entry[1])
+                    i--
+                    return depth()
+                }else return entries
+            })
+        }
+        return entries
     }
     function findKey(entries){
-        console.log('a', entries)
         let findedKey = ''
         entries.filter((obj) =>{
             if(obj[0] === key) return findedKey = obj[1]

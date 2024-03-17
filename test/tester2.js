@@ -18,7 +18,7 @@ function testFunction(){
         div.append(input, button)
         root.append(div)
     }
-    div = diva('테스트 테스트', "test")
+    div = div('바봌 ㅋㅋ')
     makeSearchBox()
     makeSearchBox()
     makeSearchBox()
@@ -34,64 +34,37 @@ const codeStyles ={
     string : [/\'\'/] ,
     num : [] ,
     noraml : [/\=/, /\(/, /\)/, /\>/],
-    quotation : [/\'/ , /\"/ , /\`/]
 }
 
 let pureSentence = `${testFunction}`
 let firstResult = []
 let secondResult = []
 let resultSentence = []
-
-const searchString = (str, filter) => {
-    let check = ''
-    let IndexArr = []
-    let newStr = str
-    /** 문자열 인덱스값 찾기 */
-    if(str.includes(filter)){
-        let index = str.indexOf(filter)
-        while(index !== -1){
-            IndexArr.push(index)
-            index = str.indexOf(filter, index+1)
-        }
-    }
-
-    /** 문자열 class='string' 변환 */
-    if(IndexArr.length!==0){
-        for(i=0; i<IndexArr.length; i+=2){
-            check = str.slice(IndexArr[i],IndexArr[i+1]+1) // 원본은 건들지 않는다.
-            newStr = newStr.replace(check, `<code class='string'>${check}</code>`) // 복사본으로 수정
-        }
-    }
-    return newStr
-}
-
-
+let abc = []
 const customStyle = () =>{
-    /** 문자열 포함 검사 */
-    let stringCheck1 = searchString(pureSentence, "'")
-    let stringCheck2 = searchString(stringCheck1, '"')
-    let stringCheck3 = searchString(stringCheck2, "`")
-    
-    let dotCheck = stringCheck3.split(' ')
-    let dotWordArr = []
-    // console.log(dotResult)
-    dotCheck.forEach(word=>{
-        if(word.includes('.')){
-            let index = word.indexOf('.')
+    let stringChange = pureSentence.split(' ')
+    let stringFilter =[]
+    /** 문자열이 있는지 없는지 체크하기 */
+    stringChange.forEach(word=>{
+        if(word.includes("'")){
+            let index = word.indexOf("'")
+            stringFilter.push(word.slice(0, index))
             while(index !== -1){
-            dotWordArr.push(word)
-            index = word.indexOf('.', index+1)
+                let prev = index
+                index = word.indexOf("'", prev+1)
+                stringFilter.push(`<code class='string'>`+word.slice(prev, index+1)+`</code>`)
+                return stringFilter.push(word.slice(index+1))
             }
+        }else{
+            stringFilter.push(word)
         }
     })
-    
-    let stringFilter = stringCheck3.split(' ')
     /** []. , () , ( , ) , => , = ] 체크  */
     stringFilter.forEach((word)=>{
         if(word.includes('.')){
             firstResult.push(`<code class='tag'>${word.split('.')[0]}</code><code class='normal'>.</code>${word.split('.')[1]}`)
         }else if(word.includes('()')){
-            firstResult.push(`<code class='key'>${word.split('()')[0]}</code><code class='normal'>()</code><code>${word.split('()')[1]}</code>`)
+            firstResult.push(`<code class='key'>${word.split('()')[0]}</code><code class='normal'>()</code>${word.split('()')[1]}`)
         }
         else if(word.includes('(')&&word.includes(')')){
             firstResult.push(word)
@@ -106,12 +79,10 @@ const customStyle = () =>{
             firstResult.push(word)
         }
     })
-
     let secondChange = firstResult
-    // console.log(secondChange)
     secondChange.forEach(word=>{
+        // console.log(word)
         if(word.includes(`class='string'`)){
-            // console.log(word)
             secondResult.push(word)
         }
         else{
@@ -119,11 +90,10 @@ const customStyle = () =>{
             word = word.replace('input', `<code class='tag'>input</code>`)
             word = word.replace('button', `<code class='tag'>button</code>`)
             word = word.replace('section', `<code class='tag'>section</code>`)
-            word = word.replace('root', `<code class='tag'>root</code>`)
             secondResult.push(word)
         }
-    })
 
+    })
     resultSentence = secondResult.join(' ')
     /** 시작할때 */
     resultSentence = resultSentence.replace(codeStyles.starter[0], `<code class='starter'>function</code>`)
@@ -134,6 +104,6 @@ const customStyle = () =>{
     resultSentence = resultSentence.replace(codeStyles.comments[0], `<code class='comments'>\/\*\*`)
     resultSentence = resultSentence.replace(codeStyles.comments[1], `\*\/</code>`)
     
-    div.innerHTML = `<pre>${resultSentence}</pre>`
+    div.innerHTML = `<pre><code>${resultSentence}</code></pre>`
 }
 customStyle()

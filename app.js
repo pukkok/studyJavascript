@@ -39,8 +39,13 @@ const closeViewer = document.createElement('button')
 closeViewer.className = 'close-viewer'
 closeViewer.innerHTML = `<span class="material-symbols-outlined">close</span>`
 code.innerHTML=`
-const makeSearchBox = () => {
+
+/** 검색박스 */
+const makeSearchBoxTEST = () => {
+    let abc = {a: b, c: d}
+    abc.a=13
     const div = document.createElement('div')
+    
     div.className = 'search-box'
     const input = document.createElement('input')
     const button = document.createElement('button')
@@ -48,7 +53,6 @@ const makeSearchBox = () => {
     div.append(input, button)
     root.append(div)
 }
-makeSearchBox()
 `
 pre.append(code)
 root.append(pre)
@@ -68,6 +72,7 @@ const makeSearchBox = () => {
     root.append(div)
 }
 makeSearchBox()
+
 
 /** 섹션만들기 (박스, '섹션제목', '섹션클래스')*/
 const makeSection = (arr, name, cName) => {
@@ -144,7 +149,7 @@ document.addEventListener('DOMContentLoaded', (e)=>{
     const startJS = (obj) => {
         let worker = new Worker(`./${obj.forder}/${obj.javascript}.js`)
         worker.onmessage = (event) => {
-            code.innerText = makeSection
+            code.innerText = event.data
             viewerContainer.style.display = 'flex'
             worker.terminate()
         }

@@ -5,22 +5,25 @@ pre{
     /* color: violet; */
     /* color: white; */
     color: rgb(220, 220, 169);
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    width: 80vw;
+    border: solid 1px red;
+    padding: 50px;
 }
 
 code {
-    color: rgb(220, 220, 169);
+    color: rgb(255, 255, 255);
     /* color: rgb(165, 49, 248); */
 }
 code.starter{
-    /* color: rgb(70, 136, 194); */
-    color: violet;
+    color: rgb(70, 136, 194);
+    /* color: violet; */
 }
 code.normal{
-    color: rgb(215, 199, 210);
+    color: rgb(153, 240, 243);
 }
 code.key{
-    color: rgb(220, 220, 169);
+    color: rgb(250, 232, 72);
 }
 code.comments{
     color: rgb(104, 149, 83);

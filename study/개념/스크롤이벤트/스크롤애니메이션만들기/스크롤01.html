@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스크롤01</title>
+    <style>
+        html{
+            scroll-behavior: smooth;
+            cursor:none;
+        }
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        main{
+            width: 100vw;
+            height: 100vh;
+            background-color: #0e1111;   
+        }
+        span{
+            width: 100px;
+            height: 100px;
+            border: solid 1px red;
+            display: flex;
+            position: absolute;
+            left: 0;
+            top: 0;
+            transform: translate(-50%,-50%);
+            border-radius: 50%;
+        }
+        section{
+            width: 100%;
+            height: 100%;
+        }
+        .section1{
+            background-color: slateblue;
+        }
+        .section2{
+            background-color: blanchedalmond;
+        }
+        .section3{
+            background-color:deepskyblue;
+        }
+        .section4{
+            background-color: rgb(216, 82, 82);
+        }
+        header{
+            position: absolute;
+            top: 0;
+            background-color: transparent;
+            border-top: solid 1px grey;
+            border-bottom: solid 1px grey;
+            box-sizing: border-box;
+        }
+        header div{
+            box-sizing: border-box;
+            text-align: center;
+            width: 100px;
+            border: solid 1px grey;
+            background-color: rgb(160, 1, 160);
+            padding: 20px 10px;
+            color: #e5e5e5;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .section1 header{z-index : 4;}
+        .section2 header{z-index : 3;}
+        .section3 header{z-index : 2;}
+        .section4 header{z-index : 1;}
+
+        .section1 .search-box{
+            position: relative;
+            top: 100px;
+            /* padding: 20px 10px; */
+            box-sizing: border-box;
+            display: flex;
+            height: 80px;
+            justify-content: center;
+        }
+        .search-box input{
+            all: unset;
+            border: solid 2px #aaa;
+            background-color: white;
+            width: 300px;
+            box-sizing: border-box;
+            padding-left: 20px;
+        }
+        .search-box button{
+            all: unset;
+            border: solid 2px white;
+            background-color: #aaa;
+            width: 100px;
+            text-align: center;
+            font-size: 1.5rem;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+        .section2 img{
+            padding: 100px;
+            width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="스크롤01.js"></script>
+</body>
+</html>

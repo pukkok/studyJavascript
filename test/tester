@@ -1,23 +1,5 @@
-/**1단계 문자열 치환하기 */
-// const searchString = (str, filter) => {
-//     let check = ''
-//     let IndexArr = []
-//     let newStr = str
-//     /** 문자열 인덱스값 찾기 */
-//     if(str.includes(filter)){
-//         let index = str.indexOf(filter)
-//         while(index !== -1){
-//             IndexArr.push(index)
-//             index = str.indexOf(filter, index+1)
-//         }
-//     }
+문자열 검사하기
 
-//     /** 문자열 class='string' 변환 */
-//     if(IndexArr.length!==0){
-//         for(i=0; i<IndexArr.length; i+=2){
-//             check = str.slice(IndexArr[i],IndexArr[i+1]+1) // 원본은 건들지 않는다.
-//             newStr = newStr.replace(check, `<code class='string'>${check}</code>`) // 복사본으로 수정
-//         }
-//     }
-//     return newStr
-// }
+숫자검사
+
+문자 + ( ) 일경우 함수로 생각

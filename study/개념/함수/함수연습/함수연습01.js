@@ -341,7 +341,8 @@ function findKeyOfObj(key, obj, i){
     function depth(){
         if(i>1){
             entries.filter((entry)=>{
-                if( typeof entry[1]==='object' ){
+                if( typeof entry[1]==='object'&&!Array.isArray(entry[1])){
+                    console.log(entry[1])
                     entries = Object.entries(entry[1])
                     i--
                     return depth()

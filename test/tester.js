@@ -10,6 +10,8 @@ function testFunction(){
     /** 검색박스 */
     const makeSearchBox = () => {
         /** 주석체크 중입니다 */
+        const abc = [ 123 ]
+        let def = { ab : 12 }
         const div = document.createElement('div')
         div.className = 'search-box'
         const input = document.createElement('input')
@@ -18,11 +20,13 @@ function testFunction(){
         div.append(input, button)
         root.append(div)
     }
-    div = diva('테스트 테스트', "test")
+    div = letdiva('테스트 테스트', "test", `const는 ㅁㅁ다` `이것도 "되나" '안되나 "되지" ' 되나 확인`)
+    div = construct('테스트 테스트', "test", `const는 ㅁㅁ다` `이것도 되나 확인`)
     makeSearchBox()
     makeSearchBox()
     makeSearchBox()
 }
+
 
 // const tagPattern = /<[^>]+>?/g
 const codeStyles ={
@@ -89,7 +93,8 @@ const customStyle = () =>{
     /** []. , () , ( , ) , => , = ] 체크  */
     stringFilter.forEach((word)=>{
         if(word.includes('.')){
-            firstResult.push(`<code class='tag'>${word.split('.')[0]}</code><code class='normal'>.</code>${word.split('.')[1]}`)
+            // firstResult.push(`<code class='tag'>${word.split('.')[0]}</code><code class='normal'>.</code>${word.split('.')[1]}`)
+            firstResult.push(`<code>${word.split('.')[0]}</code><code class='normal'>.</code>${word.split('.')[1]}`)
         }else if(word.includes('()')){
             firstResult.push(`<code class='key'>${word.split('()')[0]}</code><code class='normal'>()</code><code>${word.split('()')[1]}</code>`)
         }
@@ -108,28 +113,28 @@ const customStyle = () =>{
     })
 
     let secondChange = firstResult
-    // console.log(secondChange)
+    console.log(secondChange)
     secondChange.forEach(word=>{
         if(word.includes(`class='string'`)){
             // console.log(word)
             secondResult.push(word)
         }
         else{
-            word = word.replace('div', `<code class='tag'>div</code>`)
-            word = word.replace('input', `<code class='tag'>input</code>`)
-            word = word.replace('button', `<code class='tag'>button</code>`)
-            word = word.replace('section', `<code class='tag'>section</code>`)
-            word = word.replace('root', `<code class='tag'>root</code>`)
+            // word = word.replace('div', `<code class='tag'>div</code>`)
+            // word = word.replace('input', `<code class='tag'>input</code>`)
+            // word = word.replace('button', `<code class='tag'>button</code>`)
+            // word = word.replace('section', `<code class='tag'>section</code>`)
+            // word = word.replace('root', `<code class='tag'>root</code>`)
+            // word = word.replace(codeStyles.starter[0], `<code class='starter'>function</code>`)
+            // word = word.replace(codeStyles.starter[1], `<code class='starter'>const</code>`)
+            // word = word.replace(codeStyles.starter[2], `<code class='starter'>let</code>`)
+            // word = word.replace(codeStyles.starter[3], `<code class='starter'>var</code>`)
             secondResult.push(word)
         }
     })
 
     resultSentence = secondResult.join(' ')
     /** 시작할때 */
-    resultSentence = resultSentence.replace(codeStyles.starter[0], `<code class='starter'>function</code>`)
-    resultSentence = resultSentence.replace(codeStyles.starter[1], `<code class='starter'>const</code>`)
-    resultSentence = resultSentence.replace(codeStyles.starter[2], `<code class='starter'>let</code>`)
-    resultSentence = resultSentence.replace(codeStyles.starter[3], `<code class='starter'>var</code>`)
     /** 주석처리 변경 */
     resultSentence = resultSentence.replace(codeStyles.comments[0], `<code class='comments'>\/\*\*`)
     resultSentence = resultSentence.replace(codeStyles.comments[1], `\*\/</code>`)

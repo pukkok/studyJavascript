@@ -1,0 +1,99 @@
+/* .single-day-regular {
+    font-family: "Single Day", cursive;
+    font-weight: 400;
+    font-style: normal;
+} */
+
+.gowun-dodum-regular {
+    font-family: "Gowun Dodum", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+h1{
+    margin: 0;
+}  
+html, body{
+    background-color: #000;
+    width: 100%;
+    font-family: "Gowun Dodum", 'Pacifico', cursive;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+main{
+    width: 100vw;
+}
+section{
+    width: 100%;
+    height: 100vh;
+}
+
+.section1{
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.section1 h1{
+    font-weight: 100;
+    /* -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #eee;  */
+
+    height: 150px;
+    font-size: 8rem;
+    z-index: 1;
+}
+.section1 span{
+    /* border: solid 1px red; */
+    border-radius: 20px;
+    font-size: 5rem;
+    position: absolute;
+    bottom: 0;
+    animation: downMove 1s infinite alternate;
+}
+@keyframes downMove {
+    0% {
+        bottom: 4rem;
+    }
+    100%{
+        bottom: 2rem;
+    }
+}
+
+.section2{
+    border: solid 1px red;
+    position: relative;
+}
+.cover{
+    width: 100vw;
+    display: flex;
+    position: absolute;
+    
+}
+.cover:nth-child(1){
+    transform: rotate(-2deg);
+    background-color: #ff3796;
+    padding: 10px;
+    top: 5%;
+}
+
+.cover:nth-child(2){
+    transform: rotate(2deg);
+    background-color: #5800ff;
+    padding: 10px;
+    bottom: 5%;
+    justify-content: flex-end;
+}
+.first-line,
+.second-line{
+    display: flex;
+    gap: 10px;
+}
+
+.cover img{
+    width: 300px;
+    height: 250px;
+}
+

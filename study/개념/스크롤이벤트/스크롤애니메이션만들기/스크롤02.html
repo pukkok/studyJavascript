@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body{
+            background-color: #000;
+            width: 100%;
+            font-family: 'Pacifico', cursive;
+            overflow-x: hidden;
+        }
+
+        .cover{
+            width: 100vw;
+            margin-bottom: 5rem;
+            display: flex;
+        }
+
+        .cover:nth-child(1){
+            margin-top: 4vh;
+            transform: rotate(-2deg);
+            background-color: #ff3796;
+        }
+
+        .cover:nth-child(2){
+            transform: rotate(2deg);
+            background-color: #5800ff;
+            justify-content: flex-end;
+        }
+
+        p{
+            display: flex;
+            padding: 2rem 0;
+            font-size: 5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="cover">
+        <p class="first-parallel"></p>
+    </div>
+    <div class="cover">
+        <p class="second-parallel"></p>
+    </div>
+
+    <script src="스크롤02.js"></script>
+
+</body>
+</html>

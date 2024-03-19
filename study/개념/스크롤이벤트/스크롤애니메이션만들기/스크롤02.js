@@ -27,8 +27,8 @@ function marqueeText(count, element, direction){
 }
 
 function animate () {
-    count1++
-    count2++
+    count1+=5
+    count2+=5
 
     count1 = marqueeText(count1, pTag1, -1)
     count2 = marqueeText(count2, pTag2, 1)
@@ -38,6 +38,6 @@ function animate () {
 animate()
 
 window.addEventListener('wheel', ()=>{
-    count1 +=15
-    count2 +=15
+    count1 +=30
+    count2 +=30
 })

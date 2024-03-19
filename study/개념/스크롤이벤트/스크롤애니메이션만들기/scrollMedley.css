@@ -4,6 +4,7 @@
     font-style: normal;
 } */
 
+
 .gowun-dodum-regular {
     font-family: "Gowun Dodum", sans-serif;
     font-weight: 400;
@@ -20,6 +21,14 @@ html, body{
     margin: 0;
     padding: 0;
 }
+body::-webkit-scrollbar{
+    display: none;
+}
+body{
+    height: auto;
+    overflow: hidden;
+}
+
 main{
     width: 100vw;
 }
@@ -65,12 +74,12 @@ section{
 .section2{
     border: solid 1px red;
     position: relative;
+    height: 100vh;
 }
 .cover{
     width: 100vw;
     display: flex;
     position: absolute;
-    
 }
 .cover:nth-child(1){
     transform: rotate(-2deg);

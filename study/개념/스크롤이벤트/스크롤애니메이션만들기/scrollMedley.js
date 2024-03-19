@@ -15,17 +15,17 @@ function marqueeText(count, element, direction){
 }
 
 function animate () {
-    count1++
-    count2++
-
+    count1+=5
+    count2+=5
+    
     count1 = marqueeText(count1, fistLine, -1)
     count2 = marqueeText(count2, secondLine, 1)
-
+    
     window.requestAnimationFrame(animate)
 }
 animate()
 
-window.addEventListener('wheel', ()=>{
+window.addEventListener('scroll', ()=>{
     count1 +=15
     count2 +=15
 })

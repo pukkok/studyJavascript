@@ -2,48 +2,62 @@ html, body{
     margin: 0;
     padding: 0;
 }
-p,h1,h2,h3,h4{
+body{
+    overflow-y: hidden;
+}
+p, h1, h2, h3, h4, ul, li{
     margin: 0;
     padding: 0;
 }
 ul, li{
-    margin: 0;
-    padding: 0;
     list-style: none;
 }
 main{
     width: 100vw;
     height: 100vh;
+    box-sizing: border-box;
+    
 }
 
 section{
     width: 100%;
     height: 100%;
-    /* background-color: #0e1111; */
+    background-color: #0e1111;
 }
 
 .section1{
     box-sizing: border-box;
     height: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     text-align: center;
-    border: solid 1px red;
-    display: flex;
-    padding: 0 10%;
 }
-
 
 .section1 .img-box{
-    width: 40%;
-    height: 100%;
-}
-.section1 .text-box{
+    position: absolute;
     box-sizing: border-box;
-    border: solid 1px red;
-    padding: 10% 0 0 10%;
+    bottom: 30%;
+    left: 10%;
+    transform: translate(-10%, 30%);
+    width: 50vw;
+    height: 60vh;
+    overflow: hidden;
+    transition: 1s;
+}
+.section1 .img-box div{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(./imgs/bg_1_main.jpg);
+    bottom: 70%;
+    background-size: contain;
+    /* transition: .5s; */
+}
+
+.section1 .text-box{
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    box-sizing: border-box;
     width: 60%;
     height: 100%;
 }

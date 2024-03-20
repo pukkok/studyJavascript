@@ -15,6 +15,13 @@
 </head>
 <body>
     <div id="root"></div>
+
+
     <script src="app.js"></script>
+    <script>
+        fetch('http://localhost:3000/fetch?sidoCode=27&sggCode=27410')
+        .then(res => res.json())
+        .then(data => console.log(data))
+    </script>
 </body>
 </html>

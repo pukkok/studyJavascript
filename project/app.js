@@ -1,39 +1,44 @@
 const root = document.getElementById('root')
+const header = document.createElement('header')
 const main = document.createElement('main')
+
 const section1 = document.createElement('section')
 section1.className = 'section1'
-const section2 = document.createElement('section')
-section2.className = 'section2'
 
-main.append(section1, section2)
-root.append(main)
+main.append(section1)
+root.append(header, main)
 
-
-
-let starterText1Arr = '어디로 떠날지 고민이신가요?'.split('')
-let starterText2Arr = '어디로 여행가고 싶은가요?'.split('')
-let starterText3Arr = '여행지를 찾아보세요'.split('')
-console.log(starterText1Arr)
-function makeSectionStarter(arr){
-    setInterval(() => {
-    arr.forEach((word, i) => {
-            const span = document.createElement('span')
-            span.innerText = word
-            // section1.append(span)
-        })
-    }, 1000);
+const makeHeaderList = () => {
+    const nav = document.createElement('nav')
+    const ul = document.createElement('ul')
+    for(i=0; i<10; i++){
+        const li = document.createElement('li')
+        const a = document.createElement('a')
+        li.append(a)
+        ul.append(li)
+    }
+    nav.append(ul)
+    header.append(nav)
 }
-makeSectionStarter(starterText1Arr)
+// makeHeaderList()
 
-function makeSection1Map(){
+const makeSection1Item = () => {
+    const divbox = document.createElement('div')
     const div = document.createElement('div')
-    div.className='img-box'
-    const innerDiv = document.createElement('div')
-    const span = document.createElement('span')
-    span.className='material-symbols-outlined'
-    span.innerText='location_on'
-    
-    div.append(innerDiv, span)
-    section1.append(div)
+    div.className = 'img-box'
+    const div2 = document.createElement('div')
+    div2.className = 'text-box'
+    const ul = document.createElement('ul')
+    for(i=0; i<3; i++){
+        const li = document.createElement('li')
+        const a = document.createElement('a')
+        a.innerText=`${i+1}`
+        li.append(a)
+        ul.append(li)
+    }
+    div2.append(ul)
+    divbox.append(div, div2)
+    section1.append(divbox)
 }
-makeSection1Map()
+makeSection1Item()
+makeSection1Item()

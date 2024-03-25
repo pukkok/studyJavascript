@@ -18,19 +18,21 @@ p, h1, h2, h3, h4, ul, li, a{
 
 ul, li{
     list-style: none;
+    cursor: pointer;
 }
 
 
 header{
     box-sizing: border-box;
     position: fixed;
-    width: 100vw;
-    height: auto;
+    height: 70px;
     color: white;
     font-weight: bold;
+    width: 100vw;
+    z-index: 100;
 }
 
-header nav:hover{
+header:hover{
     background-color: white;
     color: #0e1111;
 }
@@ -40,14 +42,13 @@ header:hover .logo-box .logo{
 }
 
 /* 900px까지 사용가능 */
-header nav{
+header .nav-container{
     box-sizing: border-box;
     position: relative;
+    height: 70px;
+    max-width: 1280px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 0 100px;
-    width: 100%;
-    height: 70px;
     display: flex;
     gap: 16px;
     align-items: center;
@@ -77,15 +78,23 @@ header nav .user-nav ul{
 
 header nav .main-nav ul li{
     height: auto;
-    cursor: pointer;
     box-sizing: border-box;
     padding: 5px 0;
     border-bottom: 2px solid transparent;
 }
 
+.active{
+    border-bottom: 2px solid var(--brand-color-black);
+}
+
+header nav .main-nav ul li.active,
 header nav .main-nav ul li:hover{
     border-bottom: 2px solid var(--brand-color-black);
 }
+
+/* header nav .main-nav ul li.active{
+    border-bottom: 2px solid var(--brand-color-black);
+} */
 
 header nav .main-nav{
     margin-right: auto;
@@ -93,45 +102,97 @@ header nav .main-nav{
 
 header .depth2{
     font-size: 14px;
-    height: 300px;
-    display: flex;
-    align-items: flex-start;
-    
+    z-index: 0;
     background-color: white;
     color: #0e1111;
-    transition: .2s;
-    z-index: 0;
+    position: relative;
+    transition: .3s;
+    top: -500px;
+    opacity: 0;
 }
 
-header .depth2 .depth1-name{
+header .depth2 .nav-container{
+    display: flex;
+    align-items: flex-start;
+    min-height: 350px;
+    height: auto;
+}
+
+header .depth2 .mainlist-name{
     width: 142px;
     height: 100%;
     color: var(--brand-color-red);
     padding-right: 8px;
 }
 
-header .depth2 .depth2-nav{
+
+/* depth2 list 스타일 공유 */
+header .depth2 .list-container{
     font-weight: 100;
+    min-height: 350px;
     height: 80%;
-    padding: 0 10px;
+    width: 140px;
+    padding: 0 16px;
+    margin-bottom: 50px;
+}
+
+header .depth2 .list-container ul{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+header .depth2 .list-container ul li{
+    box-sizing: border-box;
+    padding: 8px 0;
+    cursor: pointer;
+}
+
+header .depth2 .depth2-nav{
     border-left: solid 1px #e5e5e5;
 }
 
-header .depth2 .depth2-nav ul{
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-header .depth2 .depth2-nav ul li{
-    cursor: pointer;
-}
 header .depth2 .depth2-nav ul li:hover{
     font-weight: bold;
+}
+header .depth2 .add-arrow ul li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .depth2 .add-arrow ul li:hover:after{
+    content: '';
+    background-image: url(./imgs/icons/arrow_forward_FILL0_wght400_GRAD0_opsz24.png);
+    background-position: center;
+    background-size: cover;
+    width: 20px;
+    height: 10px;
+    position: relative;
+    opacity: 0;
+    animation: move-right .5s forwards;
+}
+
+@keyframes move-right {
+    0%{
+        opacity: 0;
+        left: 0px;
+    }
+    100%{
+        opacity: 1;
+        left: 16px;
+    }
+}
+
+header .depth2 .depth3{
+    border-left: solid 1px #e5e5e5;
+    min-height: 350px;
+    height: auto;
 }
 
 main{
     margin: auto;
+
     width: 100vw;
     height: 100vh;
 }
@@ -142,7 +203,40 @@ section{
 }
 
 .section1{
-    border: solid 1px red;
-    background-image: url(./imgs/bg_1_main.jpg);
+    color: white;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    /* transition: 1s; */
+}
+
+.section1 .container{
+    width: 100%;
+    height: 100%;
+}
+
+.section1 .bg{
+    width: 100vw;
+    height: 100vh;
     background-size: cover;
+    position: absolute;
+}
+
+.section1 .text-box{
+    position: relative;
+    max-width: 1280px;
+    left: 10%;
+    top: 40%;
+    width: 50%;
+    height: 40%;
+    z-index: 200;
+}
+.text-box h1{
+    font-size: 4rem;
+    padding-bottom: 20px;
+}
+.text-box h4{
+    font-size: 1.5rem;
 }

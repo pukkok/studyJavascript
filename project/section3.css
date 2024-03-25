@@ -1,0 +1,49 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.section3{
+    width: 100vw;
+    height: 100vh;
+}
+
+.container{
+    margin: 0 auto;
+    max-width: 1280px;
+}
+
+.container .text-box{
+    display: flex;
+    gap: 1rem;
+}
+
+.container .img-box{
+    width: 100%;
+    height: 800px;
+    position: relative;
+    border: solid 1px red;
+}
+.container .img-box div{
+    position: absolute;
+}
+
+.container .img-box div:nth-child(1){
+    width: 40%;
+    left: 20%;
+    top: 20%;
+}
+.container .img-box div:nth-child(2){
+    width: 30%;
+    left: 50%;
+    top: 40%;
+}
+.container .img-box div:nth-child(3){
+    width: 40%;
+    left: 50%;
+    top: 20%;
+}
+
+.container .img-box img{
+    width: 100%;
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul, li, a{
+            margin: 0;
+            padding: 0;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        a{
+            all: unset;
+        }
+        li{
+            list-style: none;
+        }
+        li a{
+            padding: 0 10px;
+        }
+        .depth1{
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 16px;
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            height: 80px;
+        }
+        .depth1 > li{
+            width: 250px;
+            text-align: center;
+            border: solid 1px violet;
+            padding: 0 20px;
+        }
+
+        .depth1 > li:hover > a{
+            border: solid 1px green;
+        }
+        .depth1 > li:hover .depth2{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .depth2, .depth3{
+            display: none;
+        }
+
+        .depth2 li{
+            border: solid 1px red;
+            display: flex;
+            position: relative;
+        }
+        .depth2 > li > a{
+            width: 100px;
+            border: solid 1px blue;
+            position: relative;
+        }
+        .depth2 > li > .depth3{
+            border: solid 1px green;
+        }
+
+        .depth3{
+            left: 20px;
+        }
+
+        .depth1 > li .depth2 > li:hover .depth3{
+            display: flex;
+            flex-direction: column;
+        }
+
+    </style>
+</head>
+<body>
+    <ul class="depth1">
+        <li><a href="">테스트1</a>  
+            <ul class="depth2">
+                <li><a href="">테스트A</a>
+                    <ul class="depth3">
+                        <li><a href="">testA</a></li>
+                        <li><a href="">testB</a></li>
+                        <li><a href="">testC</a></li>
+                        <li><a href="">testD</a></li>
+                    </ul>
+                </li>
+                <li><a href="">테스트B</a></li>
+                <li><a href="">테스트C</a></li>
+                <li><a href="">테스트D</a></li>
+            </ul>
+        </li>
+        <li><a href="">테스트2</a>
+            <!-- <ul class="depth2">
+                <li><a href="">테스트A</a>
+                    <ul class="depth3">
+                        <li><a href="">testA</a></li>
+                        <li><a href="">testB</a></li>
+                        <li><a href="">testC</a></li>
+                        <li><a href="">testD</a></li>
+                    </ul>
+                </li>
+                <li><a href="">테스트B</a></li>
+                <li><a href="">테스트C</a></li>
+                <li><a href="">테스트D</a></li>
+            </ul> -->
+        </li>
+        <li><a href="">테스트3</a></li>
+        <li><a href="">테스트4</a></li>
+    </ul>
+</body>
+</html>

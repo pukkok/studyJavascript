@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0");
+
+body{
+    margin: 0;
+    padding: 0;
+}
+h3,h4,h5{
+    margin: 0;
+    padding: 0;
+    font-weight: 100;
+}
+h3{font-size: 24px; font-weight: bold;}
+h4{font-size: 16px; font-weight: bold;}
+h5{font-size: 14px;}
+ul,li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+footer{
+    width: 100vw;
+}
+
+.footer-body{
+    width: 100%;
+    background-color: #f5f5f5;
+}
+
+.container{
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.footer-main{
+    box-sizing: border-box;
+    padding: 2% 0 60px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.footer-main h3{
+    margin-right: auto;
+}
+
+.footer-main .footer-menu{
+    display: flex;
+    gap: 80px;
+}
+
+.footer-main .footer-menu ul li{
+    padding: 5px 0;
+    font-size: 15px;
+    font-weight: 300;
+    color: #707070;
+}
+.footer-menu ul:nth-child(3) li{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.footer-menu ul:nth-child(3) li:after{
+    padding-left: 5px;
+    font-size: 12px;
+    content: "\f1e1";
+    color: #999;
+    font-family: 'Material Symbols Outlined';
+}
+
+.footer-menu ul li a{
+    cursor: pointer;
+}
+
+.footer-middle{
+    display: flex;
+    justify-content: space-between;
+    color: #707070;
+    padding: 2% 0 60px;
+}
+
+.corporate-box h4{
+    padding-bottom: 8px;
+}
+.corporate-box h5{
+    padding-bottom: 4px;
+}
+
+.footer-middle .corporate-box .corporate-info{
+    display: flex;
+}
+
+
+.corporate-info h5:nth-child(2):before{
+    content: "|";
+    color: #999;
+    padding: 0 8px;
+}
+
+.footer-bottom{
+    padding: 16px 0;
+    background-color: #ecebe7;
+}
+
+.bottom-inner{
+    display: flex;
+    justify-content: space-between;
+}

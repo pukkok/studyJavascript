@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0");
+
 html{
     --main-grid: 60px;
     --brand-color-red : rgb(218, 67 ,37);
@@ -162,12 +164,8 @@ header .depth2 .add-arrow ul li{
 }
 
 header .depth2 .add-arrow ul li:hover:after{
-    content: '';
-    background-image: url(./imgs/icons/arrow_forward_FILL0_wght400_GRAD0_opsz24.png);
-    background-position: center;
-    background-size: cover;
-    width: 20px;
-    height: 10px;
+    content: '\e941';
+    font-family: 'Material Symbols Outlined';
     position: relative;
     opacity: 0;
     animation: move-right .5s forwards;

@@ -1,0 +1,76 @@
+ul, li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul{
+    display: flex;
+    gap: 16px;
+}
+
+li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px black;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+li:hover{
+    background-color: black;
+    color: white;
+}
+
+.container-box{
+    border: solid 1px red;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    height: 800px;
+    position: relative;
+}
+
+.container-box div{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    transition: 2s;
+}
+
+.style1 .box1{
+    left: 60%;
+    top: 20%;
+    background-color: violet;
+}
+
+
+.style1 .box2{
+    background-color: aqua;
+    left: 40%;
+    top: 30%;
+}
+
+.style1 .box3{
+    background-color: darkorchid;
+    left: 20%;
+    top: 60%;
+}
+
+.style2 .box1{
+    background-color: blue;
+    left: 0;
+    top: 20%;
+}
+.style2 .box2{
+    background-color: darkkhaki;
+    left: 60%;
+    top: 10%;
+}
+.style2 .box3{
+    background-color: darkorange;
+    left: 20%;
+    top: 80%;
+}

@@ -11,19 +11,17 @@ const corporates = [
     {name : "영림산업(주)", address : "인천광역시 남동구 앵고개로 584", owner : "황복현", businessNumber : "137-86-10859", tel : "1577-5600", fax : "032-812-5501"},
 ]
 
-const root = document.getElementById('root')
-
 const footer = document.createElement('footer')
 const footerBody = document.createElement('div')
 footerBody.className = 'footer-body'
-const container = document.createElement('div')
-container.className = 'container'
+const footerContainer = document.createElement('div')
+footerContainer.className = 'container'
 const footerMain = document.createElement('div')
 footerMain.className = 'footer-main'
-const h3 = document.createElement('h3')
-h3.innerText = '영림 토탈 인테리어'
-const div1 = document.createElement('div')
-div1.className = 'footer-menu'
+const footerH3 = document.createElement('h3')
+footerH3.innerText = '영림 토탈 인테리어'
+const footerDiv1 = document.createElement('div')
+footerDiv1.className = 'footer-menu'
 
 /** 배열 값, tagName, tagClassname ex) innerText로 입력 ul > li > a 생성 */
 function makeList (arr, xTag, classname='') {
@@ -41,10 +39,10 @@ function makeList (arr, xTag, classname='') {
 
 menus.forEach(list => {
     let result = makeList(list.menu, "a")
-    div1.append(result)
+    footerDiv1.append(result)
 })
 
-const hr = document.createElement('hr')
+const footerHr = document.createElement('hr')
 
 const footerMiddle = document.createElement('div')
 footerMiddle.className = 'footer-corporate footer-middle'
@@ -92,8 +90,8 @@ bottomInner.append(copyrightBox, csBOX)
 footerBottomContainer.append(bottomInner)
 footerBottom.append(footerBottomContainer)
 
-footerMain.append(h3, div1)
-container.append(footerMain ,hr, footerMiddle)
-footerBody.append(container)
+footerMain.append(footerH3, footerDiv1)
+footerContainer.append(footerMain ,footerHr, footerMiddle)
+footerBody.append(footerContainer)
 footer.append(footerBody, footerBottom)
 root.append(footer)

@@ -1,56 +1,64 @@
-body{
-    margin: 0;
-    padding: 0;
-}
-
 .section4{
     width: 100vw;
     height: 100vh;
 }
 
-.container{
-    margin: 0 auto;
-    max-width: 1280px;
-    border: solid 1px #d3d3d3;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 60vh);
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.container div{
-    overflow: hidden;
-}
-
-.container .img-box img{
-    width: 100%;
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.container .text-box{
-    padding: 5%;
+.section4 .text-box{
     display: flex;
-    flex-direction: column;
+    width: 100%;
+    padding-top: 16px;
+    padding-bottom: 60px;
+    justify-content: flex-start;
+    line-height: 24px;
 }
 
-.container .text-box h1{
-    font-size: 32px;
+.section4 .text-box h1{
+    width: 34%;
 }
 
-.container .text-box p{
-    font-size: 16px;
+.section4 .card-container{
+    display: flex;
+    gap: 16px;
 }
 
-.container .text-box button{
+.section4 .card-container .card{
+    width: 100%;
+}
+.section4 .card-container .card img{
+    border-radius: 16px;
+    width: 100%;
+    margin-bottom: 16px;
+}
+.card h4, .card p{
+    padding-left: 1%;
+}
+.card h4{
+    margin-bottom: 8px;
+}
+
+.section4.indicator-line{
+    margin-top: 40px;
+    width: 100%;
+    background-color: #d8d8d8;
+    border: 1px solid #d8d8d8;
+    border-collapse: collapse;
+}
+
+.section4.indicator-line span{
+    display: block;
+    width: 33%;
+    border-bottom: 2px solid black;
+}
+
+.section4 a{
     all: unset;
-    font-size: 14px;
-}
-
-.container .text-box button::after{
-    content: ">" ;
-    padding-left: 8px;
+    display: block;
+    width: 100px;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 40px;
+    padding: 10px 20px;
+    border: solid 1px grey;
+    border-radius: 25px;
+    cursor: pointer;
 }

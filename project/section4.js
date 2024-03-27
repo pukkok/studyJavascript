@@ -1,47 +1,47 @@
-const root = document.getElementById('root')
+/**매거진 파트 */
+
+const magazine = [
+    {img : "./imgs/magazine/magazine01.jpg", h4 : "TV CF 속 그공간, 그 제품", p : "2021 영림의 다양한 신제품들을 담은 현장 속 인테리어 살펴보기"},
+    {img : "./imgs/magazine/magazine02.jpg", h4 : "새로운 꿈을 꾸며 내일을 설계하는 집", p : "눈이 펑펑 오던 어느 겨울, 고요하게 눈이 쌓인 전원주택 마을을 방문했다"},
+    {img : "./imgs/magazine/magazine03.jpg", h4 : "2021 영림 TV CF 광고 촬영 비하인드", p : "토탈인테리어 브랜드 '영림'의 첫 TV CF 촬영 비하인드 스토리, 지금 공개합니다."},
+]
 
 const section4 = document.createElement('section')
 section4.className = 'section4'
-const container = document.createElement('div')
-container.className = 'container'
+const s4Container = document.createElement('div')
+s4Container.className = 'container'
 
-const div1 = document.createElement('div')
-div1.className = 'img-box'
-const img1 = document.createElement('img')
-img1.src='./imgs/section4/main-img-banner-01.jpg'
+const s4Div1 = document.createElement('div')
+s4Div1.className = 'text-box'
+const s4H1 = document.createElement('h1')
+s4H1.innerText = '매거진.Y'
+const s4P = document.createElement('p')
+s4P.innerText = `영림만의 소식을 여러분들께 전합니다.
+브랜드 소식과 인테리어에 대한 우리의 다양한 이야기를 기록합니다.`
+const s4Div2 = document.createElement('div')
+s4Div2.className = 'card-container'
 
-const div2 = document.createElement('div')
-div2.className = 'text-box'
-const h1E1 = document.createElement('h1')
-h1E1.innerText = '인테리어 시작하기'
-const pE1 = document.createElement('p')
-pE1.innerText = `인테리어 어디서부터 시작해야 할지 막막하시죠?
-자재 선택부터 시공 방법까지 하나하나 알려드릴게요.
-`
-const buttonE1 = document.createElement('button')
-buttonE1.innerText = '인테리어 시작하기'
+magazine.forEach(item => {
+    const div3 = document.createElement('div')
+    div3.className = 'card'
+    const img = document.createElement('img')
+    img.src = item.img
+    const h4 = document.createElement('h4')
+    h4.innerText =item.h4
+    const p = document.createElement('p')
+    p.innerText =item.p
+    div3.append(img, h4, p)
+    s4Div2.append(div3)
+})
+const s4Div4 = document.createElement('div')
+s4Div4.className = 'indicator-line'
+// const s4Hr = document.createElement('hr')
 
-const div3 = document.createElement('div')
-div3.className = 'text-box'
-const h1E2 = document.createElement('h1')
-h1E2.innerText = '영림 정품 확인하기'
-const pE2 = document.createElement('p')
-pE2.innerText = `품질에 대한 자부심을 담은
-영림의 제품에는 정품 마크가 표기되어 있습니다.
-영림의 철학과 가치를 나타내는 정품 마크를 확인해보세요.`
-const buttonE2 = document.createElement('button')
-buttonE2.innerText = '영림 브랜드 아이덴티티'
-
-const div4 = document.createElement('div')
-div4.className = 'img-box'
-const img2 = document.createElement('img')
-img2.src = './imgs/section4/main-img-banner-02.jpg'
-
-div1.append(img1)
-div2.append(h1E1, pE1, buttonE1)
-div3.append(h1E2, pE2, buttonE2)
-div4.append(img2)
-container.append(div1, div2, div3, div4)
-
-section4.append(container)
+const s4Span = document.createElement('span')
+const s4A = document.createElement('a')
+s4A.innerText='자세히 보기'
+s4Div4.append(s4Span)
+s4Div1.append(s4H1, s4P)
+s4Container.append(s4Div1, s4Div2, s4Div4, s4A)
+section4.append(s4Container)
 root.append(section4)

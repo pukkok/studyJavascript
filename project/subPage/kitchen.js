@@ -28,23 +28,25 @@ selectItems.forEach((item)=>{
 const subNav = document.createElement('nav')
 subNav.className = 'sub-nav'
 
+/** 서브네비게이션 생성 */
+subNav.append(makeList(kitchenItems, "a" ,"","키친 전체보기"), makeList(builtInItems, "a", "", "붙박이장 전체보기"))
 
+selectContainer.append(productSelectBtn, productUl)
+kitchenContainer.append(selectContainer, subNav)
+kitchen.append(kitchenBg, kitchenContainer)
+root.append(kitchen)
 
-// productSelectBtn.onclick = function(){
-//     if(productSelectBtn.classList.contains('on')){
-//         productSelectBtn.classList.remove('on')
-//         productUl.style.display = 'none'
-//     }else{
-//         productSelectBtn.classList.add('on')
-//         productUl.style.display = 'block'
-//     }
-// }
-// function clickSelect(){
-//     productSelect.click()
-// }
+function loadJson(json1, json2){
+    return fetch("./product.json") // json 파일 읽기
+    .then((response)=> response.json()) // 읽어온 파일 json변환
+    .then((json)=>{
+        data = json[json1][json2]
+        return data
+    })
+}
+let essentialData = loadJson("kitchen", "essential")
 
 function clickSelect(e){
-    console.log(e.target)
     if(e.target === productSelectBtn){
         if(productSelectBtn.classList.contains('on')){
             productSelectBtn.classList.remove('on')
@@ -57,17 +59,6 @@ function clickSelect(e){
         productSelectBtn.classList.remove('on')
         productUl.style.display='none'
     }
-
-
-
-    
 }
 
 window.addEventListener('click', clickSelect)
-
-subNav.append(makeList(kitchenItems, "a" ,"","키친 전체보기"), makeList(builtInItems, "a", "", "붙박이장 전체보기"))
-
-selectContainer.append(productSelectBtn, productUl)
-kitchenContainer.append(selectContainer, subNav)
-kitchen.append(kitchenBg, kitchenContainer)
-root.append(kitchen)

@@ -8,9 +8,11 @@
     gap: 24px;
     height: fit-content;
     margin-bottom: 100px;
+    position: sticky;
+    top: 10px;
+    z-index: 10;
 }
 .tab-box h2{
-    position: sticky;
     box-sizing: border-box;
     padding: 2px 0;
     cursor: pointer;

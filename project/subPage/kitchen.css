@@ -9,6 +9,57 @@
     /* background-image: url(/project/); */
 }
 
+.select-container{
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.product-select-btn{
+    all: unset;
+    font-size: 24px;
+    width: 240px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    border: solid 1px gray;
+    cursor: pointer;
+    
+}
+.product-select-btn::after{
+    margin-left: auto;
+    content: "\e986";
+    font-family: "Material Symbols Outlined";
+    transform: rotate(-180deg);
+    transition: .2s;
+}
+.product-select-btn.on::after{
+    transform: rotate(0deg);
+}
+.product-ul{
+    position: absolute;
+    display: none;
+    padding-top: 2px;
+    width: 240px;
+    top: 40px;
+    border: solid 1px #999;
+}
+
+.product-ul li{
+    background-color: white;
+    padding: 10px;
+}
+
+.product-ul li:hover{
+    background-color: #d6d6d6;
+}
+
+
+
+
+
+
 .sub-nav{
     border: solid 1px red;
 }

@@ -3,6 +3,10 @@ section1.className = 'first-section section1'
 const s1Container = document.createElement('div')
 s1Container.className = 'container'
 
+const buttonContainer = document.createElement('div')
+buttonContainer.className = 'button-container'
+
+
 const s1Swiperdiv = document.createElement('div')
 s1Swiperdiv.className = 'swiper1'
 const s1SwiperWrapper = document.createElement('div')
@@ -24,8 +28,8 @@ const s1NextBtn = document.createElement('div')
 s1NextBtn.className = 'swiper-button-next'
 const playBtn = document.createElement('div')
 playBtn.className = 'swiper-play play'
-s1Container.append(s1div2, s1PrevBtn, s1NextBtn, playBtn)
-s1Swiperdiv.append(s1SwiperWrapper, s1Container)
+buttonContainer.append(s1div2, s1PrevBtn, s1NextBtn, playBtn)
+s1Swiperdiv.append(s1SwiperWrapper, buttonContainer)
 section1.append(s1Swiperdiv)
 root.append(section1)
 
@@ -38,13 +42,14 @@ const s1Swiper = new Swiper('.swiper1', {
     },
     // If we need pagination
     pagination: {
-      el: '.swiper-pagination',
+        direction: 'vertical',
+        el: '.swiper-pagination',
     },
   
     // Navigation arrows
     navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
     },
     
     paused: false

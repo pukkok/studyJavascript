@@ -20,12 +20,13 @@ const makeNavigation = () => {
     navBox.className = 'nav-container'
     const div1 = document.createElement('div')
     div1.className = 'logo-box'
+    const a = document.createElement('a')
+    a.href = '/project/index.html'
+    a.target = '_self'
     const logo = document.createElement('div')
     logo.className = 'logo'
-    const a = document.createElement('a')
-    a.href = './index.html'
-    logo.append(a)
-    div1.append(logo)
+    a.append(logo)
+    div1.append(a)
 
     const depth1 = ['브랜드', '제품', '인테리어 솔루션', '매거진.Y', '쇼룸 안내']
 

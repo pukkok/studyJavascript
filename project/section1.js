@@ -11,6 +11,7 @@ const s1Swiperdiv = document.createElement('div')
 s1Swiperdiv.className = 'swiper1'
 const s1SwiperWrapper = document.createElement('div')
 s1SwiperWrapper.className = 'swiper-wrapper'
+
 for(i=0; i<5; i++){
     const div = document.createElement('div')
     div.className = 'swiper-slide'
@@ -38,11 +39,10 @@ const s1Swiper = new Swiper('.swiper1', {
     // direction: 'vertical',
     loop: true,
     autoplay: {
-        delay : 1000,
+        delay : 3000,
     },
     // If we need pagination
     pagination: {
-        direction: 'vertical',
         el: '.swiper-pagination',
     },
   
@@ -59,7 +59,7 @@ const s1Swiper = new Swiper('.swiper1', {
     // },
 });
   
-  s1Swiper.on()
+s1Swiper.on()
 //   s1Swiper.on('slideChange', function () {
 //     console.log('slide changed')
 //   })

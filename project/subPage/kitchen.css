@@ -1,13 +1,17 @@
 .kitchen{
     width: 100vw;
-    height: 100vh;
 }
 
 .kitchen-bg{
     height: 50vh;
     background-image: url(../imgs/product/kitchen/bg_kitchen.jpg);
+    margin-bottom: 10vh;
 }
 
+.kitchen .container{
+    border: solid 1px red;
+}
+/* select */
 .select-container{
     width: fit-content;
     display: flex;
@@ -17,15 +21,16 @@
 
 .product-select-btn{
     all: unset;
-    font-size: 24px;
-    width: 240px;
     display: flex;
     align-items: center;
+    font-size: 24px;
+    width: 210px;
     height: 40px;
-    border: solid 1px gray;
+    border-bottom: solid 1px gray;
     cursor: pointer;
-    
+    padding-bottom: 20px;
 }
+
 .product-select-btn::after{
     margin-left: auto;
     content: "\e986";
@@ -36,34 +41,43 @@
 .product-select-btn.on::after{
     transform: rotate(0deg);
 }
+/* select option */
 .product-ul{
     position: absolute;
     display: none;
-    padding-top: 2px;
-    width: 240px;
-    top: 40px;
-    border: solid 1px #999;
+    padding-top: 0px;
+    top: 60px;
 }
 
 .product-ul li{
+    box-sizing: border-box;
+    width: 210px;
     background-color: white;
+    border: solid 1px gray;
+    border-bottom: none;
+    border-collapse: collapse;
     padding: 10px;
+}
+.product-ul li:nth-last-child(1){
+    border-bottom: solid 1px gray;
 }
 
 .product-ul li:hover{
     background-color: #d6d6d6;
 }
 
-
-
-
-
-
-.sub-nav{
-    border: solid 1px red;
+/* 상품 컨테이너 */
+.product-box{
+    display: flex;
+    gap: 10px;
 }
 
-.sub-nav ul{
+/* 왼쪽 네비게이션 메뉴 */
+.product-box .sub-nav{
+    width: 210px;
+}
+
+.product-box .sub-nav ul{
     font-weight: 700;
     display: flex;
     flex-direction: column;
@@ -71,7 +85,27 @@
     padding: 24px 0;
 }
 
-.sub-nav ul li{
+.product-box .sub-nav ul li{
     font-weight: 300;
-    padding-left: 1%;
+    padding-left: 5%;
+}
+
+.product-box .tester{
+    width: 100%;
+}
+
+.product-box .item-box{
+    border: solid 1px red;
+    display: grid;
+    width: calc(100% - 210px);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.product-box .item-box .img-box{
+    width: 100%;
+}
+.product-box .item-box .text-box{
+    width: 100%;
+    height: 20%;
 }

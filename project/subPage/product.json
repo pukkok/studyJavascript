@@ -1,12 +1,12 @@
 {"kitchen" : 
-    {   "essential" : [
-        {"img" : "essential_kitchen01", "name" : "알토 시에라" , "concept" : ["캐슈넛", "윌로우", "체팔루오크", "노체브라운", "시에라"]}, 
-        {"img" : "essential_kitchen02", "name" : "아이리스", "concept" : ["로지핑크", "레이크블루", "어텀그린 딥라벤더", "딥오션", "오닉스"] },    
-        {"img" : "essential_kitchen03", "name" : "소프캐시미어", "concept" : ["포슬린", "캐시미어", "라이트그레이", "로즈그레이", "토프베이지"]},    
-        {"img" : "essential_kitchen04", "name" : "벨라 밀로", "concept" : ["화이트", "그레이", "밀로"]},    
-        {"img" : "essential_kitchen05", "name" : "소프 포슬린", "concept" : ["포슬린", "캐시미어", "라이트그레이","로즈그레이","토프베이지"]},    
-        {"img" : "essential_kitchen06", "name" : "소프 로즈그레이", "concept" : ["포슬린", "캐시미어", "라이트그레이","로즈그레이","토프베이지"]},    
-        {"img" : "essential_kitchen07", "name" : "스텔라 새틴화이트", "concept" : ["새틴화이트", "새틴베이지","새틴브릭","글로시화이트","글로시도브","글로시핑크","글로시바닐라"]},    
+    {  "essential" : [
+        {"img" : "essential_kitchen01", "name" : "알토 시에라" , "concepts" : ["캐슈넛", "윌로우", "체팔루오크", "노체브라운", "시에라"]}, 
+        {"img" : "essential_kitchen02", "name" : "아이리스", "concepts" : ["로지핑크", "레이크블루", "어텀그린 딥라벤더", "딥오션", "오닉스"] },    
+        {"img" : "essential_kitchen03", "name" : "소프캐시미어", "concepts" : ["포슬린", "캐시미어", "라이트그레이", "로즈그레이", "토프베이지"]},    
+        {"img" : "essential_kitchen04", "name" : "벨라 밀로", "concepts" : ["화이트", "그레이", "밀로"]},    
+        {"img" : "essential_kitchen05", "name" : "소프 포슬린", "concepts" : ["포슬린", "캐시미어", "라이트그레이","로즈그레이","토프베이지"]},    
+        {"img" : "essential_kitchen06", "name" : "소프 로즈그레이", "concepts" : ["포슬린", "캐시미어", "라이트그레이","로즈그레이","토프베이지"]},    
+        {"img" : "essential_kitchen07", "name" : "스텔라 새틴화이트", "concepts" : ["새틴화이트", "새틴베이지","새틴브릭","글로시화이트","글로시도브","글로시핑크","글로시바닐라"]},    
         {"img" : "essential_kitchen08", "name" : "루나 화이트스톤"},    
         {"img" : "essential_kitchen09", "name" : "벨라 화이트"},    
         {"img" : "essential_kitchen10", "name" : "스텔라 새틴브릭&새틴화이트"},    
@@ -22,22 +22,21 @@
         {"img" : "essential_kitchen20", "name" : "루나 그레이스톤&바잘트스톤"} 
         ],
         "timeless" : [
-            "timeless_kitchen01",
-            "timeless_kitchen02",
-            "timeless_kitchen03",
-            "timeless_kitchen04",
-            "timeless_kitchen05",
-            "timeless_kitchen06",
-            "timeless_kitchen07"
+        {"img" : "timeless_kitchen01", "name" : "베네토 리체&로우"},
+        {"img" : "timeless_kitchen02", "name" : "레아 베르데프랑스&메탈다크"},
+        {"img" : "timeless_kitchen03", "name" : "레아 크리스탈아이스"},
+        {"img" : "timeless_kitchen04", "name" : "아델 미스틱오크"},
+        {"img" : "timeless_kitchen05", "name" : "프레임 스톤그레이"},
+        {"img" : "timeless_kitchen06", "name" : "엣지45 캐시미어"},
+        {"img" : "timeless_kitchen07", "name" : "아틀리에 포슬린"}
         ],
-        "compoent" : [
-            "compoent_kitchen01",
-            "compoent_kitchen02",
-            "compoent_kitchen03",
-            "compoent_kitchen04",
-            "compoent_kitchen05",
-            "compoent_kitchen06"
+        "component" : [
+        {"img" : "component_kitchen01"},
+        {"img" : "component_kitchen02"},
+        {"img" : "component_kitchen03"},
+        {"img" : "component_kitchen04"},
+        {"img" : "component_kitchen05"},
+        {"img" : "component_kitchen06"}
         ]
-
     }
 }  

@@ -20,6 +20,20 @@ header:hover .logo-box .logo{
     background-image: url(./imgs/icon-younglim-logo.png);
 }
 
+.white-mode .user-nav ul li .search,
+header:hover .user-nav ul li .search{
+    background-image: url(./imgs/icons/icon-gnb-search.png);
+}
+.white-mode .user-nav ul li .like,
+header:hover .user-nav ul li .like{
+    background-image: url(./imgs/icons/icon-gnb-like.png);
+}
+.white-mode .user-nav ul li .login,
+header:hover .user-nav ul li .login{
+    background-image: url(./imgs/icons/icon-gnb-login.png);
+}
+
+
 /* 900px까지 사용가능 */
 header .nav-container{
     box-sizing: border-box;
@@ -48,12 +62,53 @@ header nav .logo-box .logo{
     cursor: pointer;
 }
 
+header nav .main-nav,
+header nav .user-nav{
+    height: 30px;
+}
+
 header nav .main-nav ul,
 header nav .user-nav ul{
+    height: 100%;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex: content;
     gap: 16px;
 }
+
+header nav .user-nav ul li{
+    width: 28px;
+    height: 28px;
+}
+header nav .user-nav ul li div{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+}
+
+header .user-nav ul li .search{
+    background-image: url(./imgs/icons/icon-gnb-search-white.png);
+}
+header .user-nav ul li .search:hover{
+    background-image: url(./imgs/icons/icon-gnb-search.png);
+    filter: invert(.5);
+}
+header .user-nav ul li .like{
+    background-image: url(./imgs/icons/icon-gnb-like-white.png);
+}
+header .user-nav ul li .like:hover{
+    background-image: url(./imgs/icons/icon-gnb-like-active.png);
+    filter: invert(.5);
+}
+header .user-nav ul li .login{
+    background-image: url(./imgs/icons/icon-gnb-login-white.png);
+}
+header .user-nav ul li .login:hover{
+    background-image: url(./imgs/icons/icon-gnb-login.png);
+    filter: invert(.5);
+}
+
 
 header nav .main-nav ul li{
     height: auto;

@@ -1,6 +1,5 @@
 .section4{
     width: 100vw;
-    height: 100vh;
 }
 
 .section4 .text-box{
@@ -23,19 +22,21 @@
 
 .section4 .card-container .card{
     width: 100%;
+    height: fit-content;
 }
 .section4 .card-container .card img{
+    min-height: 250px;
     border-radius: 16px;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 }
 .card h4, .card p{
-    padding-left: 1%;
+    padding-left: 5px;
 }
 .card h4{
     margin-bottom: 8px;
 }
 
-.section4.indicator-line{
+.section4 .indicator-line{
     margin-top: 40px;
     width: 100%;
     background-color: #d8d8d8;

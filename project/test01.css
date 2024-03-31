@@ -1,10 +1,112 @@
-.swiper {
-    width: 600px;
-    height: 300px;
-  }
+section{
+  width: 100vw;
+  height: 100vh;
+  background-color: #0e1111;
+}
 
-/* .swiper-slide{
-    width: 100vw;
-    height: 100vh;
-    border: solid 1px red;
-} */
+header{
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  height: 70px;
+  color: white;
+  
+  width: 100vw;
+  z-index: 100;
+}
+
+header:hover{
+  background-color: white;
+  color: #0e1111;
+}
+
+header:hover .logo-box .logo{
+  background-image: url(./imgs/icon-younglim-logo.png);
+}
+header:hover .depth1-box .user-box ul li .search{
+  background-image: url(./imgs/icons/icon-gnb-search.png);
+}
+header:hover .depth1-box .user-box ul li .like{
+  background-image: url(./imgs/icons/icon-gnb-like.png);
+}
+header:hover .depth1-box .user-box ul li .login{
+  background-image: url(./imgs/icons/icon-gnb-login.png);
+}
+
+.depth1-box{
+  display: flex;
+  gap: 16px;
+  justify-content: flex-start;
+  align-items: center;
+  height: 70px;
+  font-weight: bold;
+}
+
+.depth1-box .logo-box{
+  width: 142px;
+  height: 30px;
+}
+
+.depth1-box .logo-box .logo{
+  width: 100%;
+  height: 100%;
+  background-image: url(./imgs/icon-younglim-logo-white.png);
+  background-size: cover;
+}
+
+.depth1-box .depth1 ul li a.on{
+  border-bottom: solid 2px black;
+}
+
+.depth1-box .depth1 ul,
+.depth1-box .user-box ul{
+  display: flex;
+  gap: 16px;
+}
+
+.depth1-box .user-box{
+  margin-left: auto;
+}
+
+.depth1-box .user-box ul li{
+  width: 30px;
+  height: 30px;
+}
+.depth1-box .user-box ul li div{
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+.depth1-box .user-box ul li .search{
+  background-image: url(./imgs/icons/icon-gnb-search-white.png);
+}
+.depth1-box .user-box ul li .like{
+  background-image: url(./imgs/icons/icon-gnb-like-white.png);
+}
+.depth1-box .user-box ul li .login{
+  background-image: url(./imgs/icons/icon-gnb-login-white.png);
+}
+
+.depth2-box{
+  height: 350px;
+  background-color: white;
+}
+
+.depth2-box .depth2{
+  display: flex;
+  gap: 16px;
+}
+
+.depth2-box .depth2 .name{
+  width: 142px;
+  color: var(--brand-color-red);
+}
+
+.depth2 ul{
+  border-left: solid 1px var(--brand-color-gray);
+  padding-left: 10px;
+}
+
+.depth2 ul li:not(:nth-child(1)){
+  padding-top: 10px;
+}

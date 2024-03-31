@@ -15,7 +15,7 @@ root.append(header)
 
 console.log('작동확인')
 /** main-nav 생성 depth1 생성 */
-const makeNavigation = () => {
+const makeDepth1 = () => {
     const navBox = document.createElement('div')
     navBox.className = 'nav-container'
     const div1 = document.createElement('div')
@@ -35,18 +35,25 @@ const makeNavigation = () => {
     const mainUl = makeList(depth1, 'a')
     div2.append(mainUl)
 
-    const userIcons = ['search', 'favorite', 'person']
+    const userIcons = ['search', 'like', 'login']
 
     const div3 = document.createElement('div')
     div3.className = 'user-nav'
-    const userUl = makeList(userIcons, 'span', 'material-symbols-outlined')
+    const userUl = document.createElement('ul')
+    userIcons.forEach(icon => {
+        const li = document.createElement('li')
+        const div = document.createElement('div')
+        div.className = icon
+        li.append(div)
+        userUl.append(li)
+    })
     div3.append(userUl)
 
     navBox.append(div1, div2, div3)
     nav.append(navBox)
 }
 
-makeNavigation()
+makeDepth1()
 
 /** depth2 생성 */
 const makeDepth2 = () => {
@@ -66,22 +73,6 @@ const makeDepth2 = () => {
 }
 makeDepth2()
 
-/** 배열 값, tagName, tagClassname ex) innerText로 입력 ul > li > a 생성 */
-function makeList (arr, xTag, classname='', ulText='') {
-    const ul = document.createElement('ul')
-    if(ulText) ul.innerText = ulText
-    
-    arr.forEach((item)=>{
-        const li = document.createElement('li')
-        const tag = document.createElement(xTag)
-        if(classname) tag.className = classname
-        tag.innerText = item
-        li.append(tag)
-        ul.append(li)
-    })
-    return ul
-}
-
 const depth2 = document.querySelector('.depth2')
 const depth2Nav = document.querySelector('.depth2-nav')
 
@@ -89,7 +80,6 @@ const depth2Nav = document.querySelector('.depth2-nav')
 const matchingDepth2 = (e) => {
     const depth1Name = document.querySelector('.mainlist-name')
     const list = document.querySelectorAll('.main-nav ul li a')
-    const mainLi = document.querySelectorAll('.main-nav ul li')
     let result
     list.forEach((li, i)=>{
         if(e.target === li){
@@ -268,3 +258,19 @@ const openHeader = () => {
 }
 
 window.addEventListener('scroll' , openHeader)
+
+/** 배열 값, tagName, tagClassname ex) innerText로 입력 ul > li > a 생성 */
+function makeList (arr, xTag, classname='', ulText='') {
+    const ul = document.createElement('ul')
+    if(ulText) ul.innerText = ulText
+    
+    arr.forEach((item)=>{
+        const li = document.createElement('li')
+        const tag = document.createElement(xTag)
+        if(classname) tag.className = classname
+        tag.innerText = item
+        li.append(tag)
+        ul.append(li)
+    })
+    return ul
+}

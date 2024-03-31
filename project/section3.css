@@ -1,8 +1,7 @@
 .section3{
-    /* background-color: #ecebe7; */
     padding: 5vh 0;
-    position: relative;
 }
+
 .tab-box{
     display: flex;
     gap: 24px;
@@ -12,17 +11,17 @@
     top: 70px;
     z-index: 10;
 }
-.tab-box h2{
+.tab-box h3{
     box-sizing: border-box;
     padding: 2px 0;
     cursor: pointer;
     border-bottom: solid 2px transparent;
 }
 
-.tab-box h2.on{
+.tab-box h3.on{
     border-bottom: solid 2px black;
 }
-.tab-box h2:hover{
+.tab-box h3:hover{
     color : #999;
     border-bottom: solid 2px #999;
 }
@@ -106,7 +105,7 @@
 .section3 .img-box.natural .box2{
     width: 30%;
     left: 35%;
-    top: 55%;
+    top: 65%;
 }
 
 .section3 .img-box.natural .box3{

@@ -17,9 +17,9 @@ s3Container.className = 'container'
 const tabBox = document.createElement('div')
 tabBox.className = 'tab-box'
 types.forEach(type=>{
-    const H2 = document.createElement('h2')
-    H2.innerText = type.style
-    tabBox.append(H2)
+    const h3 = document.createElement('h3')
+    h3.innerText = type.style
+    tabBox.append(h3)
 })
 
 const imgBox = document.createElement('div')
@@ -65,11 +65,11 @@ section3.append(s3Container)
 root.append(section3)
 
 
-const tabBtns = document.querySelectorAll('.tab-box h2')
+const tabBtns = document.querySelectorAll('.tab-box h3')
 tabBtns[0].className='on'
 const changeType = (e) => {
     types.forEach((type, i)=>{
-        if(e.target.tagName === 'H2'){
+        if(e.target.tagName === 'H3'){
             tabBtns[i].classList.remove('on')
             if(e.target.innerText === type.style){
                 tabBtns[i].classList.add('on')

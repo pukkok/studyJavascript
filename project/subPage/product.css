@@ -1,8 +1,8 @@
-.kitchen{
+.product{
     width: 100vw;
 }
 
-.kitchen-bg{
+.product-bg{
     height: 50vh;
     background-image: url(../imgs/product/kitchen/bg_kitchen.jpg);
     margin-bottom: 10vh;
@@ -12,7 +12,7 @@
     border: solid 1px red;
 }
 /* select */
-.select-container{
+.select-box{
     width: fit-content;
     display: flex;
     flex-direction: column;
@@ -28,7 +28,7 @@
     height: 40px;
     border-bottom: solid 1px gray;
     cursor: pointer;
-    padding-bottom: 20px;
+    padding-bottom: 16px;
 }
 
 .product-select-btn::after{
@@ -42,27 +42,26 @@
     transform: rotate(0deg);
 }
 /* select option */
-.product-ul{
+.product-select-option{
     position: absolute;
     display: none;
     padding-top: 0px;
     top: 60px;
 }
 
-.product-ul li{
+.product-select-option li{
     box-sizing: border-box;
     width: 210px;
     background-color: white;
     border: solid 1px gray;
     border-bottom: none;
-    border-collapse: collapse;
     padding: 10px;
 }
-.product-ul li:nth-last-child(1){
+.product-select-option li:nth-last-child(1){
     border-bottom: solid 1px gray;
 }
 
-.product-ul li:hover{
+.product-select-option li:hover{
     background-color: #d6d6d6;
 }
 
@@ -73,21 +72,53 @@
 }
 
 /* 왼쪽 네비게이션 메뉴 */
-.product-box .sub-nav{
-    width: 210px;
+.product-box .product-nav{
+    min-width: 210px;
+    padding: 16px 0 0;
 }
 
-.product-box .sub-nav ul{
-    font-weight: 700;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 24px 0;
+.data-box button{
+    all: unset;
+    display: block;
+    width: 100%;
+}
+.data-box button.active,
+.data-box button:hover{
+    font-weight: bold;
+}
+/* content: "\e145"; : 플러스 일때 */
+/* content: "\e15b"; : 마이너스 일때 */
+
+.product-nav .data-box .plus > button::after{
+    float: right;
+    content: "\e145";
+    font-family: "Material Symbols Outlined";
 }
 
-.product-box .sub-nav ul li{
-    font-weight: 300;
-    padding-left: 5%;
+.product-nav .data-box .plus > button.expand::after{
+    content: "\e15b";
+}
+
+
+.product-nav .data-box .main-list{
+    font-size: 16px;
+    margin-top: 16px;
+}
+.product-nav .data-box .sub-list{
+    font-size: 16px;
+    margin-left: 12px;
+    margin-top: 16px;
+}
+.product-nav .data-box .plus-list{
+    font-size: 14px;
+    padding: 8px 10px 12px;
+    display: none;
+}
+.product-nav .data-box .plus-list.on{
+    display: block;
+}
+.product-nav .data-box .plus-list button{
+    margin-top: 8px;
 }
 
 .product-box .tester{

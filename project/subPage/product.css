@@ -7,16 +7,18 @@
     background-image: url(../imgs/product/kitchen/bg_kitchen.jpg);
     margin-bottom: 10vh;
 }
-
-.kitchen .container{
-    border: solid 1px red;
+.product .container{
+    display: flex;
+    flex-wrap: wrap;
 }
+
 /* select */
 .select-box{
     width: fit-content;
     display: flex;
     flex-direction: column;
     position: relative;
+    box-sizing: border-box;
 }
 
 .product-select-btn{
@@ -65,10 +67,31 @@
     background-color: #d6d6d6;
 }
 
+/* 필터 바 */
+.filter-bar{
+    box-sizing: border-box;
+    width: calc(100% - 210px);
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+}
+
+.filter-bar .filter-select-box{
+    margin-left: auto;
+    border: solid 1px red;
+    display: flex;
+    gap: 10px;
+}
+
+.filter-bar .filter-select-box button{
+    all: unset;
+    border: solid 1px red;
+}
+
 /* 상품 컨테이너 */
 .product-box{
     display: flex;
-    gap: 10px;
+    gap: 50px;
 }
 
 /* 왼쪽 네비게이션 메뉴 */

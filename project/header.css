@@ -1,228 +1,196 @@
+
 header{
-    box-sizing: border-box;
-    position: fixed;
-    top: 0;
-    height: 70px;
-    color: white;
-    font-weight: bold;
-    width: 100vw;
-    z-index: 100;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  color: white;
+  
+  width: 100vw;
+  z-index: 100;
+  transition: .2s;
 }
 
-.white-mode,
-header:hover{
-    background-color: white;
-    color: #0e1111;
+header nav {
+  height: 70px;
+  overflow:hidden;
+  transition: .2s;
 }
 
-.white-mode .logo-box .logo,
-header:hover .logo-box .logo{
-    background-image: url(./imgs/icon-younglim-logo.png);
+nav.white-mode,
+nav:hover{
+  background-color: white;
+  color: #0e1111;
 }
 
-.white-mode .user-nav ul li .search,
-header:hover .user-nav ul li .search{
-    background-image: url(./imgs/icons/icon-gnb-search.png);
+nav.white-mode .logo-box .logo,
+nav:hover .logo-box .logo{
+  background-image: url(./imgs/icon-younglim-logo.png);
 }
-.white-mode .user-nav ul li .like,
-header:hover .user-nav ul li .like{
-    background-image: url(./imgs/icons/icon-gnb-like.png);
+nav.white-mode .depth1-box .user-box ul li .search,
+nav:hover .depth1-box .user-box ul li .search{
+  background-image: url(./imgs/icons/icon-gnb-search.png);
 }
-.white-mode .user-nav ul li .login,
-header:hover .user-nav ul li .login{
-    background-image: url(./imgs/icons/icon-gnb-login.png);
+nav.white-mode .depth1-box .user-box ul li .like,
+nav:hover .depth1-box .user-box ul li .like{
+  background-image: url(./imgs/icons/icon-gnb-like.png);
 }
-
-
-/* 900px까지 사용가능 */
-header .nav-container{
-    box-sizing: border-box;
-    position: relative;
-    height: 70px;
-    max-width: 1280px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    justify-content: flex-start;
-    z-index: 1;
+nav.white-mode .depth1-box .user-box ul li .login,
+nav:hover .depth1-box .user-box ul li .login{
+  background-image: url(./imgs/icons/icon-gnb-login.png);
 }
 
-header nav .logo-box{
-    width: 142px;
-    height: 30px;
-    padding-right: 8px;
-}
-header nav .logo-box .logo{
-    width: 100%;
-    height: 100%;
-    background-image: url(./imgs/icon-younglim-logo-white.png);
-    background-size: cover;
-    cursor: pointer;
+nav:hover .depth1-box .user-box ul li .search:hover,
+nav:hover .depth1-box .user-box ul li .like:hover,
+nav:hover .depth1-box .user-box ul li .login:hover{
+  filter: invert(.5);
 }
 
-header nav .main-nav,
-header nav .user-nav{
-    height: 30px;
+.depth1-box{
+  display: flex;
+  gap: 16px;
+  justify-content: flex-start;
+  align-items: center;
+  height: 70px;
+  font-weight: bold;
 }
 
-header nav .main-nav ul,
-header nav .user-nav ul{
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: content;
-    gap: 16px;
+.depth1-box .logo-box{
+  width: 142px;
+  height: 30px;
 }
 
-header nav .user-nav ul li{
-    width: 28px;
-    height: 28px;
-}
-header nav .user-nav ul li div{
-    width: 100%;
-    height: 100%;
-    background-size: cover;
+.depth1-box .logo-box .logo{
+  width: 100%;
+  height: 100%;
+  background-image: url(./imgs/icon-younglim-logo-white.png);
+  background-size: cover;
 }
 
-header .user-nav ul li .search{
-    background-image: url(./imgs/icons/icon-gnb-search-white.png);
+.depth1-box .depth1 ul li{
+  padding-bottom: 2px;
+  border-bottom: solid 2px transparent;
 }
-header .user-nav ul li .search:hover{
-    background-image: url(./imgs/icons/icon-gnb-search.png);
-    filter: invert(.5);
-}
-header .user-nav ul li .like{
-    background-image: url(./imgs/icons/icon-gnb-like-white.png);
-}
-header .user-nav ul li .like:hover{
-    background-image: url(./imgs/icons/icon-gnb-like-active.png);
-    filter: invert(.5);
-}
-header .user-nav ul li .login{
-    background-image: url(./imgs/icons/icon-gnb-login-white.png);
-}
-header .user-nav ul li .login:hover{
-    background-image: url(./imgs/icons/icon-gnb-login.png);
-    filter: invert(.5);
+
+.depth1-box .depth1 ul li.on{
+  border-bottom: solid 2px gray;
 }
 
 
-header nav .main-nav ul li{
-    height: auto;
-    box-sizing: border-box;
-    padding: 5px 0;
-    border-bottom: 2px solid transparent;
+.depth1-box .depth1 ul,
+.depth1-box .user-box ul{
+  display: flex;
+  gap: 16px;
 }
 
-.active{
-    border-bottom: 2px solid var(--brand-color-black);
+.depth1-box .user-box{
+  margin-left: auto;
 }
 
-header nav .main-nav ul li.active,
-header nav .main-nav ul li:hover{
-    border-bottom: 2px solid var(--brand-color-black);
+.depth1-box .user-box ul li{
+  width: 30px;
+  height: 30px;
+}
+.depth1-box .user-box ul li div{
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+.depth1-box .user-box ul li .search{
+  background-image: url(./imgs/icons/icon-gnb-search-white.png);
+}
+.depth1-box .user-box ul li .like{
+  background-image: url(./imgs/icons/icon-gnb-like-white.png);
+}
+.depth1-box .user-box ul li .login{
+  background-image: url(./imgs/icons/icon-gnb-login-white.png);
 }
 
-/* header nav .main-nav ul li.active{
-    border-bottom: 2px solid var(--brand-color-black);
-} */
-
-header nav .main-nav{
-    margin-right: auto;
+.depth2-box{
+  box-sizing: border-box;
+  min-height: 350px;
+  padding-bottom: 30px;
+  background-color: white;
+  font-size: 14px;
+  position: relative;
+  transition: .5s;
 }
 
-header .depth2{
-    font-size: 14px;
-    z-index: 0;
-    background-color: white;
-    color: #0e1111;
-    position: relative;
-    transition: .3s;
-    top: -500px;
-    opacity: 0;
+.depth2-box .depth2{
+  display: flex;
+  justify-content: flex-start;
+  gap: 16px;
 }
 
-header .depth2 .nav-container{
-    display: flex;
-    align-items: flex-start;
-    min-height: 350px;
-    height: auto;
+.depth2-box .depth2 .name{
+  width: 142px;
+  color: var(--brand-color-red);
 }
 
-header .depth2 .mainlist-name{
-    width: 142px;
-    height: 100%;
-    color: var(--brand-color-red);
-    padding-right: 8px;
+.depth2-box ul li:hover{
+  font-weight: bold;
 }
 
-
-/* depth2 list 스타일 공유 */
-header .depth2 .list-container{
-    font-weight: 100;
-    min-height: 350px;
-    height: 80%;
-    width: 140px;
-    padding: 0 16px;
-    margin-bottom: 50px;
+.depth2 ul{
+  width: 180px;
+  min-height: 250px;
+  border-left: solid 1px #999;
+  height: fit-content;
+  padding: 0 16px;
 }
 
-header .depth2 .list-container ul{
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+.depth2 ul li{
+  padding-top: 10px;
+  display: flex;
+  justify-content: flex-start;
 }
 
-header .depth2 .list-container ul li{
-    box-sizing: border-box;
-    padding: 8px 0;
-    cursor: pointer;
+.depth2 ul .product-item.on{
+  color: #0e1111;
+  font-weight: bold;
 }
-
-header .depth2 .depth2-nav{
-    border-left: solid 1px #e5e5e5;
-}
-
-header .depth2 .depth2-nav ul li:hover{
-    font-weight: bold;
-}
-header .depth2 .add-arrow ul li{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header .depth2 .add-arrow ul li:hover:after{
-    content: '\e941';
-    font-family: 'Material Symbols Outlined';
-    position: relative;
-    opacity: 0;
-    animation: move-right .5s forwards;
+.depth2 ul .product-item.on::after{
+  margin-left: auto;
+  content: "\e941";
+  font-family: 'Material Symbols Outlined';
+  position: relative;
+  opacity: 0;
+  animation: move-right .5s forwards;
 }
 
 @keyframes move-right {
-    0%{
-        opacity: 0;
-        left: 0px;
-    }
-    100%{
-        opacity: 1;
-        left: 16px;
-    }
+  0%{
+      opacity: 0;
+      left: -16px;
+  }
+  100%{
+      opacity: 1;
+      left: 0px;
+  }
 }
 
-header .depth2 .depth3{
-    border-left: solid 1px #e5e5e5;
-    min-height: 350px;
-    height: auto;
+.depth2-box .container{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
 }
 
-main{
-    margin: auto;
+.depth2-box .depth3 {
+  min-width: 160px;
+  min-height: 250px;
+  height: fit-content;
+  border-left: solid 1px #999;
+  padding: 0 16px;
+}
 
-    width: 100vw;
-    height: 100vh;
+.depth2-box .depth3 ul:not(:nth-child(1)){
+  padding-top: 10px;
+}
+
+.depth2-box .depth3 .main{
+  padding-top: 10px;
+}
+
+.depth2-box .depth3 .list{
+  padding-top: 10px;
+  padding-left: 10px;
 }

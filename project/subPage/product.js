@@ -53,10 +53,51 @@ loadJson('./product.json')
     })
 })
 
+/** 필터 바 */
+const filterBar = document.createElement('div')
+filterBar.className = 'filter-bar'
+const makeFilterBar = () => {
+    const filterBtn = document.createElement('div')
+    filterBtn.className = 'filter-btn'
+    const filterH3 = document.createElement('h3')
+    filterH3.innerText = '필터'
+    const filterSelectBox = document.createElement('div')
+    filterSelectBox.className = 'filter-select-box'
+
+    const filterOptions = ['신제품순', '인기순', '제품명순']
+    const filterOption = document.createElement('div')
+    filterOption.className = 'filter-option'
+
+    filterOptions.forEach(option => {
+        const btn = document.createElement('button')
+        btn.innerText = option
+        filterOption.append(btn)
+    })
+    
+    const filterIcons = document.createElement('div')
+    const div1 = document.createElement('div')
+    div1.className = 'small-mode'
+    const icon1 = document.createElement('button')
+    const div2 = document.createElement('div')
+    div2.className = 'big-mode'
+    const icon2 = document.createElement('button')
+    
+    div1.append(icon1)
+    div2.append(icon2)
+    
+    filterIcons.append(div1, div2)
+    
+    filterSelectBox.append(filterOption, filterIcons)
+    filterBtn.append(filterH3)
+
+    filterBar.append(filterBtn, filterSelectBox)
+}
+makeFilterBar()
+
 
 productSelectBox.append(productSelectBtn, productSelectOption)
 productBox.append(productNav, itemBox)
-productContainer.append(productSelectBox, productBox)
+productContainer.append(productSelectBox, filterBar, productBox)
 productSection.append(productBg, productContainer)
 root.append(productSection)
 
@@ -140,28 +181,20 @@ function makeImgBox(part1, part2, name='', concepts=[]){
 }
 
 
-
+let activePrevBtn
 function clickEvent(e){
     // console.log(e.target)
 
-    switch (e.target) {
-        /** 셀렉트 박스 선택한 경우 */
-        case productSelectBtn : {
-            switch (productSelectBtn.classList.contains('on')) {
-                case true : 
-                productSelectBtn.classList.remove('on')
-                productSelectOption.style.display = 'none'
-                break
-
-                case false : 
-                productSelectBtn.classList.add('on')
-                productSelectOption.style.display = 'block'
-                break
-            }
+    /** 셀렉트 버튼 클릭 */
+    if(e.target === productSelectBtn){
+        if(productSelectBtn.classList.contains('on')){
+            productSelectBtn.classList.remove('on')
+            productSelectOption.style.display = 'none'
+        }else{
+            productSelectBtn.classList.add('on')
+            productSelectOption.style.display = 'block'
         }
-        break
-
-        default :
+    }else{
         productSelectBtn.classList.remove('on')
         productSelectOption.style.display='none'
     }
@@ -169,37 +202,30 @@ function clickEvent(e){
     /** 셀렉트 옵션에 따라 프로덕트 네비게이션 변경 */
     let productSelectOptions = productSelectOption.querySelectorAll('li')
     productSelectOptions.forEach((option, i) => {
-    switch (e.target) {
-        case option : {
-            switch (e.target.innerText){
-                case selectItems[i] : {
-                    productSelectBtn.innerText = selectItems[i] // 버튼 text변경
-                    let splitItems = selectEngItems[i].split('/') 
-                    splitItems.forEach(splitItem=>{ // 프로덕트 네비게이션 변경
-                    productNav.innerHTML=''
-                    loadJson("./category.json")
-                    .then(data => data[splitItem])
-                    .then(data => makeProductNav(data, splitItem, productNav))
-                    })
-                }
-            }
+    if(e.target === option){
+        if(e.target.innerText === selectItems[i]){
+            productSelectBtn.innerText = selectItems[i] // 버튼 text변경
+            splitItems = selectEngItems[i].split('/') 
+            splitItems.forEach(splitItem=>{ // 프로덕트 네비게이션 변경
+                productNav.innerHTML=''
+                loadJson("./category.json")
+                .then(data => data[splitItem])
+                .then(data => makeProductNav(data, splitItem, productNav))
+            })
         }
-    }})
+    }
+    })
+
     /** 플러스 버튼 클릭시 플러스리스트 열기/닫기 */
     let plusBtn = document.querySelectorAll('.plus > button')
     plusBtn.forEach(btn => {
-        switch (e.target) {
-            case btn : {
-                switch (btn.classList.contains('expand')) {
-                    case false : {
-                        btn.classList.add('expand', 'active')
-                        btn.nextSibling.classList.add('on')                        
-                        break }
-                    case true : {
-                        btn.classList.remove('expand', 'active')
-                        btn.nextSibling.classList.remove('on')
-                        break }
-                }
+        if(e.target === btn) {
+            if(btn.classList.contains('expand')) {
+                btn.classList.remove('expand', 'active')
+                btn.nextSibling.classList.remove('on')
+            }else{
+                btn.classList.add('expand', 'active')
+                btn.nextSibling.classList.add('on')    
             }
         }
     })
@@ -210,14 +236,19 @@ function clickEvent(e){
         let navBtns = box.querySelectorAll('button')
         let key = [...box.classList][1]
         navBtns.forEach(btn => {
-        switch (e.target) {
-            case btn : {
+            if(e.target === btn){
+
+                btn.classList.add('active')
+                if(activePrevBtn !== undefined){
+                    if(activePrevBtn !== btn) activePrevBtn.classList.remove('active')
+                }
+                activePrevBtn = btn
+
                 switch (btn.innerText) {
                     case '키친 전체보기' :
                     case '붙박이장 전체보기':
                     case '바스 전체보기' :
-                    case '창호 전체보기': {
-                        btn.classList.add('active')
+                    case '창호 전체보기':
                         itemBox.innerHTML = ''
                         loadJson('./product.json')
                         .then(data => data[key])
@@ -226,12 +257,10 @@ function clickEvent(e){
                                 itemBox.append(makeImgBox(key, data.img, data.name, data.concepts)) 
                             })
                         })
-                        break
-                    }
+                    break
                 }
-            
+
                 let code = changeCode(btn.innerText)
-                btn.classList.add('active')
                 itemBox.innerHTML = ''
                 loadJson('./product.json')
                 .then(data => data[key])
@@ -241,9 +270,6 @@ function clickEvent(e){
                         itemBox.append(makeImgBox(key, data.img, data.name, data.concepts)) 
                     }})
                 })
-                break
-            }
-            default : btn.classList.remove('active')
             }
         })
     })

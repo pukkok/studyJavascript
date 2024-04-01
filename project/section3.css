@@ -30,13 +30,10 @@
     width: 100%;
     min-height: 150vh;
     position: relative;
-    transition: 2s;
 }
 
 .section3 .img-box img{
-    width: 100%;
     max-height: 60vh;
-    transition: 3s;
 }
 
 .special{
@@ -60,9 +57,10 @@
 }
 
 .section3 .text-box{
-    padding-left: 5%;
+    box-sizing: border-box;
+    padding: 0 5%;
     color: #0e1111;
-    width: 80%;
+    width: 100%;
 }
 
 .section3 .img-box .box1 h2{
@@ -76,6 +74,21 @@
     height: fit-content;
     background-color: #ecebe7;
     padding-bottom: 20px;
+}
+
+.section3 .img-box.modern .box1,
+.section3 .img-box.modern .box2,
+.section3 .img-box.modern .box3,
+.section3 .img-box.natural .box1,
+.section3 .img-box.natural .box2,
+.section3 .img-box.natural .box3,
+.section3 .img-box.classic .box1,
+.section3 .img-box.classic .box2,
+.section3 .img-box.classic .box3,
+.section3 .img-box.unique .box1,
+.section3 .img-box.unique .box2,
+.section3 .img-box.unique .box3{
+    animation: flash 1.5s none alternate;
 }
 
 .section3 .img-box.modern .box1{
@@ -124,7 +137,7 @@
     width: 25%;
     left: 10%;
     top: 45%;
-
+    
 }
 
 .section3 .img-box.classic .box3{
@@ -151,5 +164,18 @@
     left: 45%;
 }
 
+
+
+@keyframes flash{
+    0% {
+        opacity: .6;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
 
 

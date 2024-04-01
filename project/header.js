@@ -15,37 +15,35 @@ const nav = document.createElement('nav')
 header.append(nav)
 root.append(header)
 
-const makeDepth1 = () => {
-  const depth1Box = document.createElement('div')
-  depth1Box.className = 'depth1-box container'
+function makeDepth1 () {
+    const depth1Box = document.createElement('div')
+    depth1Box.className = 'depth1-box container'
 
-  /** 로고부분 */
-  const logoBox = document.createElement('div')
-  logoBox.className = 'logo-box'
-  const a = document.createElement('a')
-  a.href = '/project/index.html'
-  a.target = '_self'
-  const logo = document.createElement('div')
-  logo.className = 'logo'
-  a.append(logo)
-  logoBox.append(a)
+    /** 로고부분 */
+    const logoBox = document.createElement('div')
+    logoBox.className = 'logo-box'
+    const a = document.createElement('a')
+    a.href = './index.html'
+    a.target = '_self'
+    const logo = document.createElement('div')
+    logo.className = 'logo'
+    a.append(logo)
+    logoBox.append(a)
 
-  const depth1 = document.createElement('div') 
-  depth1.className = 'depth1'
-  const depth1Ul = document.createElement('ul')
-  navItem.depth1.forEach(item => {
+    const depth1 = document.createElement('div') 
+    depth1.className = 'depth1'
+    const depth1Ul = document.createElement('ul')
+    navItem.depth1.forEach(item => {
     const li = document.createElement('li')
     li.innerText = item
-
     depth1Ul.append(li)
-  })
-  depth1.append(depth1Ul)
+    })
+    depth1.append(depth1Ul)
 
-  const userIcons = ['search', 'like', 'login']
-
-  const userBox = document.createElement('div')
-  userBox.className = 'user-box'
-  const userUl = document.createElement('ul')
+    const userIcons = ['search', 'like', 'login']
+    const userBox = document.createElement('div')
+    userBox.className = 'user-box'
+    const userUl = document.createElement('ul')
     userIcons.forEach(icon => {
         const li = document.createElement('li')
         const div = document.createElement('div')
@@ -58,49 +56,74 @@ const makeDepth1 = () => {
   depth1Box.append(logoBox, depth1, userBox)
   nav.append(depth1Box)
 }
+
 makeDepth1()
 
 const depth2Box = document.createElement('div')
 depth2Box.className = 'depth2-box'
 
-const makeDepth2 = (depth1) => {
-
-  const container = document.createElement('div')
-  container.className = 'container'
-  
-  const depth2 = document.createElement('div')
-  depth2.className = 'depth2'
-
-  const depth1Name = document.createElement('div')
-  depth1Name.className = 'name'
-  const h4 = document.createElement('h4')
-  h4.innerText = depth1
-  depth1Name.append(h4)
-
-  const depth2Ul = document.createElement('ul')
-  navItem.depth2[depth1].forEach(item => {
+function appendList (cName, item ,appendTag){
     const li = document.createElement('li')
+    li.className = cName
     li.innerText = item
-    if(depth1 === '제품') li.classList.add('product-item')
-    depth2Ul.append(li)
-  })
-
-  depth2.append(depth1Name, depth2Ul)
-  container.append(depth2)
-  depth2Box.append(container)
-  nav.append(depth2Box)
+    appendTag.append(li)
 }
 
-function loadCategroy () {
-  return fetch("/project/subPage/category.json")
-  .then(res => res.json())
-}
+/**depth1 이름 */
+function makeDepth2 (depth1) {
+  
+    const container = document.createElement('div')
+    container.className = 'container'
+    
+    const depth2 = document.createElement('div')
+    depth2.className = 'depth2'
 
-let depth1Prev
-let depth2Prev
+    const depth1Name = document.createElement('div')
+    depth1Name.className = 'name'
+    const h4 = document.createElement('h4')
+    h4.innerText = depth1
+    depth1Name.append(h4)
+
+    const depth2Ul = document.createElement('ul')
+    navItem.depth2[depth1].forEach(item => {
+        const li = document.createElement('li')
+        li.innerText = item
+        if(depth1 === '제품') li.classList.add('product-item')
+        depth2Ul.append(li)
+    })
+
+    depth2.append(depth1Name, depth2Ul)
+    container.append(depth2)
+    depth2Box.append(container)
+    nav.append(depth2Box)
+}
 
 const depth3 = document.createElement('div')
 depth3.className = 'depth3'
+
+async function makeDepth3 (code) {
+    const ul = document.createElement('ul')
+    await loadJson("./category.json")
+    .then(data => data[code])
+    .then(data => {
+        if(data.inform) appendList('main', data.inform, ul)
+        if(data.main){
+        data.main.forEach(item => {
+            appendList('main', item, ul)
+        })
+        }
+        if(data.list){
+        data.list.forEach(item => {
+          appendList('list', item, ul)
+        })
+        }
+        depth3.append(ul)
+    })
+}
+
+
+let depth1Prev // depth1의 이전 선택값
+let depth2Prev // depth2의 이전 선택값
 
 const depth1List = document.querySelectorAll('.depth1 li')
 function overEvent (e) {
@@ -124,23 +147,23 @@ function overEvent (e) {
   })
   
   /** 뎁스2 선택 */
-  let productList = document.querySelectorAll('.depth2 .product-item')
-  let depth2Container = document.querySelector('.depth2-box .container')
+  const productList = document.querySelectorAll('.depth2 .product-item')
+  const depth2Container = document.querySelector('.depth2-box .container')
   productList.forEach(async list => {
     if(e.target === list){
-      list.classList.add('on')
-      if(depth2Prev !== undefined){
+        list.classList.add('on')
+        if(depth2Prev !== undefined){
         if(depth2Prev !== list) depth2Prev.classList.remove('on')
-      }
-      depth2Prev = list
+        }
+        depth2Prev = list
 
-      if(list.innerText === '몰딩/월/마루'){
+        if(list.innerText === '몰딩/월/마루'){
         let code = findCode('몰딩/월/마루')
         depth3.innerHTML = ''
         await makeDepth3(code)
         depth2Container.append(depth3)
         nav.style.height = `${100 + depth3.offsetHeight}px`
-      }else{
+        }else{
         let keys = list.innerText.split('/')
         depth3.innerHTML = ''
         keys.forEach(async key => {
@@ -149,85 +172,37 @@ function overEvent (e) {
         depth2Container.append(depth3)
         nav.style.height = `${100 + depth3.offsetHeight}px`
         })
-      }
+        }
     }
     }
   )
 }
-
-function leaveEvent(e) {
-  if(e.target === this){
-    this.style.height = '70px'
-    depth1List.forEach(li=>{
-      li.classList.remove('on')
-    })
-  }
-}
-
-nav.addEventListener('mouseleave', leaveEvent)
 window.addEventListener('mouseover', overEvent)
 
-let preScrollTop = 0;
+function leaveEvent() {
+    this.style.height = '70px'
+    depth1List.forEach(li=>{
+    li.classList.remove('on')
+    })
+}
+nav.addEventListener('mouseleave', leaveEvent)
+
+/** 헤더 스크롤 이벤트 */
+let prevScrollTop = 0;
 const openHeader = () => {
   let nextScrollTop = window.scrollY;
   if(window.scrollY < 1){
       header.style.top = 0
       nav.classList.remove('white-mode')
 
-  }else if(preScrollTop < nextScrollTop) {
+  }else if(prevScrollTop < nextScrollTop) {
       header.style.top = '-70px'
   }
-  else if(preScrollTop > nextScrollTop){
+  else if(prevScrollTop > nextScrollTop){
       header.style.top = 0
       nav.classList.add('white-mode')
   }
-	preScrollTop = nextScrollTop;
+	prevScrollTop = nextScrollTop;
 }
 
 window.addEventListener('scroll' , openHeader)
-
-
-
-
-function findCode (word) {
-  switch(word){
-    case "키친" : return "kitchen"
-    case "붙박이장" : return "builtIn"
-    case "바스" : return "bath"
-    case "타일" : return "tile"
-    case "도어" : return "door"
-    case "중문" : return "partition"
-    case "창호" : return "window"
-    case "몰딩/월/마루" : return "molding"
-    case "인테리어 필름" : return "interiorFilm"
-  }
-}
-
-function appendList (cName, item ,appendTag){
-  const li = document.createElement('li')
-  li.className = cName
-  li.innerText = item
-  appendTag.append(li)
-}
-
-async function makeDepth3 (code) {
-  const ul = document.createElement('ul')
-  await loadCategroy()
-  .then(data => data[code])
-  .then(data => {
-    if(data.inform){
-      appendList('main', data.inform, ul)
-    }
-    if(data.main){
-      data.main.forEach(item => {
-        appendList('main', item, ul)
-      })
-    }
-    if(data.list){
-      data.list.forEach(item => {
-        appendList('list', item, ul)
-      })
-    }
-    depth3.append(ul)
-  })
-}

@@ -4,7 +4,6 @@ header{
   position: fixed;
   top: 0;
   color: white;
-  
   width: 100vw;
   z-index: 100;
   transition: .2s;

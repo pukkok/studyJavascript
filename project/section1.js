@@ -6,7 +6,6 @@ s1Container.className = 'container'
 const buttonContainer = document.createElement('div')
 buttonContainer.className = 'button-container'
 
-
 const s1Swiperdiv = document.createElement('div')
 s1Swiperdiv.className = 'swiper1'
 const s1SwiperWrapper = document.createElement('div')
@@ -39,7 +38,7 @@ const s1Swiper = new Swiper('.swiper1', {
     // direction: 'vertical',
     loop: true,
     autoplay: {
-        delay : 3000,
+        delay : 2000,
     },
     // If we need pagination
     pagination: {
@@ -60,11 +59,8 @@ const s1Swiper = new Swiper('.swiper1', {
 });
   
 s1Swiper.on()
-//   s1Swiper.on('slideChange', function () {
-//     console.log('slide changed')
-//   })
 
-function test (e){
+function pauseEvent (e){
     if(e.target === playBtn){
         if(playBtn.classList.contains("play")){
             s1Swiper.autoplay.stop()
@@ -77,4 +73,4 @@ function test (e){
     }
 }
 
-playBtn.addEventListener('click', test)
+playBtn.addEventListener('click', pauseEvent)

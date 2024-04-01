@@ -30,8 +30,8 @@ specialBox.className='special'
 const h1 = document.createElement('h1')
 h1.innerText = 'Modern'
 
-const div1 = document.createElement('div')
-div1.className = 'content-box box1'
+const box1 = document.createElement('div')
+box1.className = 'content-box box1'
 const img1 = document.createElement('img')
 img1.src='./imgs/section3/main-2-img-modern-3.jpg'
 const textBox = document.createElement('div')
@@ -42,23 +42,23 @@ const s3H3 = document.createElement('h3')
 s3H3.innerText = types[0].comment
 
 textBox.append(s3H2, s3H3)
-div1.append(img1, textBox)
+box1.append(img1, textBox)
 
-const div2 = document.createElement('div')
-div2.className = 'content-box box2'
+const box2 = document.createElement('div')
+box2.className = 'content-box box2'
 const img2 = document.createElement('img')
 img2.src='./imgs/section3/main-2-img-modern-2.jpg'
-div2.append(img2)
+box2.append(img2)
 
-const div3 = document.createElement('div')
-div3.className = 'content-box box3'
+const box3 = document.createElement('div')
+box3.className = 'content-box box3'
 const img3 = document.createElement('img')
 img3.src='./imgs/section3/main-2-img-modern-1.jpg'
-div3.append(img3)
+box3.append(img3)
 
 
 specialBox.append(h1)
-imgBox.append(specialBox, div1, div2, div3)
+imgBox.append(specialBox, box1, box2, box3)
 
 s3Container.append(tabBox, imgBox)
 section3.append(s3Container)
@@ -81,10 +81,13 @@ const changeType = (e) => {
                 h1.innerText = type.style
                 s3H2.innerText = type.style
                 s3H3.innerText = type.comment
-                
-                img1.src=`./imgs/section3/main-2-img-${type.style}-3.jpg`
-                img2.src=`./imgs/section3/main-2-img-${type.style}-2.jpg`
-                img3.src=`./imgs/section3/main-2-img-${type.style}-1.jpg`
+                setTimeout(() => {
+                    img1.src=`./imgs/section3/main-2-img-${type.style}-3.jpg`
+                    img2.src=`./imgs/section3/main-2-img-${type.style}-2.jpg`
+                    img3.src=`./imgs/section3/main-2-img-${type.style}-1.jpg`
+                    
+                }, 600);
+                    
             }
         }
     })

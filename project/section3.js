@@ -9,7 +9,6 @@ const types = [
     comment : "나만의 개성과 취향을 듬뿍 담아 집안 구석구석 생동감 넘치는 아이템들로 완성한 유니크 스타일은 지루하고 나른한 일상에 새로움을 선사합니다. 톡톡 튀는 컬러와 다양한 소재의 믹스매치로 완성된 독창적인 공간을 만나보세요."},
 ]
 
-// const root = document.getElementById('root')
 const section3 = document.createElement('section')
 section3.className = 'section3'
 const s3Container = document.createElement('div')
@@ -38,10 +37,10 @@ const textBox = document.createElement('div')
 textBox.className = 'text-box'
 const s3H2 = document.createElement('h2')
 s3H2.innerText = types[0].style
-const s3H3 = document.createElement('h3')
-s3H3.innerText = types[0].comment
+const s3H4 = document.createElement('h4')
+s3H4.innerText = types[0].comment
 
-textBox.append(s3H2, s3H3)
+textBox.append(s3H2, s3H4)
 box1.append(img1, textBox)
 
 const box2 = document.createElement('div')
@@ -67,6 +66,7 @@ root.append(section3)
 
 const tabBtns = document.querySelectorAll('.tab-box h3')
 tabBtns[0].className='on'
+
 const changeType = (e) => {
     types.forEach((type, i)=>{
         if(e.target.tagName === 'H3'){
@@ -76,17 +76,18 @@ const changeType = (e) => {
 
                 const classToChange = e.target.innerText.toLowerCase()
                 imgBox.classList.remove(...imgBox.classList)
-                imgBox.classList.add("img-box", classToChange)
-                
-                h1.innerText = type.style
-                s3H2.innerText = type.style
-                s3H3.innerText = type.comment
+                imgBox.classList.add("img-box", "effect", classToChange)
+                h1.innerText = s3H2.innerText = type.style
+                s3H4.innerText = type.comment
+
                 setTimeout(() => {
                     img1.src=`./imgs/section3/main-2-img-${type.style}-3.jpg`
                     img2.src=`./imgs/section3/main-2-img-${type.style}-2.jpg`
                     img3.src=`./imgs/section3/main-2-img-${type.style}-1.jpg`
-                    
-                }, 600);
+                }, 300);
+                setTimeout(() => {
+                    imgBox.classList.remove('effect')
+                }, 1300);
                     
             }
         }
@@ -94,3 +95,50 @@ const changeType = (e) => {
 }
 
 tabBox.addEventListener('click', changeType)
+
+const s3Bottom = document.createElement('div')
+s3Bottom.className = 'bottom'
+const makeS3Bottom = () => {
+    const container = document.createElement('div')
+    container.className = 'container'
+
+    const textBox = document.createElement('div')
+    textBox.className = 'text-box'
+    const h1 = document.createElement('h1')
+    h1.innerHTML = `Made in Younglim`
+    const p = document.createElement('p')
+    p.innerText = `영림은 원자재 입고부터 생산, 조립, 서비스까지 한번에 진행하는
+    원스톱 생산공정 시스템을 통해 품질을 철저히 관리하고 있습니다. `
+    const button = document.createElement('button')
+    const h5 = document.createElement('h5')
+    h5.innerText = '더 보러가기'
+    button.append(h5)
+
+    textBox.append(h1, p, button)
+
+    const videoBox = document.createElement('div')
+    videoBox.className = 'video-box'
+    const videoContainer = document.createElement('div')
+    videoContainer.className = 'video-container'
+    const video = document.createElement('iframe')
+    const thumbNail = document.createElement('div')
+    thumbNail.className = 'thumb-nail'
+    const playButton = document.createElement('button')
+    
+    thumbNail.append(playButton)
+    videoContainer.append(video, thumbNail)
+    videoBox.append(videoContainer)
+
+    container.append(textBox, videoBox)
+    s3Bottom.append(container)
+}
+makeS3Bottom()
+
+section3.append(s3Bottom)
+
+const thumbNail = document.querySelector('.thumb-nail')
+thumbNail.addEventListener('click', ()=>{
+    thumbNail.style.display = 'none'
+    const iframe = document.querySelector('.video-box iframe')
+    iframe.src = `https://www.youtube.com/embed/L3GplJfWC-s?rel=0&enablejsapi=1&origin=https%3A%2F%2Fyl.co.kr&widgetid=1&autoplay=1&mute=1`
+})

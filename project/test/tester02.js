@@ -29,7 +29,7 @@ const makeCards = (arr) => {
     const div = document.createElement('div')
     div.className = 'card'
     const img = document.createElement('img')
-    img.src = `./imgs/section2/${arr.img}.jpg`
+    img.src = `../imgs/section2/${arr.img}.jpg`
     const cover = document.createElement('div')
     cover.className = 'cover'
     const h4 = document.createElement('h4')

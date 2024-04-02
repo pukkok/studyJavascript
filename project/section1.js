@@ -26,9 +26,11 @@ const s1PrevBtn = document.createElement('div')
 s1PrevBtn.className = 'swiper-button-prev'
 const s1NextBtn = document.createElement('div')
 s1NextBtn.className = 'swiper-button-next'
-const playBtn = document.createElement('div')
-playBtn.className = 'swiper-play play'
-buttonContainer.append(s1div2, s1PrevBtn, s1NextBtn, playBtn)
+
+const s1playBtn = document.createElement('div')
+s1playBtn.className = 'swiper-button-play'
+
+buttonContainer.append(s1div2, s1PrevBtn, s1NextBtn, s1playBtn)
 s1Swiperdiv.append(s1SwiperWrapper, buttonContainer)
 section1.append(s1Swiperdiv)
 root.append(section1)
@@ -61,16 +63,16 @@ const s1Swiper = new Swiper('.swiper1', {
 s1Swiper.on()
 
 function pauseEvent (e){
-    if(e.target === playBtn){
-        if(playBtn.classList.contains("play")){
+    if(e.target === s1playBtn){
+        if(s1playBtn.classList.contains("play")){
             s1Swiper.autoplay.stop()
-            playBtn.classList.remove('play')
+            s1playBtn.classList.remove('play')
         }else{
             s1Swiper.autoplay.start()
-            playBtn.classList.add('play')
+            s1playBtn.classList.add('play')
 
         }
     }
 }
 
-playBtn.addEventListener('click', pauseEvent)
+s1playBtn.addEventListener('click', pauseEvent)

@@ -17,17 +17,6 @@ section2.className = 'section2'
 const container = document.createElement('div')
 container.className = 'container'
 
-// const productNav = document.createElement('nav')
-// productNav.className = 'product-nav'
-// const ul = document.createElement('ul')
-
-// productNav.append(ul)
-// imgbox.forEach((item)=>{
-//     const li = document.createElement('li')
-//     li.innerText = item.h4
-//     ul.append(li)
-// })
-
 const div1 = document.createElement('div')
 div1.className = 'text-box'
 const h1 = document.createElement('h1')
@@ -58,7 +47,7 @@ const makeCards = (arr) => {
     const div = document.createElement('div')
     div.className = 'card'
     const img = document.createElement('img')
-    img.src = `./imgs/section2/${arr.img}.jpg`
+    img.src = `../imgs/section2/${arr.img}.jpg`
     const cover = document.createElement('div')
     cover.className = 'cover'
     const h4 = document.createElement('h4')

@@ -1,6 +1,6 @@
 // "지금 영림에 문의하세요. 전문 컨설팅을 통해 당신의 라이프스타일에 딱 맞는 인테리어를 제안해 드립니다."
 const contents = [
-    {title : "Contact Us", comment : "지금 영림에 문의하세요. <br> 당신의 라이프스타일에 딱 맞는 <br> 인테리어를 제안해 드립니다."},
+    {title : "Contact Us", comment : "지금 영림에 문의하세요. <br> 당신의 라이프스타일에 딱 맞는 인테리어를 제안해 드립니다."},
     {title : "리모델링 상담 신청하기", link : "Conceierge Service"},
     {title : "온라인 쇼룸 둘러보기", link : "Online Showroom"},
     {title : "실시간 채팅 상담하기", link : "Online Chatting"},

@@ -20,17 +20,17 @@ for(i=0; i<5; i++){
     s1SwiperWrapper.append(div)
 }
 
-const s1div2 = document.createElement('div')
-s1div2.className = 'swiper-pagination'
 const s1PrevBtn = document.createElement('div')
 s1PrevBtn.className = 'swiper-button-prev'
+const s1div2 = document.createElement('div')
+s1div2.className = 'swiper-pagination'
 const s1NextBtn = document.createElement('div')
 s1NextBtn.className = 'swiper-button-next'
 
 const s1playBtn = document.createElement('div')
 s1playBtn.className = 'swiper-button-play'
 
-buttonContainer.append(s1div2, s1PrevBtn, s1NextBtn, s1playBtn)
+buttonContainer.append(s1PrevBtn, s1div2, s1playBtn, s1NextBtn)
 s1Swiperdiv.append(s1SwiperWrapper, buttonContainer)
 section1.append(s1Swiperdiv)
 root.append(section1)
@@ -64,13 +64,12 @@ s1Swiper.on()
 
 function pauseEvent (e){
     if(e.target === s1playBtn){
-        if(s1playBtn.classList.contains("play")){
-            s1Swiper.autoplay.stop()
-            s1playBtn.classList.remove('play')
-        }else{
+        if(s1playBtn.classList.contains("start")){
             s1Swiper.autoplay.start()
-            s1playBtn.classList.add('play')
-
+            s1playBtn.classList.remove('start')
+        }else{
+            s1Swiper.autoplay.stop()
+            s1playBtn.classList.add('start')
         }
     }
 }

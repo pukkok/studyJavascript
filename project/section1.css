@@ -18,75 +18,73 @@ body{
 }
 
 .section1 .button-container{
-    border: solid 1px red;
     max-width: 300px;
-    height: 50px;
     margin: 0 auto;
     position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;
     top: -10vh;
     z-index: 10;
 }
 
 .section1 .swiper-button-prev,
-.section1 .swiper-button-next{
-    all: unset;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    color: white;
-    text-align: center;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-}
-
+.section1 .swiper-button-next,
 .section1 .swiper-pagination{
     all: unset;
-    position: absolute;
-    top: 50%;
-    left: 30%;
-    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+    height: 30px;
 }
+
 .swiper-pagination-bullet{
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
 }
+
 .swiper-pagination-bullet-active{
     background-color: white;
 }
 
 .section1 .swiper-button-prev::after,
 .section1 .swiper-button-next::after{
-    border: solid 1px blue;
     width: 30px;
-    height: 30px;
-    color: white;    
+    height: 30px;   
 }
 
-.section1 .swiper-button-prev{
-    left: 0;
-}
-
-.section1 .swiper-button-next{
-    right: 0;
+.section1 .swiper-button-prev::after{
+    content: "";
+    background-image: url(./imgs/icons/icon-button-left-arrow.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: invert(1);
 }
 
 .section1 .swiper-button-play{
-    position: absolute;
-    top: 50%;
+    position: relative;
     width: 30px;
     height: 30px;
     background-image: url(./imgs/icons/icon-button-pause.png);
     background-position: center;
     background-size: cover;
     filter: invert(1);
-    transform: translateY(-50%);
-    right: 10%;
     z-index: 10;
-    color: white;
+    cursor: pointer;
+}
+.section1 .swiper-button-play.start{
+    background-image: url(./imgs/icons/icon-button-start.png);
+}
+
+.section1 .swiper-button-next::after{
+    content: "";
+    background-image: url(./imgs/icons/icon-button-right-arrow.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: invert(1);
 }
 
 /* start */

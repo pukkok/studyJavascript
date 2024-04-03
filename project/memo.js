@@ -132,9 +132,9 @@ function makeImgBox(part1, part2, name='', concepts=[]){
     img.src = `./imgs/product/${part1}/${part2}.jpg`
     const textBox = document.createElement('div')
     textBox.className = 'text-box'
-    const p = document.createElement('p')
-    p.innerText = name
-    textBox.append(p)
+    const h4 = document.createElement('h4')
+    h4.innerText = name
+    textBox.append(h4)
     concepts.forEach(concept => {
         const span = document.createElement('span')
         span.innerText = concept
@@ -218,16 +218,16 @@ function clickEvent(e){
 window.addEventListener('click', clickEvent)
 
 //프로덕트 네비게이션 불러오기
-function loadProductNav (category, content){
+function loadProductNav (category){
     let keys
     (category === '몰딩/월/마루') ? keys = [category] : keys = category.split('/')
-    productNav.innerHTML=''
+
     keys.forEach(key => {
         let code = findCode(key)
+        productNav.innerHTML=''
         loadJson("./category.json")
         .then(data => {
             makeProductNav(data[code], code, productNav)
-            console.log(code)
         })
     })
 }
@@ -262,7 +262,7 @@ function loadProductImg (part = 'kitchen', content = '키친 전체보기') {
 function loadProduct() {
 
     productSelectBtn.innerText = qs.category // 셀렉트 버튼
-    loadProductNav(qs.category, qs.content) // 프로덕트 네비게이션
+    loadProductNav(qs.category) // 프로덕트 네비게이션
     loadProductImg(qs.part, qs.content) // 프로덕트 이미지
 }
 loadProduct()

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>test</div>
+    <div id="root"></div>
+    <script>
+        const root = document.getElementById('root')
+        function tester (value, cName){
+        const div = document.createElement('div')
+        
+        const button = document.createElement('button')
+        div.className = cName
+        button.innerText = value
+        div.append(button)
+        
+        return div
+        }
+
+        const tests = ["a", "b", "c"]
+
+        tests.forEach(aa => {
+            const div = document.createElement('div')
+            let x = tester(aa, 'test')
+            div.append(x)
+            root.append(div)
+        })
+    </script>
+</body>
+</html>

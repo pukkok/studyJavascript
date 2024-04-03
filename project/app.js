@@ -1,19 +1,15 @@
 function findCode (word) {
     switch(word){
-      case "키친" : return "kitchen"
-      case "붙박이장" : return "builtIn"
-      case "바스" : return "bath"
-      case "타일" : return "tile"
-      case "도어" : return "door"
-      case "중문" : return "partition"
-      case "창호" : return "window"
-      case "몰딩/월/마루" : return "molding"
-      case "인테리어 필름" : return "interiorFilm"
-    }
-}
+        case "키친" : return "kitchen"
+        case "붙박이장" : return "builtIn"
+        case "바스" : return "bath"
+        case "타일" : return "tile"
+        case "도어" : return "door"
+        case "중문" : return "partition"
+        case "창호" : return "window"
+        case "몰딩/월/마루" : return "molding"
+        case "인테리어 필름" : return "interiorFilm"
 
-function changeCode (word) {
-    switch(word){        
         case '타임리스 키친' :
         case '타임리스 바스' : return 'timeless'
 
@@ -87,3 +83,26 @@ function loadJson(url){
     return fetch(url) // json 파일 읽기
     .then((response)=> response.json()) // 읽어온 파일 json변환
 }
+
+function loadScript(src){
+    return new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = src
+        script.onload = () => resolve("로딩결과")
+        console.log("로드스크립트")
+        document.head.append(script)
+    })
+}
+
+function queryString () {
+    let result = {}
+    let decoded = decodeURI(window.location.search)
+    let splitString = decoded.replace('?','').split('&')
+    splitString.forEach(word => {
+        let key = word.split('=')[0]
+        let value = word.split('=')[1]
+        result[key] = value
+    })
+    return result
+}
+let qs = queryString()

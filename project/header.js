@@ -80,9 +80,9 @@ function makeDepth2 (depth1) {
 
     const depth1Name = document.createElement('div')
     depth1Name.className = 'name'
-    const h4 = document.createElement('h4')
-    h4.innerText = depth1
-    depth1Name.append(h4)
+    const h5 = document.createElement('h5')
+    h5.innerText = depth1
+    depth1Name.append(h5)
 
     const depth2Ul = document.createElement('ul')
     navItem.depth2[depth1].forEach(item => {
@@ -103,6 +103,7 @@ depth3.className = 'depth3'
 
 async function makeDepth3 (code) {
     const ul = document.createElement('ul')
+    ul.className = code
     await loadJson("./category.json")
     .then(data => data[code])
     .then(data => {
@@ -131,7 +132,7 @@ function overEvent (e) {
   depth1List.forEach((list, i) => {
     if(e.target === list){
       list.classList.add('on')
-      if(depth1Prev !== undefined){
+      if(depth1Prev){
         if(depth1Prev !== list) depth1Prev.classList.remove('on')
       }
       depth1Prev = list
@@ -152,7 +153,7 @@ function overEvent (e) {
   productList.forEach(async list => {
     if(e.target === list){
         list.classList.add('on')
-        if(depth2Prev !== undefined){
+        if(depth2Prev){
         if(depth2Prev !== list) depth2Prev.classList.remove('on')
         }
         depth2Prev = list
@@ -206,3 +207,23 @@ const openHeader = () => {
 }
 
 window.addEventListener('scroll' , openHeader)
+
+
+
+/** depth3 클릭 */
+function clickDepth3(e){
+  let depth2Key = document.querySelector('.depth2 .product-item.on')
+  let depth3Btn = document.querySelectorAll('.depth3 ul li')
+
+  depth3Btn.forEach(btn => {
+    if(e.target === btn){
+      let category = depth2Key.innerText
+      let part = btn.parentElement.className
+      let content = btn.innerText
+      window.location.href = `/project/product.html?category=${category}&part=${part}&content=${content}`
+    }
+  })
+
+}
+
+window.addEventListener('click', clickDepth3)

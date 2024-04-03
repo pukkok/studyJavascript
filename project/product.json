@@ -62,5 +62,12 @@
 "builtIn" : [
         {"type" : "hinged", "img" : "hinged01"},
         {"type" : "hinged", "img" : "hinged02"}
-    ]
+    ],
+"bath" : [],
+"tile" : [],
+"door" : [],
+"partition" : [],
+"window" : [],
+"molding" : [],
+"interiorFilm" : []
 }  

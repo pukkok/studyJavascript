@@ -123,6 +123,9 @@ nav:hover .depth1-box .user-box ul li .login:hover{
   width: 142px;
   color: var(--brand-color-red);
 }
+.depth2-box .depth2 .name h5{
+  font-weight: 700;
+}
 
 .depth2-box ul li:hover{
   font-weight: bold;

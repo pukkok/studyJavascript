@@ -50,6 +50,8 @@
 .product-select-option{
     position: absolute;
     display: none;
+    background-color: white;
+    z-index: 10;
     padding-top: 0px;
     top: 60px;
 }
@@ -169,10 +171,12 @@
 
 
 .product-nav .data-box .main-list{
+    position: relative;
     font-size: 16px;
     margin-top: 16px;
 }
 .product-nav .data-box .sub-list{
+    position: relative;
     font-size: 16px;
     margin-left: 12px;
     margin-top: 16px;
@@ -185,6 +189,7 @@
     margin-left: 16px;
     margin-top: 8px;
     display: none;
+    transition: 1s;
 }
 .product-nav .data-box .plus-list.on{
     display: block;

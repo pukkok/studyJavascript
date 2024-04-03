@@ -94,15 +94,35 @@ function loadScript(src){
     })
 }
 
-function queryString () {
-    let result = {}
-    let decoded = decodeURI(window.location.search)
-    let splitString = decoded.replace('?','').split('&')
-    splitString.forEach(word => {
-        let key = word.split('=')[0]
-        let value = word.split('=')[1]
-        result[key] = value
-    })
-    return result
+
+
+let $window_address = new LoadAdress(window.location)
+let absoulteAddress = $window_address.absoluteLocation()
+let qs = $window_address.queryString()
+
+function LoadAdress (location) {
+    this.location = location
+    this.href = location.href
+    this.search = location.search
+    this.pathname = location.pathname
+
+    this.absoluteLocation = function () {
+        let location = this.pathname.split('/')
+        location.pop()
+        let result = location.join('/')
+        return result
+    }
+
+    this.queryString = function () {
+        let result = {}
+        let decoded = decodeURI(this.search)
+        let splitString = decoded.replace('?','').split('&')
+        splitString.forEach(word => {
+            let key = word.split('=')[0]
+            let value = word.split('=')[1]
+            result[key] = value
+        })
+        return result
+    }
+    
 }
-let qs = queryString()

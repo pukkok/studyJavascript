@@ -208,8 +208,6 @@ const openHeader = () => {
 
 window.addEventListener('scroll' , openHeader)
 
-
-
 /** depth3 클릭 */
 function clickDepth3(e){
   let depth2Key = document.querySelector('.depth2 .product-item.on')
@@ -220,7 +218,8 @@ function clickDepth3(e){
       let category = depth2Key.innerText
       let part = btn.parentElement.className
       let content = btn.innerText
-      window.location.href = `/project/product.html?category=${category}&part=${part}&content=${content}`
+
+      window.location.href = `${absoulteAddress}/product.html?category=${category}&part=${part}&content=${content}`
     }
   })
 

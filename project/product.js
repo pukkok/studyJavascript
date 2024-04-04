@@ -123,10 +123,10 @@ function makeProductNav (data, cName, appendTag) {
 }
 
 /** 상품목록 생성하기 */
-function makeImgBox(part1, part2, name='', concepts=[], cName){
+function makeImgBox(part1, part2, name='', concepts=[], cName = 'middle-size'){
     const productItem = document.createElement('div')
     productItem.className = "product-item"
-    if(cName) productItem.classList.add(cName) //이미지 있을때
+    productItem.classList.add(cName)
 
     const imgBox = document.createElement('div')
     imgBox.className = 'img-box'
@@ -147,9 +147,6 @@ function makeImgBox(part1, part2, name='', concepts=[], cName){
     productItem.append(imgBox, textBox)
     return productItem
 }
-//componet hardware tile option molding전부 interiorFilm  : 4개씩
-// 시스템, 프레임 1개씩
-
 
 let activePrevBtn
 let activePrevIcon
@@ -205,7 +202,12 @@ function clickEvent(e){
         navBtns.forEach(btn => {
             if(e.target === btn){
                 //플러스 버튼이 아니면 바로 이미지 로드
-                if(!btn.parentElement.classList.contains('plus')) loadProductImg(key, btn.innerText)
+                if(!btn.parentElement.classList.contains('plus')){
+                    (async () => {
+                        await loadProductImg(key, btn.innerText)
+                        sizeEvent()
+                    })()
+                }
 
                 btn.classList.add('active')         
                 if(activePrevBtn){
@@ -224,12 +226,17 @@ function clickEvent(e){
         if(e.target === icon){
             if(!activePrevIcon) activePrevIcon = filtericons[0]
 
+            productItem.forEach(item => {
+                if(item.classList.contains('small-size')){
+                    i ? item.classList.add('middle-size') : item.classList.remove('middle-size')
+                }else{
+                    i ? item.classList.add('full-size') : item.classList.remove('full-size')
+                }
+            })
             icon.parentElement.classList.add('active')
             if(activePrevIcon !== icon) activePrevIcon.parentElement.classList.remove('active')
             activePrevIcon = icon
 
-            i ? productItem.forEach(item => item.classList.add('full')) :
-            productItem.forEach(item => item.classList.remove('full'))
         }
     })
 
@@ -261,27 +268,22 @@ function activeNavBtn (content) {
 }
 
 //프로덕트 이미지 불러오기
-function loadProductImg (part = 'kitchen', content = '키친 전체보기') {
+async function loadProductImg (part = 'kitchen', content = '키친 전체보기') {
+    itemBox.innerHTML = ''
+    let code = findCode(content)
+    let cName = findSmallSize(code)
+
+    let data = await loadJson('./product.json')
 
     if(content.includes('전체보기')){
-        itemBox.innerHTML = ''
-        loadJson('./product.json')
-        .then(data => data[part])
-        .then(datas => {
-            datas.forEach(data => {
-                itemBox.append(makeImgBox(part, data.img, data.name, data.concepts, data.type)) 
-            })
+        data[part].forEach(data => {
+            itemBox.append(makeImgBox(part, data.img, data.name, data.concepts, cName))
         })
     }else{
-        let code = findCode(content)
-        itemBox.innerHTML = ''
-        loadJson('./product.json')
-        .then(data => data[part])
-        .then(datas => {
-        datas.filter(data => {
-            if(data.type === code){                
-                itemBox.append(makeImgBox(part, data.img, data.name, data.concepts, data.type)) 
-            }})
+        data[part].filter(data => {
+            if(data.type === code){             
+                itemBox.append(makeImgBox(part, data.img, data.name, data.concepts, cName)) 
+            }
         })
     }  
 }
@@ -289,11 +291,13 @@ function loadProductImg (part = 'kitchen', content = '키친 전체보기') {
 //처음 시작화면
 (async function loadProduct() {
     makeFilterBar()
-    productSelectBtn.innerText = qs.category // 셀렉트 버튼
-    // loadProductNav(qs.category, qs.content) // 프로덕트 네비게이션 
-    await loadProductNav(qs.category, qs.content) 
+    productSelectBtn.innerText = qs.category // 셀렉트 버튼  
+    await loadProductNav(qs.category, qs.content) // 프로덕트 네비게이션 
 
-    activeNavBtn(qs.content)
+    activeNavBtn(qs.content) // 네비게이션 버튼 액티브
 
-    loadProductImg(qs.part, qs.content) // 프로덕트 이미지
+    await loadProductImg(qs.part, qs.content) // 프로덕트 이미지
+    sizeEvent() // 반응형
+
 })()
+

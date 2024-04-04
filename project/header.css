@@ -15,12 +15,12 @@ header nav {
   transition: .2s;
 }
 
+/* white모드, hover시 */
 nav.white-mode,
 nav:hover{
   background-color: white;
   color: #0e1111;
 }
-
 nav.white-mode .logo-box .logo,
 nav:hover .logo-box .logo{
   background-image: url(./imgs/icon-younglim-logo.png);
@@ -98,6 +98,7 @@ nav:hover .depth1-box .user-box ul li .login:hover{
   height: 100%;
   background-size: cover;
 }
+
 .depth1-box .user-box ul li .search{
   background-image: url(./imgs/icons/icon-gnb-search-white.png);
 }
@@ -107,12 +108,13 @@ nav:hover .depth1-box .user-box ul li .login:hover{
 .depth1-box .user-box ul li .login{
   background-image: url(./imgs/icons/icon-gnb-login-white.png);
 }
-.depth1-box .user-box ul li:nth-last-child(1){
-  display: none;
-}
 .depth1-box .user-box ul li .menu{
   background-image: url(./imgs/icons/icon-gnb-menu-white.png);
 }
+.depth1-box .user-box ul li:nth-last-child(1){
+  display: none;
+}
+
 .depth2-box{
   box-sizing: border-box;
   min-height: 350px;

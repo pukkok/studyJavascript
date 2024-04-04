@@ -215,29 +215,26 @@
     box-sizing: border-box;
     padding-top: 0;
     margin-bottom: 2%;
-    width: 50%;
     transition: .3s;
 }
 
-.product-box .item-box .product-item.component,
-.product-box .item-box .product-item.hardware,
-.product-box .item-box .product-item.poserine,
-.product-box .item-box .product-item.ceramic{
+.product-box .item-box .product-item.small-size{
     width: 25%;
-    padding: 1%;
+}
+.product-box .item-box .product-item.middle-size{
+    width: 50%;
 }
 
-.product-box .item-box .product-item:nth-of-type(2n-1){
-    padding-right: 1%;
+.product-box .item-box .product-item.full-size{
+    width: 100%;
+    padding: 0;
 }
-.product-box .item-box .product-item:nth-of-type(2n){
+
+.product-box .item-box .product-item.small-size:not(:nth-of-type(4n+1)),
+.product-box .item-box .product-item.middle-size:nth-of-type(2n){
     padding-left: 1%;
 }
 
-.product-box .item-box .product-item.full{
-    padding: 0;
-    width: 100%;
-}
 
 .product-box .item-box .img-box{
     box-sizing: border-box;

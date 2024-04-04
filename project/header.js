@@ -122,7 +122,6 @@ async function makeDepth3 (code) {
     })
 }
 
-
 let depth1Prev // depth1의 이전 선택값
 let depth2Prev // depth2의 이전 선택값
 
@@ -226,3 +225,62 @@ function clickDepth3(e){
 }
 
 window.addEventListener('click', clickDepth3)
+sizeEvent()
+
+
+function tabletVersion(e){
+  let menuBtn = document.querySelector('.tablet .menu')
+  const depth1 = document.querySelector('.tablet .depth1')
+
+  window.removeEventListener('mouseover', overEvent)
+  nav.removeEventListener('mouseleave', leaveEvent)
+  if(e.target===menuBtn){
+    depth1.style.left = 0
+  }
+
+  depth2Box.style.left=0
+  depth1List.forEach((list, i) => {
+    if(e.target === list){
+      if(i<3){
+        depth2Box.innerHTML= ''
+        makeDepth2(list.innerText)
+        setTimeout(() => {
+          depth2Box.style.left='25%'
+        }, 50);
+      }
+    }
+  })
+
+
+  productList.forEach(async list => {
+    if(e.target === list){
+        list.classList.add('on')
+        if(depth2Prev){
+        if(depth2Prev !== list) depth2Prev.classList.remove('on')
+        }
+        depth2Prev = list
+
+        if(list.innerText === '몰딩/월/마루'){
+        let code = findCode('몰딩/월/마루')
+        depth3.innerHTML = ''
+        await makeDepth3(code)
+        depth2Container.append(depth3)
+        nav.style.height = `${100 + depth3.offsetHeight}px`
+        }else{
+        let keys = list.innerText.split('/')
+        depth3.innerHTML = ''
+        keys.forEach(async key => {
+        let code = findCode(key)
+        await makeDepth3(code)
+        depth2Container.append(depth3)
+        nav.style.height = `${100 + depth3.offsetHeight}px`
+        })
+        }
+    }
+    }
+  )
+
+
+}
+
+window.addEventListener('click', tabletVersion)

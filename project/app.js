@@ -19,6 +19,7 @@ function findCode (word) {
         case '키친 구성기기' :
         case '바스 구성기기' : return 'component'
         
+        case '기타하드웨어' :
         case '키친 상판/하드웨어' : return 'hardware'
 
         case '여닫이 붙박이장' : return 'hinged'
@@ -51,7 +52,6 @@ function findCode (word) {
         case '양개 중문' : return 'double'
         case '슬림 알루미늄 중문' : 'aluminum'
 
-        case '기타 하드웨어' :
         case '기타 중문' : return 'extra'
         case '폴딩도어' : return 'folding'
         case '파티션' : return 'partition'
@@ -76,6 +76,32 @@ function findCode (word) {
         case '원목마루' : return 'woodenFloor'
         case '강마루' : return 'laminateFloor'
         case '인테리어필름&시트' : return 'interiorFilm'
+    }
+}
+
+function findSmallSize (code) {
+    switch (code) {
+        case 'component' :
+        case 'hardware' :
+        case 'poserine' :
+        case 'ceramic' :
+        case 'handle' :
+        case 'hinge' :
+        case 'subsidiary' :
+        case 'lock' :    
+        case 'wrapping' :
+        case 'PVC' :
+        case 'classic' :
+        case 'deco' :
+        case 'styleWall' :
+        case 'wallPanel' :
+        case 'artWall' :
+        case 'wallShelf' :
+        case 'woodenFloor' :
+        case 'laminateFloor' :
+        case 'styleWall' :
+        case 'styleWall' :
+        case 'interiorFilm' : return 'small-size'
     }
 }
 
@@ -121,5 +147,22 @@ function LoadAdress () {
         })
         return result
     }
-    
 }
+
+
+function sizeEvent () {
+    let standard = window.innerWidth
+    let x = document.querySelectorAll('.product-box .item-box .product-item.small-size')
+    if(standard<1024){
+        console.log('1024미만')
+        header.classList.add('tablet')
+        x.forEach(item=> item.classList.add('middle-size'))
+    }else{
+        header.classList.remove('tablet')
+        x.forEach(item=> item.classList.remove('middle-size'))
+    }
+}
+
+window.addEventListener('resize', sizeEvent)
+
+// window.addEventListener('DOMContentLoaded', sizeEvent)

@@ -28,6 +28,7 @@
 }
 
 .magazine .card-container .card .img-box{
+    min-width: 400px;
     min-height: 250px;
     border-radius: 16px;
     margin-bottom: 8px;

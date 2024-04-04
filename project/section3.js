@@ -55,7 +55,6 @@ const img3 = document.createElement('img')
 img3.src='./imgs/section3/main-2-img-modern-1.jpg'
 box3.append(img3)
 
-
 specialBox.append(h1)
 imgBox.append(specialBox, box1, box2, box3)
 
@@ -67,13 +66,14 @@ root.append(section3)
 const tabBtns = document.querySelectorAll('.tab-box h3')
 tabBtns[0].className='on'
 
+let isFlag = true
 const changeType = (e) => {
     types.forEach((type, i)=>{
-        if(e.target.tagName === 'H3'){
+        if(e.target.tagName === 'H3'&&isFlag){
             tabBtns[i].classList.remove('on')
             if(e.target.innerText === type.style){
                 tabBtns[i].classList.add('on')
-
+                isFlag = false
                 const classToChange = e.target.innerText.toLowerCase()
                 imgBox.classList.remove(...imgBox.classList)
                 imgBox.classList.add("img-box", "effect", classToChange)
@@ -84,10 +84,11 @@ const changeType = (e) => {
                     img1.src=`./imgs/section3/main-2-img-${type.style}-3.jpg`
                     img2.src=`./imgs/section3/main-2-img-${type.style}-2.jpg`
                     img3.src=`./imgs/section3/main-2-img-${type.style}-1.jpg`
-                }, 300);
+                }, 300)
                 setTimeout(() => {
                     imgBox.classList.remove('effect')
-                }, 1300);
+                    isFlag = true
+                }, 1300)
                     
             }
         }

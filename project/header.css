@@ -37,6 +37,10 @@ nav.white-mode .depth1-box .user-box ul li .login,
 nav:hover .depth1-box .user-box ul li .login{
   background-image: url(./imgs/icons/icon-gnb-login.png);
 }
+nav.white-mode .depth1-box .user-box ul li .menu,
+nav:hover .depth1-box .user-box ul li .menu{
+  background-image: url(./imgs/icons/icon-gnb-menu.png);
+}
 
 nav:hover .depth1-box .user-box ul li .search:hover,
 nav:hover .depth1-box .user-box ul li .like:hover,
@@ -103,7 +107,12 @@ nav:hover .depth1-box .user-box ul li .login:hover{
 .depth1-box .user-box ul li .login{
   background-image: url(./imgs/icons/icon-gnb-login-white.png);
 }
-
+.depth1-box .user-box ul li:nth-last-child(1){
+  display: none;
+}
+.depth1-box .user-box ul li .menu{
+  background-image: url(./imgs/icons/icon-gnb-menu-white.png);
+}
 .depth2-box{
   box-sizing: border-box;
   min-height: 350px;

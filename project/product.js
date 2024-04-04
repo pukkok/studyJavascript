@@ -57,7 +57,7 @@ const makeFilterBar = () => {
     
     const filterIcons = document.createElement('div')
     filterIcons.className = 'filter-icons'
-    const smallMode = makeBtn('', 'small-mode')
+    const smallMode = makeBtn('', 'small-mode active')
     const bigMode = makeBtn('', 'big-mode')
     
     filterIcons.append(smallMode, bigMode)
@@ -67,7 +67,7 @@ const makeFilterBar = () => {
 
     filterBar.append(filterBtn, filterSelectBox)
 }
-makeFilterBar()
+
 
 
 productSelectBox.append(productSelectBtn, productSelectOption)
@@ -123,9 +123,11 @@ function makeProductNav (data, cName, appendTag) {
 }
 
 /** 상품목록 생성하기 */
-function makeImgBox(part1, part2, name='', concepts=[]){
+function makeImgBox(part1, part2, name='', concepts=[], cName){
     const productItem = document.createElement('div')
     productItem.className = "product-item"
+    if(cName) productItem.classList.add(cName) //이미지 있을때
+
     const imgBox = document.createElement('div')
     imgBox.className = 'img-box'
     const img = document.createElement('img')
@@ -145,9 +147,12 @@ function makeImgBox(part1, part2, name='', concepts=[]){
     productItem.append(imgBox, textBox)
     return productItem
 }
+//componet hardware tile option molding전부 interiorFilm  : 4개씩
+// 시스템, 프레임 1개씩
 
 
 let activePrevBtn
+let activePrevIcon
 function clickEvent(e){
 
     /** 셀렉트 버튼 클릭 */
@@ -168,7 +173,6 @@ function clickEvent(e){
     const productSelectOptions = productSelectOption.querySelectorAll('li')
     productSelectOptions.forEach(option => {
         if(e.target === option){
-            console.log(option.innerText)
             productSelectBtn.innerText = option.innerText
             loadProductNav(productSelectBtn.innerText)
         }
@@ -193,7 +197,7 @@ function clickEvent(e){
         }
     })
 
-    /**버튼 클릭시 프로덕트 이미지 전환 */
+    /**버튼 클릭시 active 프로덕트 이미지 전환 */
     const dataBoxes = document.querySelectorAll('.data-box')
     dataBoxes.forEach(box => {
         let navBtns = box.querySelectorAll('button')
@@ -203,7 +207,7 @@ function clickEvent(e){
                 //플러스 버튼이 아니면 바로 이미지 로드
                 if(!btn.parentElement.classList.contains('plus')) loadProductImg(key, btn.innerText)
 
-                btn.classList.add('active')             
+                btn.classList.add('active')         
                 if(activePrevBtn){
                     if(activePrevBtn !== btn) activePrevBtn.classList.remove('active')
                 }
@@ -213,22 +217,46 @@ function clickEvent(e){
         })
     })
 
+    /** filter-icon 클릭시 */
+    const filtericons = document.querySelectorAll('.filter-icons button')
+    const productItem = document.querySelectorAll('.product-box .product-item')
+    filtericons.forEach((icon, i) => {
+        if(e.target === icon){
+            if(!activePrevIcon) activePrevIcon = filtericons[0]
+
+            icon.parentElement.classList.add('active')
+            if(activePrevIcon !== icon) activePrevIcon.parentElement.classList.remove('active')
+            activePrevIcon = icon
+
+            i ? productItem.forEach(item => item.classList.add('full')) :
+            productItem.forEach(item => item.classList.remove('full'))
+        }
+    })
+
 }
 
 window.addEventListener('click', clickEvent)
 
 //프로덕트 네비게이션 불러오기
-function loadProductNav (category, content){
+async function loadProductNav (category){
     let keys
-    (category === '몰딩/월/마루') ? keys = [category] : keys = category.split('/')
+    let data = await loadJson("./category.json")
+    category === '몰딩/월/마루' ? keys = [category] : keys = category.split('/')
     productNav.innerHTML=''
-    keys.forEach(key => {
+    keys.forEach( key => {
         let code = findCode(key)
-        loadJson("./category.json")
-        .then(data => {
-            makeProductNav(data[code], code, productNav)
-            console.log(code)
-        })
+        makeProductNav(data[code], code, productNav)
+    })
+}
+
+
+function activeNavBtn (content) {
+    let navBtns = productNav.querySelectorAll('button')
+    navBtns.forEach(btn => {
+        if(content === btn.innerText){
+            btn.classList.add('active')
+            activePrevBtn = btn
+        } 
     })
 }
 
@@ -241,7 +269,7 @@ function loadProductImg (part = 'kitchen', content = '키친 전체보기') {
         .then(data => data[part])
         .then(datas => {
             datas.forEach(data => {
-                itemBox.append(makeImgBox(part, data.img, data.name, data.concepts)) 
+                itemBox.append(makeImgBox(part, data.img, data.name, data.concepts, data.type)) 
             })
         })
     }else{
@@ -251,18 +279,21 @@ function loadProductImg (part = 'kitchen', content = '키친 전체보기') {
         .then(data => data[part])
         .then(datas => {
         datas.filter(data => {
-            if(data.type === code){
-                itemBox.append(makeImgBox(part, data.img, data.name, data.concepts)) 
+            if(data.type === code){                
+                itemBox.append(makeImgBox(part, data.img, data.name, data.concepts, data.type)) 
             }})
         })
     }  
 }
 
 //처음 시작화면
-function loadProduct() {
-
+(async function loadProduct() {
+    makeFilterBar()
     productSelectBtn.innerText = qs.category // 셀렉트 버튼
-    loadProductNav(qs.category, qs.content) // 프로덕트 네비게이션
+    // loadProductNav(qs.category, qs.content) // 프로덕트 네비게이션 
+    await loadProductNav(qs.category, qs.content) 
+
+    activeNavBtn(qs.content)
+
     loadProductImg(qs.part, qs.content) // 프로덕트 이미지
-}
-loadProduct()
+})()

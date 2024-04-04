@@ -94,29 +94,26 @@ function loadScript(src){
     })
 }
 
+let $windowAddress = new LoadAdress()
+let absoluteLocation = $windowAddress.absoluteLocation()
+let qs = $windowAddress.queryString()
 
+function LoadAdress () {
+    let wl = window.location
 
-let $window_address = new LoadAdress(window.location)
-let absoulteAddress = $window_address.absoluteLocation()
-let qs = $window_address.queryString()
-
-function LoadAdress (location) {
-    this.location = location
-    this.href = location.href
-    this.search = location.search
-    this.pathname = location.pathname
-
+    /** 절대 경로 */
     this.absoluteLocation = function () {
-        let location = this.pathname.split('/')
+        let location = wl.pathname.split('/')
         location.pop()
         let result = location.join('/')
         return result
     }
 
-    this.queryString = function () {
+    /** 쿼리스트링 */
+    this.queryString = function (splitword = '&') {
         let result = {}
-        let decoded = decodeURI(this.search)
-        let splitString = decoded.replace('?','').split('&')
+        let decoded = decodeURI(wl.search)
+        let splitString = decoded.replace('?','').split(splitword)
         splitString.forEach(word => {
             let key = word.split('=')[0]
             let value = word.split('=')[1]

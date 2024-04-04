@@ -8,7 +8,7 @@ const contents = [
     comment : "인테리어 어디서부터 시작해야 할지 막막하시죠? <br> 자재 선택부터 시공 방법까지 하나하나 알려드릴게요.",
     link : "인테리어 시작하기"},
     {title : "영림 정품 확인하기",
-    comment : "품질에 대한 자부심을 담은 영림의 제품에는 정품 마크가 표기되어 있습니다. <br> 영림의 철학과 가치를 나타내는 정품 마크를 확인해보세요.",
+    comment : "품질에 대한 자부심을 담은 영림의 제품에는 정품 마크가 표기되어 있습니다. 영림의 철학과 가치를 나타내는 정품 마크를 확인해보세요.",
     link : "영림 브랜드 아이덴티티"}
 ]
 
@@ -76,12 +76,6 @@ contents.forEach((content, i) => {
     div.append(textBox)
     c_gridBox.append(div)
 })
-
-for(i=0; i<6; i++){
-    
-
-    
-}
 
 c_container.append(c_gridBox)
 contact.append(c_container)

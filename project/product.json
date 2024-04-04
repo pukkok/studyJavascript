@@ -64,8 +64,19 @@
         {"type" : "hinged", "img" : "hinged02"}
     ],
 "bath" : [],
-"tile" : [],
-"door" : [],
+"tile" : [
+    {"type" : "poserine", "img" : "poserine01"},
+    {"type" : "poserine", "img" : "poserine02"},
+    {"type" : "ceramic", "img":"ceramic01"},
+    {"type" : "ceramic", "img":"ceramic02"}
+],
+"door" : [
+    {"type": "handle", "img" : "handle01"},
+    {"type": "handle", "img" : "handle02"},
+    {"type": "handle", "img" : "handle03"},
+    {"type": "handle", "img" : "handle04"},
+    {"type": "handle", "img" : "handle05"}
+],
 "partition" : [],
 "window" : [],
 "molding" : [],

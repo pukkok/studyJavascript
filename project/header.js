@@ -40,7 +40,7 @@ function makeDepth1 () {
     })
     depth1.append(depth1Ul)
 
-    const userIcons = ['search', 'like', 'login']
+    const userIcons = ['search', 'like', 'login', 'menu']
     const userBox = document.createElement('div')
     userBox.className = 'user-box'
     const userUl = document.createElement('ul')
@@ -219,7 +219,7 @@ function clickDepth3(e){
       let part = btn.parentElement.className
       let content = btn.innerText
 
-      window.location.href = `${absoulteAddress}/product.html?category=${category}&part=${part}&content=${content}`
+      window.location.href = `${absoluteLocation}/product.html?category=${category}&part=${part}&content=${content}`
     }
   })
 

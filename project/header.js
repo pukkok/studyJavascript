@@ -232,26 +232,37 @@ function tabletVersion(e){
   let menuBtn = document.querySelector('.tablet .menu')
   const depth1 = document.querySelector('.tablet .depth1')
 
-  window.removeEventListener('mouseover', overEvent)
-  nav.removeEventListener('mouseleave', leaveEvent)
   if(e.target===menuBtn){
-    depth1.style.left = 0
+    if(menuBtn.classList.contains('close')){
+      depth1.style.left = '-25%'
+      depth2Box.remove()
+      menuBtn.classList.remove('close')
+      nav.classList.remove('white-mode')
+    }else{
+      menuBtn.classList.add('close')
+      nav.classList.add('white-mode')
+      depth1.style.left = 0
+    }
   }
 
-  depth2Box.style.left=0
   depth1List.forEach((list, i) => {
     if(e.target === list){
       if(i<3){
+        depth2Box.style.left=0
         depth2Box.innerHTML= ''
         makeDepth2(list.innerText)
         setTimeout(() => {
           depth2Box.style.left='25%'
         }, 50);
+      }else{
+        depth2Box.innerHTML= ''
+        depth2Box.style.left=0
       }
     }
   })
 
-
+  const productList = document.querySelectorAll('.depth2 .product-item')
+  const depth2Container = document.querySelector('.depth2-box .container')
   productList.forEach(async list => {
     if(e.target === list){
         list.classList.add('on')
@@ -265,7 +276,10 @@ function tabletVersion(e){
         depth3.innerHTML = ''
         await makeDepth3(code)
         depth2Container.append(depth3)
-        nav.style.height = `${100 + depth3.offsetHeight}px`
+        depth3.style.left=0
+        setTimeout(() => {
+          depth3.style.left='100%'
+        }, 50);
         }else{
         let keys = list.innerText.split('/')
         depth3.innerHTML = ''
@@ -273,7 +287,12 @@ function tabletVersion(e){
         let code = findCode(key)
         await makeDepth3(code)
         depth2Container.append(depth3)
-        nav.style.height = `${100 + depth3.offsetHeight}px`
+
+        depth3.style.left=0
+        setTimeout(() => {
+          depth3.style.left='100%'
+        }, 50);
+
         })
         }
     }
@@ -283,4 +302,21 @@ function tabletVersion(e){
 
 }
 
+
+function 사이즈변경 () {
+  if(window.innerWidth<1024){
+    window.removeEventListener('mouseover', overEvent)
+    nav.removeEventListener('mouseleave', leaveEvent)
+    window.addEventListener('click', tabletVersion)
+  }else{
+    window.addEventListener('mouseover', overEvent)
+    nav.addEventListener('mouseleave', leaveEvent)
+    window.removeEventListener('click', tabletVersion)
+    depth2Box.remove()
+    depth2Box.style.left=0
+  }
+}
+
+window.addEventListener('load', 사이즈변경)
+window.addEventListener('resize', 사이즈변경)
 window.addEventListener('click', tabletVersion)

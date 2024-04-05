@@ -256,7 +256,6 @@ async function loadProductNav (category){
     })
 }
 
-
 function activeNavBtn (content) {
     let navBtns = productNav.querySelectorAll('button')
     navBtns.forEach(btn => {
@@ -298,6 +297,5 @@ async function loadProductImg (part = 'kitchen', content = '키친 전체보기'
 
     await loadProductImg(qs.part, qs.content) // 프로덕트 이미지
     sizeEvent() // 반응형
-
 })()
 

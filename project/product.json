@@ -47,21 +47,21 @@
         {"type" : "component", "img" : "component_kitchen18", "name" : "FSF-302", "concepts" : ["FSF-302"]},
         {"type" : "component", "img" : "component_kitchen19", "name" : "FSF-303N", "concepts" : ["FSF-303N"]},
         {"type" : "component", "img" : "component_kitchen20", "name" : "FSF-304N", "concepts" : ["FSF-304N"]},
-        {"type" : "hardware", "img" : "hardware_kitchen01"},
-        {"type" : "hardware", "img" : "hardware_kitchen02"},
-        {"type" : "hardware", "img" : "hardware_kitchen03"},
-        {"type" : "hardware", "img" : "hardware_kitchen04"},
-        {"type" : "hardware", "img" : "hardware_kitchen05"},
-        {"type" : "hardware", "img" : "hardware_kitchen06"},
-        {"type" : "hardware", "img" : "hardware_kitchen07"},
-        {"type" : "hardware", "img" : "hardware_kitchen08"},
-        {"type" : "hardware", "img" : "hardware_kitchen09"},
-        {"type" : "hardware", "img" : "hardware_kitchen10"}
+        {"type" : "hardware", "img" : "hardware_kitchen01", "name" : "애쉬 콘크리트", "concepts" : ["H417"]},
+        {"type" : "hardware", "img" : "hardware_kitchen02", "name" : "덴버"},
+        {"type" : "hardware", "img" : "hardware_kitchen03", "name" : "토탈 화이트"},
+        {"type" : "hardware", "img" : "hardware_kitchen04", "name" : "콘크리트 그레이"},
+        {"type" : "hardware", "img" : "hardware_kitchen05", "name" : "콘크리트 라이트"},
+        {"type" : "hardware", "img" : "hardware_kitchen06", "name" : "트라버틴 키아로"},
+        {"type" : "hardware", "img" : "hardware_kitchen07", "name" : "트라버틴 그레이"},
+        {"type" : "hardware", "img" : "hardware_kitchen08", "name" : "밀란 스톤"},
+        {"type" : "hardware", "img" : "hardware_kitchen09", "name" : "오스투니 치안치아노"},
+        {"type" : "hardware", "img" : "hardware_kitchen10", "name" : "메탈 다크"}
     ],
 
 "builtIn" : [
-        {"type" : "hinged", "img" : "hinged01"},
-        {"type" : "hinged", "img" : "hinged02"}
+        {"type" : "hinged", "img" : "hinged01", "name" : "아크"},
+        {"type" : "hinged", "img" : "hinged02", "name" : "루체"}
     ],
 "bath" : [],
 "tile" : [

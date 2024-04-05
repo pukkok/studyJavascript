@@ -110,16 +110,6 @@ function loadJson(url){
     .then((response)=> response.json()) // 읽어온 파일 json변환
 }
 
-function loadScript(src){
-    return new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = src
-        script.onload = () => resolve("로딩결과")
-        console.log("로드스크립트")
-        document.head.append(script)
-    })
-}
-
 let $windowAddress = new LoadAdress()
 let absoluteLocation = $windowAddress.absoluteLocation()
 let qs = $windowAddress.queryString()
@@ -164,5 +154,3 @@ function sizeEvent () {
 }
 
 window.addEventListener('resize', sizeEvent)
-
-// window.addEventListener('DOMContentLoaded', sizeEvent)

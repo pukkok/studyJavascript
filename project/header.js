@@ -11,9 +11,10 @@ const root = document.getElementById('root')
 
 const header = document.createElement('header')
 const nav = document.createElement('nav')
+const main = document.createElement('main')
 
 header.append(nav)
-root.append(header)
+root.append(main, header)
 
 function makeDepth1 () {
     const depth1Box = document.createElement('div')

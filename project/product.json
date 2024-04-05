@@ -56,7 +56,7 @@
         {"type" : "hardware", "img" : "hardware_kitchen07", "name" : "트라버틴 그레이"},
         {"type" : "hardware", "img" : "hardware_kitchen08", "name" : "밀란 스톤"},
         {"type" : "hardware", "img" : "hardware_kitchen09", "name" : "오스투니 치안치아노"},
-        {"type" : "hardware", "img" : "hardware_kitchen10", "name" : "메탈 다크"}
+        {"type" : "hardware", "img" : "hardware_kitchen10", "name" : "메탈 다크" }
     ],
 
 "builtIn" : [

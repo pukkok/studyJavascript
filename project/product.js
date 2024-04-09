@@ -40,8 +40,9 @@ filterBar.className = 'filter-bar'
 const makeFilterBar = () => {
     const filterBtn = document.createElement('div')
     filterBtn.className = 'filter-btn'
-    const filterH3 = document.createElement('h3')
-    filterH3.innerText = '필터'
+    const filterSpan = document.createElement('span')
+    const filterInput = document.createElement('input')
+    filterInput.placeholder = '검색어를 입력해 주세요.'
     const filterSelectBox = document.createElement('div')
     filterSelectBox.className = 'filter-select-box'
 
@@ -63,7 +64,7 @@ const makeFilterBar = () => {
     filterIcons.append(smallMode, bigMode)
     
     filterSelectBox.append(filterOption, filterIcons)
-    filterBtn.append(filterH3)
+    filterBtn.append(filterSpan, filterInput)
 
     filterBar.append(filterBtn, filterSelectBox)
 }
@@ -137,11 +138,14 @@ function makeImgBox(part1, part2, name='', concepts=[], cName = 'middle-size'){
     const p = document.createElement('p')
     p.innerText = name
     textBox.append(p)
-    concepts.forEach(concept => {
-        const span = document.createElement('span')
-        span.innerText = concept
-        textBox.append(span)
-    })
+    const div1 = document.createElement('div')
+    div1.innerHTML = concepts.join('<span> | </span>')
+    textBox.append(div1)
+    // concepts.forEach(concept => {
+    //     const span = document.createElement('span')
+    //     span.innerText = concept
+    //     textBox.append(span)
+    // })
 
     imgBox.append(img)
     productItem.append(imgBox, textBox)
@@ -244,6 +248,7 @@ function clickEvent(e){
 
 window.addEventListener('click', clickEvent)
 
+
 //프로덕트 네비게이션 불러오기
 async function loadProductNav (category){
     let keys
@@ -287,6 +292,8 @@ async function loadProductImg (part = 'kitchen', content = '키친 전체보기'
     }  
 }
 
+
+
 //처음 시작화면
 (async function loadProduct() {
     makeFilterBar()
@@ -299,3 +306,38 @@ async function loadProductImg (part = 'kitchen', content = '키친 전체보기'
     sizeEvent() // 반응형
 })()
 
+
+let filterInput = document.querySelector('.filter-bar input')
+
+window.addEventListener('keyup', (e)=>{
+    let value = filterInput.value
+
+    const findTitle = itemBox.querySelectorAll('.text-box p')
+    const findConcept = itemBox.querySelectorAll('.text-box div')
+    findTitle.forEach(data => {
+        if(value){
+            if(e.code === 'Enter'){
+                if(data.innerText.includes(value)){
+                    data.parentElement.parentElement.style.display = 'block'
+                }else{
+                    data.parentElement.parentElement.style.display = 'none'
+                }
+            }
+        }else data.parentElement.parentElement.style.display = 'block'
+    })
+
+    findConcept.forEach(data => {
+        let gf = data.parentElement.parentElement
+        // console.log(data.innerText)
+        if(value){
+            if(e.code === 'Enter'){
+                if(!data.innerText.includes(value)){
+                    gf.style.display = 'none'
+                }else{
+                    gf.style.display = 'block'
+                }
+            }
+        }else gf.style.display = 'block'
+    })
+
+})

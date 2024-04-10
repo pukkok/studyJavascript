@@ -23,59 +23,172 @@ const standardBox = [
 let x = 0
 let y = 0
 
-let vvvv = new Array(9).fill(false)
-let vbox = [vvvv]
-console.log(vbox)
-
 let coords = JSON.parse(JSON.stringify(standardBox))
+coords.forEach(coord => {
+  coord.fill(0)
+})
 let result = coords[x][y]
 
-let arr0 = []
+let arrX = []
 let arrY = []
-// coords[0][0] = randomNumberExtractor()
-// arr0.push(coords[0][0])
+let arrZ1 = []
 
-for(let i=0; i<9; i++){
-  let num = randomNumberExtractor()    
-
-  while(arr0.includes(num)){
-    num = randomNumberExtractor()
-  }
-
-  coords[0][i] = num
-  arr0.push(coords[0][i])
-
-
-  while(arrY.includes(num)){
-    num = randomNumberExtractor()
+for(let x=0; x<3; x++){
+  for(let y=0; y<3; y++){
+    let num = randomNumberExtractor()
+    while(arrZ1.includes(num)){
+      num = randomNumberExtractor()
+    }
+    coords[x][y] = num
+    arrZ1.push(num)
   }
 }
 
-console.log(coords)
-console.log(arr0)
+let arrZ2 = []
 
-// for(let x=0; x<9; x++){
-//   for(let y=0; y<9; y++){
-//     coords[0][0] = randomNumberExtractor()
+let xline = [...arrZ1].slice(0,3)
+let xline2 = [...arrZ1].slice(3,6)
+let xline3 = [...arrZ1].slice(6,9)
 
-//     arr0.push(coords[0][0])
+for(let x=0; x<3; x++){
+  for(let y=3; y<6; y++){
+    if(arrZ2.length< 3){
+      let num = randomNumberExtractor()
+      while(xline.includes(num) || arrZ2.includes(num)){
+        num = randomNumberExtractor()
+      }
+      coords[x][y] = num
+      arrZ2.push(num)
+    }else if(arrZ2.length<6){
+      let num = randomNumberExtractor()
+      while(xline2.includes(num) || arrZ2.includes(num)){
+        num = randomNumberExtractor()
 
-//     let num = randomNumberExtractor()    
-//     if(coords[0][0] === num){
-//       num = randomNumberExtractor()
-//     }else{
-//       coords[0][1] = num
-//       let num2 = randomNumberExtractor()
-//       if(coords[0][1] === num2){
-//         num2 = randomNumberExtractor()
-//       }else{
-//         coords[0][2] = num2
+      }
+      coords[x][y] = num
+      arrZ2.push(num)
+    }else{
+      let num = randomNumberExtractor()
+      while(xline3.includes(num) || arrZ2.includes(num)){
+        num = randomNumberExtractor()
+      }
+      coords[x][y] = num
+      arrZ2.push(num)
+    }
+  }
+}
+
+let arrZ3 = []
+let xline_double = [...xline, ...arrZ2.slice(0,3)]
+let xline2_double = [...xline2, ...arrZ2.slice(3,6)]
+let xline3_double = [...xline3, ...arrZ2.slice(6,9)]
+
+// for(let x=0; x<3; x++){
+//   for(let y=6; y<9; y++){
+//     if(arrZ3.length< 3){
+//       let num = randomNumberExtractor()
+//       while(xline_double.includes(num) || arrZ3.includes(num)){
+//         num = randomNumberExtractor()
+        
 //       }
-
+//       coords[x][y] = num
+//       arrZ3.push(num)
+//     }else if(arrZ3.length<6){
+//       let num = randomNumberExtractor()
+//       while(xline2_double.includes(num) || arrZ3.includes(num)){
+//         num = randomNumberExtractor()
+        
+//       }
+//       coords[x][y] = num
+//       arrZ3.push(num)
+//     }else{
+//       let num = randomNumberExtractor()
+//       while(xline3_double.includes(num) || arrZ3.includes(num)){
+//         num = randomNumberExtractor()
+        
+//       }
+//       coords[x][y] = num
+//       arrZ3.push(num)
 //     }
-
 //   }
 // }
+
+let arrZ4 = []
+let yline = [coords[0][0], coords[1][0], coords[2][0]]
+let yline2 = [coords[0][1], coords[1][1], coords[2][1]]
+let yline3 = [coords[0][2], coords[1][2], coords[2][2]]
+
+// for(let y=0; y<3; y++){
+//   for(let x=3; x<6; x++){
+//     if(arrZ4.length< 3){
+//       let num = randomNumberExtractor()
+//       while(yline.includes(num) || arrZ4.includes(num)){
+//         num = randomNumberExtractor()
+        
+//       }
+//       coords[x][y] = num
+//       arrZ4.push(num)
+//     }else if(arrZ4.length<6){
+//       let num = randomNumberExtractor()
+//       while(yline2.includes(num) || arrZ4.includes(num)){
+//         num = randomNumberExtractor()
+        
+//       }
+//       coords[x][y] = num
+//       arrZ4.push(num)
+//     }else{
+//       let num = randomNumberExtractor()
+//       while(yline3.includes(num) || arrZ4.includes(num)){
+//         num = randomNumberExtractor()
+        
+//       }
+//       coords[x][y] = num
+//       arrZ4.push(num)
+//     }
+//   }
+// }
+
+let arrZ7 = []
+let yline_double = [...yline, coords[3][0], coords[4][0], coords[5][0]]
+let yline2_double = [coords[3][1], coords[4][1], coords[5][1]]
+let yline3_double = [coords[3][2], coords[4][2], coords[5][2]]
+
+// for(let y=0; y<3; y++){
+//   for(let x=6; x<9; x++){
+//     if(arrZ7.length< 3){
+//       let num = randomNumberExtractor()
+//       while(yline_double.includes(num) || arrZ7.includes(num)){
+//         num = randomNumberExtractor()
+        
+//       }
+//       coords[x][y] = num
+//       arrZ7.push(num)
+//     }else if(arrZ7.length<6){
+//       let num = randomNumberExtractor()
+//       while(yline2_double.includes(num) || arrZ7.includes(num)){
+//         num = randomNumberExtractor()
+        
+//       }
+//       coords[x][y] = num
+//       arrZ7.push(num)
+//     }else{
+//       let num = randomNumberExtractor()
+//       while(yline3_double.includes(num) || arrZ7.includes(num)){
+//         num = randomNumberExtractor()
+        
+//       }
+//       coords[x][y] = num
+//       arrZ7.push(num)
+//     }
+//   }
+// }
+
+console.log(coords)
+
+
+
+
+
 
 
 
@@ -118,7 +231,7 @@ function initNumber () {
         }
       }
 
-      data.innerText = `${x}, ${y}`
+      data.innerText = `${coords[x][y]}`
 
       box.append(data)
     }
@@ -129,19 +242,6 @@ function initNumber () {
 app.append(box)
 initNumber()
 
-
-function randomArr () {
-  let Arr1 = []
-  while (Arr1.length < 9){
-    let num = randomNumberExtractor()
-    if(Arr1.includes(num)){
-      num = randomNumberExtractor()
-    }else{
-      Arr1.push(num)
-    }
-  }
-  return Arr1
-}
 
 
 // 3 * 3 박스에 숫자 9개 1~9

@@ -83,21 +83,15 @@ matrix.push(sb, sb2, sb3, sb4, sb5, sb6, sb7, sb8, sb9)
 
 for(let x=0; x<9; x++){
   for(let y=0; y<9; y++){
-    let coord = findCoord(x,y)
-    if(x===0 && y===0) {
-      board[x][y] = randomNumber()
-      xline[x][y] = board[x][y]
-      yline[y][x] = board[x][y]
-      matrix[x][y] = board[x][y]
+    let coord = [x, y]
+    console.log(coord)
+    // console.log(xline[0])
+    if(xline[0].includes(...coord)){
+      console.log('있음')
+    }else{
+      // console.log('없음')
     }
-    
-    let num = randomNumber()
-    if(x===0 && y<9){
-      board[x][y] = randomNumber()
-      xline[x][y] = board[x][y]
-      yline[y][x] = board[x][y]
-      matrix[x][y] = board[x][y]
-    }
+    // console.log(a)
   }
 }
 

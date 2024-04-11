@@ -1,6 +1,6 @@
-const app = document.getElementById('app')
+const root = document.getElementById('root')
 
-function randomNumberExtractor(){
+function randomNumber(){
   let randomNumber = Math.floor(Math.random()*9)+1
   return randomNumber
 }
@@ -8,71 +8,55 @@ function randomNumberExtractor(){
 const box = document.createElement('div')
 box.className = 'sdoku-box'
 
-function sudoku(){
- 
-  const standardBoard = [
-    [0, 0, 0, 1, 1, 1, 2, 2, 2],
-    [0, 0, 0, 1, 1, 1, 2, 2, 2],
-    [0, 0, 0, 1, 1, 1, 2, 2, 2],
-    [3, 3, 3, 4, 4, 4, 5, 5, 5],
-    [3, 3, 3, 4, 4, 4, 5, 5, 5],
-    [3, 3, 3, 4, 4, 4, 5, 5, 5],
-    [6, 6, 6, 7, 7, 7, 8, 8, 8],
-    [6, 6, 6, 7, 7, 7, 8, 8, 8],
-    [6, 6, 6, 7, 7, 7, 8, 8, 8]
-  ]
-
-  let board = JSON.parse(JSON.stringify(standardBoard))
-
-  const numberArr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-  let count = true
-
-  while(count){
-    count = false
-    for(let i=0; i<9; i++){
-      for(let j=0; j<9; j++){
-        let available_row = []
-        let available_col = []
-        let available_matrix = []
-        let current_loc = []
-        let available_final = []
-        if(board[i][j] === 0){
-          count = count || true
-          
-
-          available_row = numberArr.filter((num)=>!board[i].includes(num))
-
-          for(let key of board){
-            available_col = numberArr.filter(num => num!==key[j])
+function solveSudokuHelper(board){
+    
+  for(let row=0; row<gridSize; row++){
+      for(let col=0; col<gridSize; col++){
+          if(board[row][col] === 0){
+              for(let num = 1; num <= 9; num++){
+                  if(isValidMove(board, row, col, num)){
+                      board[row][col] = randomNumber()
+                      
+                      if(solveSudokuHelper(board)){
+                          return true
+                      } 
+                      
+                      board[row][col] = 0
+                  }
+                  
+              }
+              return false // 방법이 없음
           }
-
-          current_loc = [Math.floor((i+1)/3), Math.floor(j+1)/3]
-          for(let ii = current_loc[0]*3; ii< current_loc[0]*3+3; ii++){
-            for(let jj= current_loc[1]*3; jj<current_loc[1]*3+3; jj++){
-              available_matrix.push(board[ii][jj])
-            }
-          }
-
-          available_matrix = numberArr.fill(num => !available_matrix.includes(num))
-
-          available_final = [...available_col, ...available_row, ...available_matrix]
-
-          if(available_final.length === 1){
-            board[i][j] = available_final.shift()
-          }
-
-        }
       }
-    }
   }
-
-  return board
+  return true // 끝
 }
 
-let a = sudoku()
-console.log(a)
+function isValidMove(board, row, col, num){
+  
+  // row, col 확인
+  for(let i=0; i<gridSize; i++){
+      if(board[row][i] === num || board[i][col] === num){
+          return false
+      }
+  }
+  
+  // 3 x 3 배열 확인
+  const startRow = Math.floor(row/3)*3
+  const startCol = Math.floor(col/3)*3
+  
+  for(let i= startRow; i<startRow+3; i++){
+      for(let j=startCol; j<startCol+3; j++){
+          if(board[i][j] === num){
+              return false // conflict found
+          }
+      }
+  }
+  
+  return true // no conflict found
+}
 
-
+console.log(board)
 
 
 // 1끼리는 1~9를 다 가지고 있어야함
@@ -120,5 +104,5 @@ function initNumber () {
   return box 
 }
 
-app.append(box)
+root.append(box)
 initNumber()

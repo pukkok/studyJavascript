@@ -1,11 +1,18 @@
+#app{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    
+}
 .sdoku-box{
-    width: 500px;
-    height: 500px;
+    width: 450px;
+    height: 450px;
     border: solid 1px red;
     text-align: center;
     display: grid;
     grid-template-columns: repeat(9, 1fr);
 }
+
 
 .data{
     width: 100%;

@@ -83,105 +83,105 @@ let xline_double = [...xline, ...arrZ2.slice(0,3)]
 let xline2_double = [...xline2, ...arrZ2.slice(3,6)]
 let xline3_double = [...xline3, ...arrZ2.slice(6,9)]
 
-// for(let x=0; x<3; x++){
-//   for(let y=6; y<9; y++){
-//     if(arrZ3.length< 3){
-//       let num = randomNumberExtractor()
-//       while(xline_double.includes(num) || arrZ3.includes(num)){
-//         num = randomNumberExtractor()
+for(let x=0; x<3; x++){
+  for(let y=6; y<9; y++){
+    if(arrZ3.length< 3){
+      let num = randomNumberExtractor()
+      while(xline_double.includes(num) || arrZ3.includes(num)){
+        num = randomNumberExtractor()
         
-//       }
-//       coords[x][y] = num
-//       arrZ3.push(num)
-//     }else if(arrZ3.length<6){
-//       let num = randomNumberExtractor()
-//       while(xline2_double.includes(num) || arrZ3.includes(num)){
-//         num = randomNumberExtractor()
+      }
+      coords[x][y] = num
+      arrZ3.push(num)
+    }else if(arrZ3.length<6){
+      let num = randomNumberExtractor()
+      while(xline2_double.includes(num) || arrZ3.includes(num)){
+        num = randomNumberExtractor()
         
-//       }
-//       coords[x][y] = num
-//       arrZ3.push(num)
-//     }else{
-//       let num = randomNumberExtractor()
-//       while(xline3_double.includes(num) || arrZ3.includes(num)){
-//         num = randomNumberExtractor()
+      }
+      coords[x][y] = num
+      arrZ3.push(num)
+    }else{
+      let num = randomNumberExtractor()
+      while(xline3_double.includes(num) || arrZ3.includes(num)){
+        num = randomNumberExtractor()
         
-//       }
-//       coords[x][y] = num
-//       arrZ3.push(num)
-//     }
-//   }
-// }
+      }
+      coords[x][y] = num
+      arrZ3.push(num)
+    }
+  }
+}
 
 let arrZ4 = []
 let yline = [coords[0][0], coords[1][0], coords[2][0]]
 let yline2 = [coords[0][1], coords[1][1], coords[2][1]]
 let yline3 = [coords[0][2], coords[1][2], coords[2][2]]
 
-// for(let y=0; y<3; y++){
-//   for(let x=3; x<6; x++){
-//     if(arrZ4.length< 3){
-//       let num = randomNumberExtractor()
-//       while(yline.includes(num) || arrZ4.includes(num)){
-//         num = randomNumberExtractor()
+for(let y=0; y<3; y++){
+  for(let x=3; x<6; x++){
+    if(arrZ4.length< 3){
+      let num = randomNumberExtractor()
+      while(yline.includes(num) || arrZ4.includes(num)){
+        num = randomNumberExtractor()
         
-//       }
-//       coords[x][y] = num
-//       arrZ4.push(num)
-//     }else if(arrZ4.length<6){
-//       let num = randomNumberExtractor()
-//       while(yline2.includes(num) || arrZ4.includes(num)){
-//         num = randomNumberExtractor()
+      }
+      coords[x][y] = num
+      arrZ4.push(num)
+    }else if(arrZ4.length<6){
+      let num = randomNumberExtractor()
+      while(yline2.includes(num) || arrZ4.includes(num)){
+        num = randomNumberExtractor()
         
-//       }
-//       coords[x][y] = num
-//       arrZ4.push(num)
-//     }else{
-//       let num = randomNumberExtractor()
-//       while(yline3.includes(num) || arrZ4.includes(num)){
-//         num = randomNumberExtractor()
+      }
+      coords[x][y] = num
+      arrZ4.push(num)
+    }else{
+      let num = randomNumberExtractor()
+      while(yline3.includes(num) || arrZ4.includes(num)){
+        num = randomNumberExtractor()
         
-//       }
-//       coords[x][y] = num
-//       arrZ4.push(num)
-//     }
-//   }
-// }
+      }
+      coords[x][y] = num
+      arrZ4.push(num)
+    }
+  }
+}
 
 let arrZ7 = []
 let yline_double = [...yline, coords[3][0], coords[4][0], coords[5][0]]
 let yline2_double = [coords[3][1], coords[4][1], coords[5][1]]
 let yline3_double = [coords[3][2], coords[4][2], coords[5][2]]
 
-// for(let y=0; y<3; y++){
-//   for(let x=6; x<9; x++){
-//     if(arrZ7.length< 3){
-//       let num = randomNumberExtractor()
-//       while(yline_double.includes(num) || arrZ7.includes(num)){
-//         num = randomNumberExtractor()
+for(let y=0; y<3; y++){
+  for(let x=6; x<9; x++){
+    if(arrZ7.length< 3){
+      let num = randomNumberExtractor()
+      while(yline_double.includes(num) || arrZ7.includes(num)){
+        num = randomNumberExtractor()
         
-//       }
-//       coords[x][y] = num
-//       arrZ7.push(num)
-//     }else if(arrZ7.length<6){
-//       let num = randomNumberExtractor()
-//       while(yline2_double.includes(num) || arrZ7.includes(num)){
-//         num = randomNumberExtractor()
+      }
+      coords[x][y] = num
+      arrZ7.push(num)
+    }else if(arrZ7.length<6){
+      let num = randomNumberExtractor()
+      while(yline2_double.includes(num) || arrZ7.includes(num)){
+        num = randomNumberExtractor()
         
-//       }
-//       coords[x][y] = num
-//       arrZ7.push(num)
-//     }else{
-//       let num = randomNumberExtractor()
-//       while(yline3_double.includes(num) || arrZ7.includes(num)){
-//         num = randomNumberExtractor()
+      }
+      coords[x][y] = num
+      arrZ7.push(num)
+    }else{
+      let num = randomNumberExtractor()
+      while(yline3_double.includes(num) || arrZ7.includes(num)){
+        num = randomNumberExtractor()
         
-//       }
-//       coords[x][y] = num
-//       arrZ7.push(num)
-//     }
-//   }
-// }
+      }
+      coords[x][y] = num
+      arrZ7.push(num)
+    }
+  }
+}
 
 console.log(coords)
 

@@ -327,17 +327,17 @@ window.addEventListener('keyup', (e)=>{
     })
 
     findConcept.forEach(data => {
-        let gf = data.parentElement.parentElement
+        let gp = data.parentElement.parentElement
         // console.log(data.innerText)
         if(value){
             if(e.code === 'Enter'){
                 if(!data.innerText.includes(value)){
-                    gf.style.display = 'none'
+                    gp.style.display = 'none'
                 }else{
-                    gf.style.display = 'block'
+                    gp.style.display = 'block'
                 }
             }
-        }else gf.style.display = 'block'
+        }else gp.style.display = 'block'
     })
 
 })

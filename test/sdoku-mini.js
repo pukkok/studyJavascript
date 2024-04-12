@@ -8,6 +8,19 @@ function randomNumber(){
 const box = document.createElement('div')
 box.className = 'sdoku-box'
 
+const standardBox = [
+  [0, 0, 0, 1, 1, 1, 2, 2, 2],
+  [0, 0, 0, 1, 1, 1, 2, 2, 2],
+  [0, 0, 0, 1, 1, 1, 2, 2, 2],
+  [3, 3, 3, 4, 4, 4, 5, 5, 5],
+  [3, 3, 3, 4, 4, 4, 5, 5, 5],
+  [3, 3, 3, 4, 4, 4, 5, 5, 5],
+  [6, 6, 6, 7, 7, 7, 8, 8, 8],
+  [6, 6, 6, 7, 7, 7, 8, 8, 8],
+  [6, 6, 6, 7, 7, 7, 8, 8, 8]
+]
+
+
 function solveSudokuHelper(board){
     
   for(let row=0; row<gridSize; row++){
@@ -56,8 +69,8 @@ function isValidMove(board, row, col, num){
   return true // no conflict found
 }
 
-console.log(board)
-
+console.log(standardBox)
+solveSudokuHelper(standardBox)
 
 // 1끼리는 1~9를 다 가지고 있어야함
 

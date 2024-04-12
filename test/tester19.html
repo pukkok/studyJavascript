@@ -77,7 +77,7 @@
             const letter = createLetter(text, pickRandomNumber(browserWidth))
             document.body.append(letter)
             setInterval(() => {
-                letter.style.top = letter.offsetTop + 10 + 'px'
+                letter.style.top = letter.offsetTop + 50 + 'px'
                 const cloneLetter = createLetter(text, letter.offsetLeft, letter.offsetTop)
                 document.body.append(cloneLetter)
                 cloneLetter.style.scale = '2'

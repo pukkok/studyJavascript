@@ -1,47 +1,84 @@
-let 답들 = ['apple', 'eagle', 'fruit', 'class', 'input', 'style', 'value', 'color']
-let 답 = 답들[Math.floor(Math.random()*답들.length)]
-console.log(답)
 
-const btn = document.querySelector('button')
-let component = document.createElement('div')
+let questions = ['apple', 'eagle', 'fruit', 'class', 'input', 'style', 'value', 'color']
+let correct = questions[Math.floor(Math.random()*questions.length)].toUpperCase()
+console.log(correct)
 
-const inputs = document.querySelectorAll('.input')
-function inputMaxLength(e){
-    let x = e.target.value.split('').pop()
+const root = document.getElementById('root')
 
-    if(e.target.value.length > 1){
-       e.target.value = x
-    }
+const wordle = document.createElement('section')
+wordle.className='wordle'
+const inputBox = document.createElement('div')
+inputBox.className='input-box'
+for(let i=0; i<5; i++){
+    const input = document.createElement('input')
+    input.type = 'text'
+    input.className = 'present'
+    inputBox.append(input)
 }
-// if(input.value.length > 1){
-//     input.value = input.value.substr(0, 1)
-// }
 
-inputs.forEach(input=>{
-    input.addEventListener('input', inputMaxLength)
-})
-const 채점 = () => {
+const button = document.createElement('button')
+button.innerText = '제출'
+wordle.append(inputBox, button)
+root.append(wordle)
+
+function inputEvent(){
+    const inputs = document.querySelectorAll('.present')
+    inputs[0].focus()
+    
+    function checkValue(e){ // 영어만 입력가능하도록 막기
+        if(e.target.value){
+            e.target.value = e.target.value.replace(/[^A-Za-z]/ig, '')
+        }
+    }
+    
+    function inputOption(e){ // 입력값 key값으로 변경
+        if ("KeyA" <= e.code && e.code <= "KeyZ") {
+           e.target.blur()
+           e.target.value = e.code[3]
+           if(e.target.nextElementSibling && e.target.nextElementSibling.classList.contains('present')){
+            e.target.nextElementSibling.focus()
+           }
+        }
+    }
+    
+    inputs.forEach(input => {
+        input.addEventListener('input', checkValue)
+    })
+    inputs.forEach(input => {
+        input.addEventListener('keyup', inputOption)
+    })
+}
+inputEvent()
+
+const checkWord = () => {
     // 위치까지 맞으면 - 초록색
     // 위치는 안맞으면 - 노란색
     // 다 안맞으면 - 회색
+    const inputs = document.querySelectorAll('.present')
+
     inputs.forEach((input, i)=> {
-        input.length===1
-        if(input.value === 답[i]){ // 정답
-            input.style.backgroundColor = 'green'
-            input.style.color = 'white'
-        }else if(답.includes(input.value)){ // 포함은 한다
-            input.style.backgroundColor = 'orange'
-        }else{
-            input.style.backgroundColor = 'grey'
+        if(input.value){
+            input.classList.remove('present')
+            if(input.value === correct[i]){ // 정답
+                input.classList.add('correct')
+            }else if(correct.includes(input.value)){ // 포함은 한다
+                input.classList.add('include')
+            }else{
+                input.classList.add('wrong')
+            }        
         }
     })
 
-    for(i=0; i<inputs.lenth; i++ ){
-        let input = document.createElement('input')
-        input.className = 'input'
-        component.append(input)
+    for(i=0; i<inputs.length; i++ ){
+        const input = document.createElement('input')
+        input.type='text'
+        input.className = 'present'
+        inputBox.prepend(input)
     }
-    document.body.append(component)
+    wordle.prepend(inputBox)
+
+    inputEvent()
 }
 
-btn.addEventListener('click', 채점)
+
+button.addEventListener('click', checkWord)

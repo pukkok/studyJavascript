@@ -1,17 +1,12 @@
-const app = document.getElementById('app')
+const root = document.getElementById('root')
 
 function randomNumber(){
-    return Math.floor(Math.random()*9)+1
+  return Math.floor(Math.random()*9)+1
 }
 
+let gridSize = 9
 const box = document.createElement('div')
 box.className = 'sdoku-box'
-const box2 = document.createElement('div')
-box2.className = 'sdoku-box'
-const box3 = document.createElement('div')
-box3.className = 'sdoku-box'
-const box4 = document.createElement('div')
-box4.className = 'sdoku-box'
 
 const standardBox = [
   [0, 0, 0, 1, 1, 1, 2, 2, 2],
@@ -25,83 +20,116 @@ const standardBox = [
   [6, 6, 6, 7, 7, 7, 8, 8, 8]
 ]
 
-let changeBoard = JSON.parse(JSON.stringify(standardBox))
-changeBoard.forEach(num => {
-  num.fill(0)
+let board = JSON.parse(JSON.stringify(standardBox))
+
+board.forEach(line => {
+    line.fill(0)
 })
 
-const findCoord = (x , y) => changeBoard[x][y]
+let matrix1 = []
+let matrix2 = []
+let matrix3 = []
 
-const resultBoard = []
-let xline = JSON.parse(JSON.stringify(changeBoard))
-let yline = JSON.parse(JSON.stringify(changeBoard))
-let matrix = []
-let board = JSON.parse(JSON.stringify(changeBoard))
-
-let sb = []
-let sb2 = []
-let sb3 = []
-let sb4 = []
-let sb5 = []
-let sb6 = []
-let sb7 = []
-let sb8 = []
-let sb9 = []
-
-for(let i=0; i<9; i++){
-  for(let j=0; j<9; j++){
-    xline[i][j] = [i, j]
-    yline[i][j] = [j, i]
-
-    let caseA = i%9
-    let caseB = j%9
-    if(caseA < 3 && caseB < 3){
-      sb.push([i, j])
-    }else if(caseA < 3 && caseB<6){
-      sb2.push([i, j])
-    }else if(caseA < 3 && caseB<9){
-      sb3.push([i, j])
-    }else if(caseA < 6 && caseB<3){
-      sb4.push([i, j])
-    }else if(caseA < 6 && caseB<6){
-      sb5.push([i, j])
-    }else if(caseA < 6 && caseB<9){
-      sb6.push([i, j])
-    }else if(caseA < 9 && caseB<3){
-      sb7.push([i, j])
-    }else if(caseA < 9 && caseB<6){
-      sb8.push([i, j])
-    }else if(caseA < 9 && caseB<9){
-      sb9.push([i, j])
+function makeMatrix (min, max, arr){
+    for(let x=min; x<max; x++){
+        for(let y=min; y<max; y++){
+          let num = randomNumber()
+          while(arr.includes(num)){
+            num = randomNumber()
+          }
+          board[x][y] = num
+          arr.push(num)
+        }
     }
-  }
 }
 
-matrix.push(sb, sb2, sb3, sb4, sb5, sb6, sb7, sb8, sb9)
+// makeMatrix(0, 3, matrix1)
+// makeMatrix(3, 6, matrix2)
+// makeMatrix(6, 9, matrix3)
 
-
-
-for(let x=0; x<9; x++){
-  for(let y=0; y<9; y++){
-    let coord = [x, y]
-    console.log(coord)
-    // console.log(xline[0])
-    if(xline[0].includes(...coord)){
-      console.log('있음')
-    }else{
-      // console.log('없음')
+// function makeSudoku(board){    
+//     for(let row=0; row<gridSize; row++){
+//         for(let col=0; col<gridSize; col++){
+//             if(board[row][col] === 0){
+//                 for(let num = 1; num <= 9; num++){
+//                     if(isValidSudoku(board, row, col, num)){
+//                         board[row][col] = num
+                        
+//                         if(makeSudoku(board)){
+//                             return true
+//                         }
+                        
+//                         board[row][col] = 0
+//                     }
+                    
+//                 }
+//                 return false
+//             }
+//         }
+//     }
+//     return true
+// }
+let a = []
+function makeSudoku(board){    
+    for(let row=0; row<gridSize; row++){
+        for(let col=0; col<gridSize; col++){
+            let num = randomNumber()
+            if(board[row][col] === 0){
+                for(let x = 0; x < 9; x++){
+                  
+                    if(isValidSudoku(board, row, col, num)){
+                        board[row][col] = num
+                        
+                        if(makeSudoku(board)){
+                            return true
+                        }
+                        
+                        board[row][col] = 0
+                    }
+                  
+                }
+                return false
+            }
+        }
     }
-    // console.log(a)
-  }
+    return true
 }
 
-console.log('x', xline)
-console.log('y', yline)
-console.log('m', matrix)
 
-console.log(board)
+function isValidSudoku(board, row, col, num){
+  
+  // row, col 확인
+  for(let i=0; i<gridSize; i++){
+      if(board[row][i] === num || board[i][col] === num){
+          return false
+      }
+  }
+  
+  // 3 x 3 배열 확인
+  const startRow = Math.floor(row/3)*3
+  const startCol = Math.floor(col/3)*3
+  
+  for(let i= startRow; i<startRow+3; i++){
+      for(let j=startCol; j<startCol+3; j++){
+          if(board[i][j] === num){
+              return false
+          }
+      }
+  }
+  
+  return true
+}
 
-function initNumber (box, arr) {
+makeSudoku(board)
+
+let numberIncludeCheck = JSON.parse(JSON.stringify(board))
+numberIncludeCheck.forEach(line => {
+    line.sort((a,b) => a-b)
+})
+console.log(numberIncludeCheck)
+
+
+function initNumber () {
   for(let x=0; x<9; x++){
     for(let y=0; y<9; y++){
       const data = document.createElement('div')
@@ -133,18 +161,13 @@ function initNumber (box, arr) {
         }
       }
 
-      data.innerText = arr[x][y]
+      data.innerText = `${board[x][y]}`
 
       box.append(data)
     }
   }
-  
   return box 
 }
 
-app.append(box, box2, box3, box4)
-initNumber(box, xline)
-initNumber(box2, yline)
-initNumber(box3, matrix)
-initNumber(box4, board)
-
+root.append(box)
+initNumber()

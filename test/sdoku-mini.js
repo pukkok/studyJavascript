@@ -1,10 +1,10 @@
 const root = document.getElementById('root')
 
 function randomNumber(){
-  let randomNumber = Math.floor(Math.random()*9)+1
-  return randomNumber
+  return Math.floor(Math.random()*9)+1
 }
 
+let gridSize = 9
 const box = document.createElement('div')
 box.className = 'sdoku-box'
 
@@ -20,32 +20,81 @@ const standardBox = [
   [6, 6, 6, 7, 7, 7, 8, 8, 8]
 ]
 
+let board = JSON.parse(JSON.stringify(standardBox))
 
-function solveSudokuHelper(board){
-    
-  for(let row=0; row<gridSize; row++){
-      for(let col=0; col<gridSize; col++){
-          if(board[row][col] === 0){
-              for(let num = 1; num <= 9; num++){
-                  if(isValidMove(board, row, col, num)){
-                      board[row][col] = randomNumber()
-                      
-                      if(solveSudokuHelper(board)){
-                          return true
-                      } 
-                      
-                      board[row][col] = 0
-                  }
-                  
-              }
-              return false // 방법이 없음
+board.forEach(line => {
+    line.fill(0)
+})
+
+let matrix1 = []
+let matrix2 = []
+let matrix3 = []
+
+function makeMatrix (min, max, arr){
+    for(let x=min; x<max; x++){
+        for(let y=min; y<max; y++){
+          let num = randomNumber()
+          while(arr.includes(num)){
+            num = randomNumber()
           }
-      }
-  }
-  return true // 끝
+          board[x][y] = num
+          arr.push(num)
+        }
+    }
 }
 
-function isValidMove(board, row, col, num){
+// makeMatrix(0, 3, matrix1)
+// makeMatrix(3, 6, matrix2)
+// makeMatrix(6, 9, matrix3)
+
+// function makeSudoku(board){    
+//     for(let row=0; row<gridSize; row++){
+//         for(let col=0; col<gridSize; col++){
+//             if(board[row][col] === 0){
+//                 for(let num = 1; num <= 9; num++){
+//                     if(isValidSudoku(board, row, col, num)){
+//                         board[row][col] = num
+                        
+//                         if(makeSudoku(board)){
+//                             return true
+//                         }
+                        
+//                         board[row][col] = 0
+//                     }
+                    
+//                 }
+//                 return false
+//             }
+//         }
+//     }
+//     return true
+// }
+
+function makeSudoku(board){    
+    for(let row=0; row<gridSize; row++){
+        for(let col=0; col<gridSize; col++){
+            let num = randomNumber()
+            if(board[row][col] === 0){
+                for(let x = 0; x < 9; x++){
+                    if(isValidSudoku(board, row, col, num)){
+                        board[row][col] = num
+                        
+                        if(makeSudoku(board)){
+                            return true
+                        }
+                        
+                        board[row][col] = 0
+                    }
+                }
+                return false // 끝
+            }
+        }
+    }
+    return true
+}
+
+
+function isValidSudoku(board, row, col, num){
   
   // row, col 확인
   for(let i=0; i<gridSize; i++){
@@ -61,20 +110,21 @@ function isValidMove(board, row, col, num){
   for(let i= startRow; i<startRow+3; i++){
       for(let j=startCol; j<startCol+3; j++){
           if(board[i][j] === num){
-              return false // conflict found
+              return false
           }
       }
   }
   
-  return true // no conflict found
+  return true
 }
 
-console.log(standardBox)
-solveSudokuHelper(standardBox)
+makeSudoku(board)
 
-// 1끼리는 1~9를 다 가지고 있어야함
-
-
+let numberIncludeCheck = JSON.parse(JSON.stringify(board))
+numberIncludeCheck.forEach(line => {
+    line.sort((a,b) => a-b)
+})
+console.log(numberIncludeCheck)
 
 
 function initNumber () {
@@ -109,7 +159,7 @@ function initNumber () {
         }
       }
 
-      // data.innerText = `${coordBoard[x][y]}`
+      data.innerText = `${board[x][y]}`
 
       box.append(data)
     }
